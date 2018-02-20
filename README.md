@@ -1,4 +1,9 @@
 # decorator-utils
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+![buildStatus](https://travis-ci.org/qiwi/decorator-utils.svg?branch=master)
+![coverage](https://coveralls.io/repos/qiwi/decorator-utils/badge.svg)
+![deps](https://david-dm.org/qiwi/decorator-utils.svg)
+![devDeps](https://david-dm.org/qiwi/decorator-utils/dev-status.svg)
 
 ##### Do I need this?
 1. — Decorator, what's that?  

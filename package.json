@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register --reporter spec test --recursive",
     "lint": "standard-flow src/**/*.js test/**/*.js",
-    "flow": "flow"
+    "flow": "flow",
+    "build": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",

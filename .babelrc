@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "flow",
+    "env"
+  ],
+  "plugins": [
+    ["flow-runtime"],
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-runtime"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env"],
+      "plugins": [ "nyc" ]
+    }
+  }
+}

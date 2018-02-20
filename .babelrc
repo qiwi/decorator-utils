@@ -4,7 +4,6 @@
     "env"
   ],
   "plugins": [
-    ["flow-runtime"],
     "transform-decorators-legacy",
     "transform-class-properties",
     "transform-runtime"
@@ -13,7 +12,7 @@
   "env": {
     "test": {
       "presets": ["env"],
-      "plugins": [ "nyc" ]
+      "plugins": [ "nyc" , "istanbul"]
     }
   }
 }

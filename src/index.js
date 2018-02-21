@@ -1,7 +1,7 @@
 // @flow
 
 import { isFunction, isUndefined, mapValues, getPrototypeMethods } from './utils'
-import type { IDecorator } from './interface'
+import type { IDecorator, ITargetTypes } from './interface'
 
 export const METHOD = 'method'
 export const CLASS = 'class'
@@ -13,15 +13,22 @@ export const targets = { METHOD, CLASS, FIELD }
  * Constructs decorator by given function.
  * Holywar goes here: https://github.com/wycats/javascript-decorators/issues/23
  * @param {Function} handler
+ * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
-export function constructDecorator (handler: Function): IDecorator {
+export function constructDecorator (handler: Function, allowedTypes: ?ITargetTypes): IDecorator {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
   }
 
   return (...args: any) => (target: any, method: ?string, descriptor: ?Object) => {
     const targetType = getTargetType(target, method, descriptor)
+    const allowed: ?ITargetTypes = allowedTypes && [].concat(allowedTypes)
+
+    if (allowed && !allowed.includes(targetType)) {
+      throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+    }
+
     const _handler = (targetType, value) => {
       const _value = handler(targetType, value, ...args)
 

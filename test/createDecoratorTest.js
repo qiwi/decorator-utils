@@ -35,7 +35,7 @@ describe('decoratorUtils', () => {
     })
 
     it('throws error if handler is not a func', () => {
-      expect(() => { constructDecorator({}) }).to.throw(Error)
+      expect(() => { constructDecorator({}) }).to.throw('Decorator handler must be a function')
     })
   })
 
@@ -178,6 +178,22 @@ describe('decoratorUtils', () => {
         expect(foo.foo).to.equal('bar')
         expect(foo.baz).to.equal('qux')
       })
+    })
+
+    it('asserts allowedType if defined', () => {
+      const decorator = constructDecorator((targetType, target, param) => {
+        return value => param || 'qux'
+      }, METHOD)
+
+      expect(() => {
+        @decorator()
+        class Foo {
+          foo () { return 'bar' }
+          baz () { return 'baz' }
+        }
+
+        return new Foo()
+      }).to.throw('Decorator must be applied to allowed types only: method')
     })
   })
 })

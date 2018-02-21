@@ -17,9 +17,13 @@
 5. — ...  
    — [Just give a chance to Google](https://google.com/search?q=js+decorator+utils)
 6. — ...   
-   — How about write your own? [Netanel Basal's practical tips](https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c) may be very helpful.
+   — How about writing your own? [Netanel Basal's practical tips](https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c) may be very helpful.
 6. — ...  
    — *Yes*, but it's at your own risk
+
+##### NOTE
+There's no right way to support both decorator types: with @parentheses() and @plain.
+Holy War thread: [https://github.com/wycats/javascript-decorators/issues/23](https://github.com/wycats/javascript-decorators/issues/23)
 
 ##### Usage examples
 ###### Field

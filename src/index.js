@@ -1,7 +1,17 @@
 // @flow
 
 import { isFunction, isUndefined, mapValues, getPrototypeMethods } from './utils'
-import type { IDecorator, ITargetTypes } from './interface'
+import type {
+  IDecoratorArgs,
+  IHandler,
+  IPropName,
+  IPropValue,
+  IDecorator,
+  ITarget,
+  ITargetTypes,
+  ITargetType,
+  IDescriptor
+} from './interface'
 
 export const METHOD = 'method'
 export const CLASS = 'class'
@@ -16,24 +26,27 @@ export const targets = { METHOD, CLASS, FIELD }
  * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
-export function constructDecorator (handler: Function, allowedTypes: ?ITargetTypes): IDecorator {
+export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTypes): IDecorator {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
   }
 
-  return (...args: any) => (target: any, method: ?string, descriptor: ?Object) => {
+  return (...args: IDecoratorArgs): Function => (target: ITarget, method: ?IPropName, descriptor: IDescriptor): any => {
     const targetType = getTargetType(target, method, descriptor)
-    const allowed: ?ITargetTypes = allowedTypes && [].concat(allowedTypes)
 
-    if (allowed && !allowed.includes(targetType)) {
-      throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+    if (allowedTypes) {
+      const allowed: string[] = [].concat(allowedTypes)
+      if (!allowed.includes(targetType)) {
+        throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+      }
     }
 
-    const _handler = (targetType, value) => {
-      const _value = handler(targetType, value, ...args)
+    const _handler: IHandler = (targetType, value: IPropValue): IPropValue => {
+      const _value: IPropValue = handler(targetType, value, ...args)
 
       return isUndefined(_value) ? value : _value
     }
+
     switch (targetType) {
       case null:
       default:
@@ -51,7 +64,7 @@ export function constructDecorator (handler: Function, allowedTypes: ?ITargetTyp
         return
 
       case CLASS:
-        Object.defineProperties(target.prototype, mapValues(getPrototypeMethods(target), (desc, name) => {
+        Object.defineProperties(target.prototype, mapValues(getPrototypeMethods(target), (desc: IDescriptor, name: IPropName) => {
           desc.value = _handler(METHOD, desc.value)
           return desc
         }))
@@ -68,7 +81,7 @@ export function constructDecorator (handler: Function, allowedTypes: ?ITargetTyp
  * @param {Object} [descriptor]
  * @returns {*}
  */
-export function getTargetType (target: any, method: ?string, descriptor: ?Object) {
+export function getTargetType (target: ITarget, method: ?IPropName, descriptor: ?IDescriptor): ?ITargetType {
   if (method && descriptor) {
     return isFunction(descriptor.value) ? METHOD : FIELD
   }

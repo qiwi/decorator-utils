@@ -1,30 +1,45 @@
+// @flow
+import type {
+  IProto,
+  IInstance,
+  IDescriptor,
+  IAnyType,
+  IReducible,
+  IMapIterator,
+  IReduceIterator
+} from './interface'
+
 // TODO use lodash?
-export function isFunction (value: any): boolean {
+export function isFunction (value: IAnyType): boolean {
   return typeof value === 'function'
 }
 
-export function isUndefined (value: any): boolean {
+export function isUndefined (value: IAnyType): boolean {
   return typeof value === 'undefined'
 }
 
-export function mapValues (obj: Object, fn: Function): Object {
+export function mapValues (obj: IReducible, fn: IMapIterator): Object {
   const result = {}
+  let value: IAnyType
 
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      result[key] = fn(obj[key], key, obj)
+      value = obj[key]
+      result[key] = fn(value, key, obj)
     }
   }
 
   return result
 }
 
-export function reduce (obj, fn, memo) {
+export function reduce<M> (obj: IReducible, fn: IReduceIterator, memo: M): M {
   let result = memo
+  let value: IAnyType
 
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      result = fn(result, obj[key], key)
+      value = obj[key]
+      result = fn(result, value, key)
     }
   }
 
@@ -36,16 +51,17 @@ export function reduce (obj, fn, memo) {
  * @param {*} instance
  * @returns {Object}
  */
-export function getPrototypeMethods (instance) {
-  const proto = instance.prototype || instance.constructor.prototype
-  const propNames = Object.getOwnPropertyNames(proto)
+export function getPrototypeMethods (instance: IInstance): Object {
+  const proto: IProto = instance.prototype || instance.constructor.prototype
+  const propNames: IReducible = Object.getOwnPropertyNames(proto)
+  const memo = {}
 
-  return reduce(propNames, (memo, name) => {
-    const desc = Object.getOwnPropertyDescriptor(proto, name)
+  return reduce(propNames, (memo: Object, name: string) => {
+    const desc: ?IDescriptor = Object.getOwnPropertyDescriptor(proto, name)
 
     if (desc && isFunction(desc.value) && desc.value !== instance.constructor && desc.value !== instance) {
       memo[name] = desc
     }
     return memo
-  }, {})
+  }, memo)
 }

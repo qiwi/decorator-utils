@@ -35,7 +35,4 @@ export interface IReducible {
   [key: any]: IAnyType
 }
 
-export type IDescriptor = {
-  initializer: IAnyType;
-  value: IAnyType;
-}
+export type IDescriptor = PropertyDescriptor<IAnyType>

@@ -1,5 +1,5 @@
 {
-  "name": "decorator-utils",
+  "name": "@qiwi/decorator-utils",
   "version": "0.0.1",
   "description": "Tiny helper for js decorator building",
   "main": "src/index.js",
@@ -18,7 +18,8 @@
   },
   "keywords": [
     "decorator",
-    "@decorator"
+    "@decorator",
+    "annotation"
   ],
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
@@ -35,14 +36,14 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
-    "cross-env": "^5.1.3",
-    "flow-bin": "^0.66.0",
+    "cross-env": "^5.1.4",
+    "flow-bin": "^0.67.1",
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
     "glob": "^7.1.2",
     "lodash": "^4.17.5",
-    "mocha": "^5.0.1",
-    "nyc": "^11.4.1",
+    "mocha": "^5.0.4",
+    "nyc": "^11.6.0",
     "standard-flow": "^1.0.0"
   },
   "standard-flow": {
@@ -50,7 +51,8 @@
     "globals": [
       "it",
       "expect",
-      "describe"
+      "describe",
+      "PropertyDescriptor"
     ],
     "ignore": [],
     "plugins": [

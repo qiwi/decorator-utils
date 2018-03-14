@@ -1,9 +1,10 @@
 # decorator-utils
+
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
-![buildStatus](https://travis-ci.org/qiwi/decorator-utils.svg?branch=master)
-![coverage](https://coveralls.io/repos/qiwi/decorator-utils/badge.svg)
-![deps](https://david-dm.org/qiwi/decorator-utils.svg)
-![devDeps](https://david-dm.org/qiwi/decorator-utils/dev-status.svg)
+[![buildStatus](https://img.shields.io/travis/qiwi/decorator-utils.svg?maxAge=3600&branch=master)](https://travis-ci.org/qiwi/decorator-utils)
+[![Coveralls](https://img.shields.io/coveralls/qiwi/decorator-utils.svg?maxAge=3600)](https://coveralls.io/github/qiwi/decorator-utils)
+[![dependencyStatus](https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600)](https://david-dm.org/qiwi/decorator-utils)
+[![devDependencyStatus](https://img.shields.io/david/dev/qiwi/decorator-utils.svg?maxAge=3600)](https://david-dm.org/qiwi/decorator-utils)
 
 ##### Do I need this?
 1. — Decorator, what's that?  
@@ -82,7 +83,7 @@ const decorator = constructDecorator((targetType, target) => {
         }
 ```
 
-Also you may apply decorator to class, but decorate its methods
+Also you may apply decorator to the class, but decorate its methods
 
 ```javascript
 const decorator = constructDecorator((targetType, target) => {

@@ -1,5 +1,4 @@
 import chai from 'chai'
-import { each } from 'lodash'
 import {
   constructDecorator,
   getTargetType,
@@ -21,7 +20,7 @@ describe('decoratorUtils', () => {
       ['null', [null], null]
     ]
 
-    each(cases, ([title, args, expected]) => {
+    cases.forEach(([title, args, expected]) => {
       it(`detects ${title} as ${expected}`, () => {
         expect(getTargetType.apply(null, args)).to.equal(expected)
       })

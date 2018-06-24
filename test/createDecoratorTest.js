@@ -179,6 +179,13 @@ describe('decoratorUtils', () => {
       })
     })
 
+    describe('for weird type', () => {
+      it('returns undefined', () => {
+        const decorator = constructDecorator(() => {})
+        expect(decorator(() => {})({})).to.be.undefined
+      })
+    })
+
     it('asserts allowedType if defined', () => {
       const decorator = constructDecorator((targetType, target, param) => {
         return value => param || 'qux'
@@ -193,6 +200,15 @@ describe('decoratorUtils', () => {
 
         return new Foo()
       }).to.throw('Decorator must be applied to allowed types only: method')
+
+      expect(() => {
+        class Foo {
+          @decorator()
+          foo () { return 'bar' }
+        }
+
+        return new Foo()
+      }).not.to.throw()
     })
   })
 })

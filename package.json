@@ -8,7 +8,7 @@
     "flow": "flow",
     "test": "npm run lint && npm run flow && npm run mocha",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
-    "build": "babel src --out-dir dist",
+    "build": "rm -rf dist && babel src --out-dir dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "mocha": "nyc mocha --require babel-core/register --reporter spec test --recursive && nyc report --reporter=text-lcov > ./coverage/lcov.info",
     "test_with_report": "npm test && npm run codeclimate_push && npm run coveralls_push",

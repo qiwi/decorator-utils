@@ -4,13 +4,16 @@
   "description": "Tiny helper for js decorator building",
   "main": "src/index.js",
   "scripts": {
-    "mocha": "nyc --reporter=html --reporter=text mocha --require babel-core/register --reporter spec test --recursive",
     "lint": "standard-flow src/**/*.js test/**/*.js",
     "flow": "flow",
     "test": "npm run lint && npm run flow && npm run mocha",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
     "build": "babel src --out-dir dist",
-    "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
+    "mocha": "nyc mocha --require babel-core/register --reporter spec test --recursive && nyc report --reporter=text-lcov > ./coverage/lcov.info",
+    "test_with_report": "npm test && npm run codeclimate_push && npm run coveralls_push",
+    "codeclimate_push": "codeclimate-test-reporter < ./coverage/lcov.info",
+    "coveralls_push": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,10 @@
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
   "devDependencies": {
+    "@semantic-release/changelog": "^2.0.2",
+    "@semantic-release/git": "^5.0.0",
+    "@semantic-release/github": "^4.2.17",
+    "@semantic-release/npm": "^3.3.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-flow-runtime": "^0.17.0",
     "babel-plugin-istanbul": "^4.1.6",
@@ -35,6 +42,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.1",
     "cross-env": "^5.2.0",
     "flow-bin": "^0.75.0",
@@ -43,7 +51,25 @@
     "glob": "^7.1.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
+    "semantic-release": "^15.6.0",
     "standard-flow": "^1.0.0"
+  },
+  "release": {
+    "branch": "master",
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
   },
   "standard-flow": {
     "parser": "babel-eslint",

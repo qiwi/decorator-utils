@@ -1,11 +1,22 @@
 language: node_js
 node_js:
   - '9'
+
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+
 before_install:
   - npm install -g nyc
   - npm install -g mocha
+  - npm install -g greenkeeper-lockfile
 install:
   - npm install
   - npm build
 script:
   - npm run coveralls
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx semantic-release

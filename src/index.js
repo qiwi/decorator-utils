@@ -16,8 +16,7 @@ import type {
 export const METHOD = 'method'
 export const CLASS = 'class'
 export const FIELD = 'field'
-
-export const targets = { METHOD, CLASS, FIELD }
+export const TARGET_TYPES = { METHOD, CLASS, FIELD }
 
 /**
  * Constructs decorator by given function.
@@ -33,24 +32,17 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
 
   return (...args: IDecoratorArgs): Function => (target: ITarget, method: ?IPropName, descriptor: IDescriptor): any => {
     const targetType = getTargetType(target, method, descriptor)
-
     assertTargetType(targetType, allowedTypes)
 
     const _handler: IHandler = (targetType, value: IPropValue): IPropValue => {
       const _value: IPropValue = handler(targetType, value, ...args)
-
       return isUndefined(_value) ? value : _value
     }
 
     switch (targetType) {
-      case null:
-      default:
-        return
-
       case FIELD:
         // $FlowFixMe
         descriptor.initializer = _handler(targetType, descriptor.initializer)
-
         return
 
       case METHOD:
@@ -65,6 +57,9 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
         }))
 
         return _handler(CLASS, target)
+
+      default:
+        return
     }
   }
 }
@@ -92,3 +87,5 @@ export function assertTargetType (targetType?: ?ITargetType, allowedTypes?: ?ITa
     }
   }
 }
+
+export default constructDecorator

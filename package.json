@@ -2,7 +2,7 @@
   "name": "@qiwi/decorator-utils",
   "version": "0.0.1",
   "description": "Tiny helper for js decorator building",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "standard-flow src/**/*.js test/**/*.js",
     "flow": "flow",
@@ -23,6 +23,11 @@
     "decorator",
     "@decorator",
     "annotation"
+  ],
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "dist/"
   ],
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",

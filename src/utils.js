@@ -18,20 +18,28 @@ export function isUndefined (value: IAnyType): boolean {
   return typeof value === 'undefined'
 }
 
+/**
+ * @param {Object} obj
+ * @param {Function} fn
+ * @return {Object}
+ */
 export function mapValues (obj: IReducible, fn: IMapIterator): Object {
-  const result = {}
-  let value: IAnyType
+  const _fn: IReduceIterator = (result: Object, value: IAnyType, key: string, obj: Object): Object => {
+    result[key] = fn(value, key, obj)
 
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      value = obj[key]
-      result[key] = fn(value, key, obj)
-    }
+    return result
   }
 
-  return result
+  return reduce(obj, _fn, {})
 }
 
+/**
+ *
+ * @param {Object} obj
+ * @param {Function} fn
+ * @param {Object} memo
+ * @returns {Object}
+ */
 export function reduce<M> (obj: IReducible, fn: IReduceIterator, memo: M): M {
   let result = memo
   let value: IAnyType
@@ -39,7 +47,7 @@ export function reduce<M> (obj: IReducible, fn: IReduceIterator, memo: M): M {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       value = obj[key]
-      result = fn(result, value, key)
+      result = fn(result, value, key, obj)
     }
   }
 

@@ -21,7 +21,7 @@ export type IMapIterator = {
   (value: IAnyType, key: any, obj: IAnyType): IAnyType
 }
 export type IReduceIterator = {
-  (result: IAnyType, value: IAnyType, key: any): IAnyType
+  (result: IAnyType, value: IAnyType, key: string, obj: IAnyType): IAnyType
 }
 
 export type IPropName = string

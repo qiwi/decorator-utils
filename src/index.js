@@ -34,12 +34,7 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
   return (...args: IDecoratorArgs): Function => (target: ITarget, method: ?IPropName, descriptor: IDescriptor): any => {
     const targetType = getTargetType(target, method, descriptor)
 
-    if (allowedTypes) {
-      const allowed: string[] = [].concat(allowedTypes)
-      if (!allowed.includes(targetType)) {
-        throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
-      }
-    }
+    assertTargetType(targetType, allowedTypes)
 
     const _handler: IHandler = (targetType, value: IPropValue): IPropValue => {
       const _value: IPropValue = handler(targetType, value, ...args)
@@ -87,4 +82,13 @@ export function getTargetType (target: ITarget, method: ?IPropName, descriptor: 
   }
 
   return isFunction(target) ? CLASS : null
+}
+
+export function assertTargetType (targetType?: ?ITargetType, allowedTypes?: ?ITargetTypes): void {
+  if (allowedTypes) {
+    const allowed: string[] = [].concat(allowedTypes)
+    if (!allowed.includes(targetType)) {
+      throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+    }
+  }
 }

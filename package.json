@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard-flow src/**/*.js test/**/*.js",
     "flow": "flow",
-    "test": "npm run lint && npm run flow && npm run mocha",
+    "test": "npm run lint && npm run flow && npm run build && npm run mocha",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
     "build": "rm -rf dist && babel src --out-dir dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",

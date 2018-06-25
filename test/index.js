@@ -10,7 +10,7 @@ import factory, {
   FIELD,
   CLASS,
   TARGET_TYPES
-} from '../dist'
+} from '../dist/index'
 
 describe('index.js', () => {
   it('properly exposes inners', () => {

@@ -13,7 +13,7 @@ install:
   - npm install
   - npm build
 script:
-  - npm run coveralls
+  - npm run test_with_report
 
 deploy:
   provider: script

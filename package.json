@@ -50,7 +50,7 @@
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.1",
     "cross-env": "^5.2.0",
-    "flow-bin": "^0.76.0",
+    "flow-bin": "^0.77.0",
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
     "glob": "^7.1.2",

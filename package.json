@@ -6,13 +6,12 @@
   "scripts": {
     "lint": "standard-flow src/**/*.js test/**/*.js",
     "flow": "flow",
-    "test": "npm run lint && npm run flow && npm run build && npm run mocha",
+    "test": "yarn lint && yarn flow && yarn build && yarn mocha",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
     "build": "rm -rf dist && babel src --out-dir dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "mocha": "nyc mocha --require babel-core/register --reporter spec test --recursive && nyc report --reporter=text-lcov > ./coverage/lcov.info",
-    "test_with_report": "npm test && npm run codeclimate_push && npm run coveralls_push",
-    "codeclimate_push": "codeclimate-test-reporter < ./coverage/lcov.info",
+    "test_with_report": "npm test && yarn coveralls_push",
     "coveralls_push": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
@@ -47,7 +46,6 @@
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
-    "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.1",
     "cross-env": "^5.2.0",
     "flow-bin": "^0.76.0",

@@ -1,4 +1,5 @@
 {
+  "extends": "@istanbuljs/nyc-config-babel",
   "reporter": [
     "html",
     "text",
@@ -7,11 +8,11 @@
   "include": [
     "src/**/*.js"
   ],
+  "cache": true,
+  "all": true,
   "require": [
-    "babel-core/register",
-    "flow-remove-types/register",
-    "./script/require-all"
+    "@babel/register",
+    "flow-remove-types/register"
   ],
-  "check-coverage": false,
-  "cache": true
+  "check-coverage": true
 }

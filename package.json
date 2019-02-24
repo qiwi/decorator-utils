@@ -4,7 +4,7 @@
   "description": "Tiny helper for js decorator building",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "standard-flow src/**/*.js test/**/*.js",
+    "lint": "standard-flow src/**/*.js test/**/*.js --fix",
     "flow": "flow",
     "test": "yarn lint && yarn flow && yarn mocha",
     "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",

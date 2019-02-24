@@ -61,7 +61,7 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
   }
 }
 
-export const getHandler = (handler: IHandler, ...args: IDecoratorArgs): IHandler =>  {
+export const getHandler = (handler: IHandler, ...args: IDecoratorArgs): IHandler => {
   return (targetType, value: IPropValue): IPropValue => {
     const _value: IPropValue = handler(targetType, value, ...args)
     return isUndefined(_value) ? value : _value

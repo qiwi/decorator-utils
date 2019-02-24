@@ -34,10 +34,7 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
     const targetType = getTargetType(target, method, descriptor)
     assertTargetType(targetType, allowedTypes)
 
-    const _handler: IHandler = (targetType, value: IPropValue): IPropValue => {
-      const _value: IPropValue = handler(targetType, value, ...args)
-      return isUndefined(_value) ? value : _value
-    }
+    const _handler = getHandler(handler, ...args)
 
     switch (targetType) {
       case FIELD:
@@ -64,6 +61,13 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
   }
 }
 
+export const getHandler = (handler: IHandler, ...args: IDecoratorArgs): IHandler =>  {
+  return (targetType, value: IPropValue): IPropValue => {
+    const _value: IPropValue = handler(targetType, value, ...args)
+    return isUndefined(_value) ? value : _value
+  }
+}
+
 /**
  * Detects decorated target type.
  * @param {*} target
@@ -71,7 +75,7 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
  * @param {Object} [descriptor]
  * @returns {*}
  */
-export function getTargetType (target: ITarget, method: ?IPropName, descriptor: ?IDescriptor): ?ITargetType {
+export const getTargetType = (target: ITarget, method: ?IPropName, descriptor: ?IDescriptor): ?ITargetType => {
   if (method && descriptor) {
     return isFunction(descriptor.value) ? METHOD : FIELD
   }
@@ -79,7 +83,7 @@ export function getTargetType (target: ITarget, method: ?IPropName, descriptor: 
   return isFunction(target) ? CLASS : null
 }
 
-export function assertTargetType (targetType?: ?ITargetType, allowedTypes?: ?ITargetTypes): void {
+export const assertTargetType = (targetType?: ?ITargetType, allowedTypes?: ?ITargetTypes): void => {
   if (allowedTypes) {
     const allowed: string[] = [].concat(allowedTypes)
     if (!allowed.includes(targetType)) {

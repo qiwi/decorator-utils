@@ -31,10 +31,10 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
   }
 
   return (...args: IDecoratorArgs): Function => (target: ITarget, method: ?IPropName, descriptor: IDescriptor): any => {
-    const targetType = getTargetType(target, method, descriptor)
-    assertTargetType(targetType, allowedTypes)
-
     const _handler = getHandler(handler, ...args)
+    const targetType = getTargetType(target, method, descriptor)
+
+    assertTargetType(targetType, allowedTypes)
 
     switch (targetType) {
       case FIELD:

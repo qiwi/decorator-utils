@@ -1,11 +1,9 @@
 # decorator-utils
 
-[![buildStatus](https://img.shields.io/travis/qiwi/decorator-utils.svg?maxAge=3600&branch=master)](https://travis-ci.org/qiwi/decorator-utils)
-[![Coveralls](https://img.shields.io/coveralls/qiwi/decorator-utils.svg?maxAge=3600)](https://coveralls.io/github/qiwi/decorator-utils)
+[![Build Status](https://travis-ci.com/qiwi/decorator-utils.svg?branch=master)](https://travis-ci.com/qiwi/decorator-utils)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/maintainability)](https://codeclimate.com/github/qiwi/decorator-utils/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/test_coverage)](https://codeclimate.com/github/qiwi/decorator-utils/test_coverage)
 [![dependencyStatus](https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600)](https://david-dm.org/qiwi/decorator-utils)
-[![devDependencyStatus](https://img.shields.io/david/dev/qiwi/decorator-utils.svg?maxAge=3600)](https://david-dm.org/qiwi/decorator-utils)
 [![Greenkeeper badge](https://badges.greenkeeper.io/qiwi/decorator-utils.svg)](https://greenkeeper.io/)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 

@@ -6,12 +6,12 @@
   "scripts": {
     "lint": "standard-flow src/**/*.js test/**/*.js --fix",
     "flow": "flow",
-    "test": "yarn lint && yarn flow && yarn mocha",
-    "flow_coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
+    "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
     "build": "rm -rf dist && babel src --out-dir dist",
     "mocha": "nyc mocha --require @babel/register --reporter spec test && nyc report --reporter=text-lcov > ./coverage/lcov.info",
-    "test_with_report": "npm test && yarn coveralls_push",
-    "coveralls_push": "cat ./coverage/lcov.info | coveralls"
+    "test": "yarn lint && yarn flow && yarn mocha",
+    "test:report": "yarn test && yarn coveralls:push",
+    "coveralls:push": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@
     "lint": "standard-flow src/**/*.js test/**/*.js --fix",
     "flow": "flow",
     "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
-    "build": "rm -rf dist && babel src --out-dir dist",
+    "build": "rimraf dist && babel src --out-dir dist",
     "mocha": "nyc mocha --require @babel/register --reporter spec test && nyc report --reporter=text-lcov > ./coverage/lcov.info",
     "test": "yarn lint && yarn flow && yarn mocha",
     "test:report": "yarn test && yarn coveralls:push",
@@ -58,6 +58,7 @@
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
     "nyc": "10.0.0",
+    "rimraf": "^2.6.3",
     "semantic-release": "^15.13.12",
     "standard-flow": "^1.0.0"
   },

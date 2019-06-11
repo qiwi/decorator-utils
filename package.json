@@ -52,7 +52,7 @@
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
-    "flow-bin": "^0.100.0",
+    "flow-bin": "^0.101.0",
     "flow-coverage-report": "^0.6.1",
     "flow-remove-types": "^2.100.0",
     "glob": "^7.1.4",

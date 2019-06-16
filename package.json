@@ -57,7 +57,7 @@
     "flow-remove-types": "^2.100.0",
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
-    "nyc": "10.0.0",
+    "nyc": "10.3.2",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.12",
     "standard-flow": "^1.0.0"

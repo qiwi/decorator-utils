@@ -1,4 +1,3 @@
-import chai from 'chai'
 import {
   constructDecorator,
   getTargetType,
@@ -6,8 +5,6 @@ import {
   FIELD,
   CLASS
 } from '../src'
-
-const { expect } = chai
 
 describe('decoratorUtils', () => {
   describe('#getTargetType', () => {
@@ -22,7 +19,7 @@ describe('decoratorUtils', () => {
 
     cases.forEach(([title, args, expected]) => {
       it(`detects ${title} as ${expected}`, () => {
-        expect(getTargetType.apply(null, args)).to.equal(expected)
+        expect(getTargetType.apply(null, args)).toEqual(expected)
       })
     })
   })
@@ -30,11 +27,11 @@ describe('decoratorUtils', () => {
   describe('#constructDecorator', () => {
     it('returns fn', () => {
       const decorator = constructDecorator(() => {})
-      expect(decorator).to.be.a('function')
+      expect(typeof decorator).toBe('function')
     })
 
     it('throws error if handler is not a func', () => {
-      expect(() => { constructDecorator({}) }).to.throw('Decorator handler must be a function')
+      expect(() => { constructDecorator({}) }).toThrow('Decorator handler must be a function')
     })
   })
 
@@ -61,9 +58,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo('qux', 100)
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.age).to.equal(100)
-        expect(foo.foo()).to.equal('bar')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.age).toEqual(100)
+        expect(foo.foo()).toEqual('bar')
       })
 
       it('overrides proto', () => {
@@ -82,9 +79,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo()).to.equal('BAR')
-        expect(foo.baz()).to.equal('BAZ')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('BAR')
+        expect(foo.baz()).toEqual('BAZ')
       })
 
       it('has no effect if handler returns null', () => {
@@ -97,9 +94,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo()).to.equal('bar')
-        expect(foo.baz()).to.equal('baz')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('bar')
+        expect(foo.baz()).toEqual('baz')
       })
     })
 
@@ -119,9 +116,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo()).to.equal('qux')
-        expect(foo.baz()).to.equal('BAZ')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('qux')
+        expect(foo.baz()).toEqual('BAZ')
       })
 
       it('has no effect if handler returns null', () => {
@@ -135,9 +132,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo()).to.equal('bar')
-        expect(foo.baz()).to.equal('baz')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('bar')
+        expect(foo.baz()).toEqual('baz')
       })
     })
 
@@ -157,9 +154,9 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo).to.equal('_bar')
-        expect(foo.baz).to.equal('__qux')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo).toEqual('_bar')
+        expect(foo.baz).toEqual('__qux')
       })
 
       it('has no effect if handler returns null', () => {
@@ -173,16 +170,16 @@ describe('decoratorUtils', () => {
         }
 
         const foo = new Foo()
-        expect(foo.constructor).to.equal(Foo)
-        expect(foo.foo).to.equal('bar')
-        expect(foo.baz).to.equal('qux')
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo).toEqual('bar')
+        expect(foo.baz).toEqual('qux')
       })
     })
 
     describe('for weird type', () => {
       it('returns undefined', () => {
         const decorator = constructDecorator(() => {})
-        expect(decorator(() => {})({})).to.be.undefined
+        expect(decorator(() => {})({})).toBeUndefined()
       })
     })
 
@@ -199,7 +196,7 @@ describe('decoratorUtils', () => {
         }
 
         return new Foo()
-      }).to.throw('Decorator must be applied to allowed types only: method')
+      }).toThrow('Decorator must be applied to allowed types only: method')
 
       expect(() => {
         class Foo {
@@ -208,7 +205,7 @@ describe('decoratorUtils', () => {
         }
 
         return new Foo()
-      }).not.to.throw()
+      }).not.toThrow()
     })
   })
 })

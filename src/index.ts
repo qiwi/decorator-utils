@@ -1,7 +1,5 @@
-// @flow
-
-import { isFunction, isUndefined, mapValues, getPrototypeMethods } from './utils'
-import type {
+import {isFunction, isUndefined, mapValues, getPrototypeMethods} from './utils'
+import {
   IDecoratorArgs,
   IHandler,
   IPropName,
@@ -16,7 +14,7 @@ import type {
 export const METHOD = 'method'
 export const CLASS = 'class'
 export const FIELD = 'field'
-export const TARGET_TYPES = { METHOD, CLASS, FIELD }
+export const TARGET_TYPES = {METHOD, CLASS, FIELD}
 
 /**
  * Constructs decorator by given function.
@@ -25,12 +23,19 @@ export const TARGET_TYPES = { METHOD, CLASS, FIELD }
  * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
-export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTypes): IDecorator {
+export function constructDecorator(
+  handler: IHandler,
+  allowedTypes: ITargetTypes | void
+): IDecorator {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
   }
 
-  return (...args: IDecoratorArgs): Function => (target: ITarget, method: ?IPropName, descriptor: IDescriptor): any => {
+  return (...args: IDecoratorArgs): Function => (
+    target: ITarget,
+    method: IPropName | void,
+    descriptor: IDescriptor
+  ): any => {
     const _handler = getHandler(handler, ...args)
     const targetType = getTargetType(target, method, descriptor)
 
@@ -38,20 +43,26 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
 
     switch (targetType) {
       case FIELD:
-        // $FlowFixMe
+        // https://github.com/Microsoft/TypeScript/issues/4736
+        // @ts-ignore
         descriptor.initializer = _handler(targetType, descriptor.initializer)
         return
 
       case METHOD:
-        // $FlowFixMe
         descriptor.value = _handler(targetType, descriptor.value)
         return
 
       case CLASS:
-        Object.defineProperties(target.prototype, mapValues(getPrototypeMethods(target), (desc: IDescriptor, name: IPropName) => {
-          desc.value = _handler(METHOD, desc.value)
-          return desc
-        }))
+        Object.defineProperties(
+          target.prototype,
+          mapValues(
+            getPrototypeMethods(target),
+            (desc: IDescriptor, name: IPropName) => {
+              desc.value = _handler(METHOD, desc.value)
+              return desc
+            }
+          )
+        )
 
         return _handler(CLASS, target)
 
@@ -61,7 +72,10 @@ export function constructDecorator (handler: IHandler, allowedTypes: ?ITargetTyp
   }
 }
 
-export const getHandler = (handler: IHandler, ...args: IDecoratorArgs): IHandler => {
+export const getHandler = (
+  handler: IHandler,
+  ...args: IDecoratorArgs
+): IHandler => {
   return (targetType, value: IPropValue): IPropValue => {
     const _value: IPropValue = handler(targetType, value, ...args)
     return isUndefined(_value) ? value : _value
@@ -75,7 +89,11 @@ export const getHandler = (handler: IHandler, ...args: IDecoratorArgs): IHandler
  * @param {Object} [descriptor]
  * @returns {*}
  */
-export const getTargetType = (target: ITarget, method: ?IPropName, descriptor: ?IDescriptor): ?ITargetType => {
+export const getTargetType = (
+  target: ITarget,
+  method: IPropName | void,
+  descriptor: IDescriptor | void
+): ITargetType | null => {
   if (method && descriptor) {
     return isFunction(descriptor.value) ? METHOD : FIELD
   }
@@ -83,11 +101,17 @@ export const getTargetType = (target: ITarget, method: ?IPropName, descriptor: ?
   return isFunction(target) ? CLASS : null
 }
 
-export const assertTargetType = (targetType?: ?ITargetType, allowedTypes?: ?ITargetTypes): void => {
+export const assertTargetType = (
+  targetType: ITargetType | null,
+  allowedTypes: ITargetTypes | void
+): void => {
   if (allowedTypes) {
+    // @ts-ignore
     const allowed: string[] = [].concat(allowedTypes)
-    if (!allowed.includes(targetType)) {
-      throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+    if (!targetType || !allowed.includes(targetType)) {
+      throw new Error(
+        `Decorator must be applied to allowed types only: ${allowed.join(', ')}`
+      )
     }
   }
 }

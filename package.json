@@ -4,14 +4,11 @@
   "description": "Tiny helper for js decorator building",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "standard-flow src/**/*.js test/**/*.js --fix",
-    "flow": "flow",
-    "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t json -t text --threshold 90",
-    "build": "rimraf dist && babel src --out-dir dist",
-    "mocha": "nyc mocha --require @babel/register --reporter spec test && nyc report --reporter=text-lcov > ./coverage/lcov.info",
-    "test": "yarn lint && yarn flow && yarn mocha",
-    "test:report": "yarn test && yarn coveralls:push",
-    "coveralls:push": "cat ./coverage/lcov.info | coveralls"
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
+    "test": "yarn build && yarn jest",
+    "test:report": "yarn build && yarn jest --collect-coverage"
   },
   "repository": {
     "type": "git",
@@ -36,31 +33,25 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/plugin-transform-flow-strip-types": "^7.4.4",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
-    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.4",
     "@babel/runtime": "^7.4.5",
-    "@istanbuljs/nyc-config-babel": "^2.1.1",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.7",
-    "babel-plugin-istanbul": "^5.1.4",
-    "chai": "^4.2.0",
-    "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
-    "flow-bin": "^0.100.0",
-    "flow-coverage-report": "^0.6.1",
-    "flow-remove-types": "^2.100.0",
     "glob": "^7.1.4",
-    "mocha": "^6.1.4",
-    "nyc": "10.0.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.12",
-    "standard-flow": "^1.0.0"
+    "tslint": "5.17.0",
+    "tslint-config-qiwi": "^1.0.1",
+    "typescript": "3.5.2"
   },
   "release": {
     "branch": "master",
@@ -78,24 +69,5 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
-  },
-  "standard-flow": {
-    "parser": "babel-eslint",
-    "globals": [
-      "it",
-      "expect",
-      "describe",
-      "PropertyDescriptor"
-    ],
-    "ignore": [],
-    "plugins": [
-      "flowtype"
-    ],
-    "settings": {
-      "flowtype": {
-        "onlyFilesWithFlowAnnotation": true
-      }
-    }
-  },
-  "dependencies": {}
+  }
 }

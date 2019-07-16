@@ -4,9 +4,9 @@
     "module": "CommonJS",
     "outDir": "./dist",
     "lib": ["es6", "esnext", "dom"],
-
     "strict": true,
-
+    "allowJs": true,
+    "experimentalDecorators": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noImplicitReturns": true,

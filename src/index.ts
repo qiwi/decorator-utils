@@ -33,7 +33,7 @@ export function constructDecorator(
 
   return (...args: IDecoratorArgs): Function => (
     target: ITarget,
-    method: IPropName | void,
+    method: IPropName,
     descriptor: IDescriptor
   ): any => {
     const _handler = getHandler(handler, ...args)
@@ -43,7 +43,27 @@ export function constructDecorator(
 
     switch (targetType) {
       case FIELD:
-        // https://github.com/Microsoft/TypeScript/issues/4736
+        if (!descriptor) {
+          return (function(target: {[key: string]: any}, key: string) {
+            let val = target[key]
+
+            const getter = () => {
+              return val
+            }
+
+            const setter = (next: unknown) => {
+              val = _handler(targetType, () => next, next)()
+            }
+
+            Object.defineProperty(target, key, {
+              get: getter,
+              set: setter,
+              enumerable: true,
+              configurable: true
+            })
+          })(target, method)
+        }
+
         // @ts-ignore
         descriptor.initializer = _handler(targetType, descriptor.initializer)
         return
@@ -91,14 +111,22 @@ export const getHandler = (
  */
 export const getTargetType = (
   target: ITarget,
-  method: IPropName | void,
+  method: IPropName | symbol,
   descriptor: IDescriptor | void
 ): ITargetType | null => {
   if (method && descriptor) {
     return isFunction(descriptor.value) ? METHOD : FIELD
   }
 
-  return isFunction(target) ? CLASS : null
+  if (isFunction(target)) {
+    return CLASS
+  }
+
+  if (method && !descriptor) {
+    return FIELD
+  }
+
+  return null
 }
 
 export const assertTargetType = (

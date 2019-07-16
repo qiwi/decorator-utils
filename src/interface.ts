@@ -11,7 +11,7 @@ export type IDecoratorArgs = any
 
 export type IHandler = {
   (
-    targetType: ITargetType | void,
+    targetType: ITargetType | null,
     value: IPropValue,
     ...args: IDecoratorArgs
   ): IPropValue

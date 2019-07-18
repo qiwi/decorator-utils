@@ -1,10 +1,10 @@
-import {getPrototypeMethods} from '../src/utils'
+import {getPrototypeMethods} from '../../../dist/utils'
 
 describe('utils.js', () => {
   describe('#getPrototypeMethods', () => {
     class Foo {
-      bar () {}
-      baz () {}
+      bar() {}
+      baz() {}
     }
     const foo = new Foo()
 

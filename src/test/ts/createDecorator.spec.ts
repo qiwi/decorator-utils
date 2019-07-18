@@ -4,9 +4,9 @@ import {
   METHOD,
   FIELD,
   CLASS
-} from '../src'
+} from '../../../dist/'
 
-describe('decoratorUtils', () => {
+describe('decoratorUtils babel', () => {
   describe('#getTargetType', () => {
     const cases = [
       ['function', [() => {}], CLASS],
@@ -19,6 +19,7 @@ describe('decoratorUtils', () => {
 
     cases.forEach(([title, args, expected]) => {
       it(`detects ${title} as ${expected}`, () => {
+        // @ts-ignore
         expect(getTargetType.apply(null, args)).toEqual(expected)
       })
     })
@@ -31,51 +32,69 @@ describe('decoratorUtils', () => {
     })
 
     it('throws error if handler is not a func', () => {
-      expect(() => { constructDecorator({}) }).toThrow('Decorator handler must be a function')
+      expect(() => {
+        // @ts-ignore
+        constructDecorator({})
+      }).toThrow('Decorator handler must be a function')
     })
   })
 
   describe('decorator', () => {
     describe('for constructor', () => {
       it('extends target class', () => {
-        const decorator = constructDecorator((targetType, target) => {
-          if (targetType === CLASS) {
-            return class Bar extends target {
-              constructor (name, age) {
-                super(name)
-                this.age = age
+        const addAge = constructDecorator(
+          (targetType: unknown, target: any, age: number) => {
+            if (targetType === CLASS) {
+              return class Bar extends target {
+                age: number
+                constructor(name: string) {
+                  super(name)
+                  this.age = age
+                }
               }
             }
+            return
           }
-        })
+        )
 
-        @decorator()
+        @addAge(100)
         class Foo {
-          constructor (name) {
+          name: string
+          constructor(name: string) {
             this.name = name
           }
-          foo () { return 'bar' }
+          foo() {
+            return 'bar'
+          }
         }
 
-        const foo = new Foo('qux', 100)
+        const foo = new Foo('qux')
         expect(foo.constructor).toEqual(Foo)
+        // @ts-ignore
         expect(foo.age).toEqual(100)
         expect(foo.foo()).toEqual('bar')
       })
 
       it('overrides proto', () => {
-        const decorator = constructDecorator((targetType, target) => {
-          if (targetType === METHOD) {
-            return () => {
-              return target().toUpperCase()
+        const decorator = constructDecorator(
+          (targetType: unknown, target: Function) => {
+            if (targetType === METHOD) {
+              return () => {
+                return target().toUpperCase()
+              }
             }
+            return
           }
-        })
+        )
 
         @decorator()
         class Foo {
-          foo () { return 'bar' }
-          baz () { return 'baz' }
+          foo() {
+            return 'bar'
+          }
+          baz() {
+            return 'baz'
+          }
         }
 
         const foo = new Foo()
@@ -89,8 +108,12 @@ describe('decoratorUtils', () => {
 
         @decorator()
         class Foo {
-          foo () { return 'bar' }
-          baz () { return 'baz' }
+          foo() {
+            return 'bar'
+          }
+          baz() {
+            return 'baz'
+          }
         }
 
         const foo = new Foo()
@@ -102,17 +125,24 @@ describe('decoratorUtils', () => {
 
     describe('for method', () => {
       it('replaces target with the new impl', () => {
-        const decorator = constructDecorator((targetType, target, param) => {
-          if (targetType === METHOD) {
-            return value => param || 'qux'
+        const decorator = constructDecorator(
+          (targetType: unknown, target: Function, param: unknown) => {
+            if (targetType === METHOD) {
+              return (value: unknown) => param || 'qux'
+            }
+            return
           }
-        })
+        )
 
         class Foo {
           @decorator()
-          foo () { return 'bar' }
+          foo() {
+            return 'bar'
+          }
           @decorator('BAZ')
-          baz () { return 'baz' }
+          baz() {
+            return 'baz'
+          }
         }
 
         const foo = new Foo()
@@ -126,9 +156,13 @@ describe('decoratorUtils', () => {
 
         class Foo {
           @decorator('abc')
-          foo () { return 'bar' }
+          foo() {
+            return 'bar'
+          }
           @decorator('BAZ')
-          baz () { return 'baz' }
+          baz() {
+            return 'baz'
+          }
         }
 
         const foo = new Foo()
@@ -140,11 +174,14 @@ describe('decoratorUtils', () => {
 
     describe('for field', () => {
       it('replaces target initializer', () => {
-        const prefix = constructDecorator((targetType, target, param) => {
-          if (targetType === FIELD) {
-            return () => (param || '') + target()
+        const prefix = constructDecorator(
+          (targetType: unknown, target: Function, param: unknown): unknown => {
+            if (targetType === FIELD) {
+              return () => (param || '') + target()
+            }
+            return
           }
-        })
+        )
 
         class Foo {
           @prefix('_')
@@ -184,15 +221,22 @@ describe('decoratorUtils', () => {
     })
 
     it('asserts allowedType if defined', () => {
-      const decorator = constructDecorator((targetType, target, param) => {
-        return value => param || 'qux'
-      }, METHOD)
+      const decorator = constructDecorator(
+        (targetType: unknown, target: Function, param: string) => {
+          return (value: unknown) => param || 'qux'
+        },
+        METHOD
+      )
 
       expect(() => {
         @decorator()
         class Foo {
-          foo () { return 'bar' }
-          baz () { return 'baz' }
+          foo() {
+            return 'bar'
+          }
+          baz() {
+            return 'baz'
+          }
         }
 
         return new Foo()
@@ -201,7 +245,9 @@ describe('decoratorUtils', () => {
       expect(() => {
         class Foo {
           @decorator()
-          foo () { return 'bar' }
+          foo() {
+            return 'bar'
+          }
         }
 
         return new Foo()

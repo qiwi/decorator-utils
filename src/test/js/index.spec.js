@@ -2,12 +2,11 @@ import factory, {
   constructDecorator,
   getTargetType,
   assertTargetType,
-
   METHOD,
   FIELD,
   CLASS,
   TARGET_TYPES
-} from '../dist/index'
+} from '../../../dist'
 
 describe('index.js', () => {
   it('properly exposes inners', () => {

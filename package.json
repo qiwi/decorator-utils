@@ -4,7 +4,7 @@
   "description": "Tiny helper for js decorator building",
   "main": "dist/index.js",
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
     "test": "yarn build && yarn jest",
@@ -27,10 +27,25 @@
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-external-helpers": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/github": "^5.2.10",
     "@semantic-release/npm": "^5.1.7",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.6",
+    "babel-jest": "^24.8.0",
     "cross-env": "^5.2.0",
     "glob": "^7.1.4",
     "jest": "^24.8.0",
@@ -67,7 +82,8 @@
     ],
     "testRegex": ".spec.(t|j)s$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.ts$": "ts-jest",
+      "^.+\\.js$": "babel-jest"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"

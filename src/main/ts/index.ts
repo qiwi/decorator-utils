@@ -25,7 +25,7 @@ export const TARGET_TYPES = {METHOD, CLASS, FIELD}
  */
 export function constructDecorator(
   handler: IHandler,
-  allowedTypes: ITargetTypes | void
+  allowedTypes?: ITargetTypes
 ): IDecorator {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
@@ -84,7 +84,7 @@ export function constructDecorator(
           )
         )
 
-        return _handler(CLASS, target)
+        return _handler(CLASS, target, ...args)
 
       default:
         return

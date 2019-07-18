@@ -7,7 +7,7 @@ export type IInstance = {
   prototype: IProto
 }
 
-export type IDecoratorArgs = any
+export type IDecoratorArgs = any[]
 
 export type IHandler = {
   (

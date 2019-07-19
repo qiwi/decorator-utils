@@ -4,7 +4,7 @@ import {
   METHOD,
   FIELD,
   CLASS
-} from '../../../dist/'
+} from '../../main/ts'
 
 describe('decoratorUtils babel', () => {
   describe('#getTargetType', () => {

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "CommonJS",
+    "baseUrl": "./src/main/ts",
     "outDir": "./dist",
     "lib": ["es6", "esnext", "dom"],
     "strict": true,
@@ -11,8 +12,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
     "declaration": true,
-    "moduleResolution": "node",
-    "baseUrl": "./src"
+    "moduleResolution": "node"
   },
   "include": ["src/main/**/*.ts"],
   "exclude": ["node_modules"]

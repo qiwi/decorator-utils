@@ -7,6 +7,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
+    "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn build && yarn jest",
     "test:report": "yarn build && yarn jest --collect-coverage"
   },
@@ -73,22 +74,5 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "testRegex": ".spec.(t|j)s$",
-    "transform": {
-      "^.+\\.ts$": "ts-jest",
-      "^.+\\.js$": "babel-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }

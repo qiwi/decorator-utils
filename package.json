@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/decorator-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tiny helper for js decorator building",
   "main": "dist/index.js",
   "scripts": {

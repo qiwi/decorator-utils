@@ -5,7 +5,7 @@ import {
   IAnyType,
   IReducible,
   IMapIterator,
-  IReduceIterator
+  IReduceIterator,
 } from './interface'
 
 // TODO use lodash?
@@ -27,7 +27,7 @@ export function mapValues(obj: IReducible, fn: IMapIterator): any {
     result: {[key: string]: any},
     value: IAnyType,
     key: string | number,
-    obj: Object
+    obj: Object,
   ): Object => {
     result[key] = fn(value, key, obj)
 
@@ -73,7 +73,7 @@ export function getPrototypeMethods(instance: IInstance): any {
     (memo: {[key: string]: any}, name: string) => {
       const desc: IDescriptor | void = Object.getOwnPropertyDescriptor(
         proto,
-        name
+        name,
       )
 
       if (
@@ -86,6 +86,6 @@ export function getPrototypeMethods(instance: IInstance): any {
       }
       return memo
     },
-    memo
+    memo,
   )
 }

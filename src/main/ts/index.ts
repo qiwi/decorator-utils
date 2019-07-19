@@ -8,7 +8,7 @@ import {
   ITarget,
   ITargetTypes,
   ITargetType,
-  IDescriptor
+  IDescriptor,
 } from './interface'
 
 export const METHOD = 'method'
@@ -25,7 +25,7 @@ export const TARGET_TYPES = {METHOD, CLASS, FIELD}
  */
 export function constructDecorator(
   handler: IHandler,
-  allowedTypes?: ITargetTypes
+  allowedTypes?: ITargetTypes,
 ): IDecorator {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
@@ -34,7 +34,7 @@ export function constructDecorator(
   return (...args: IDecoratorArgs): Function => (
     target: ITarget,
     method: IPropName,
-    descriptor: IDescriptor
+    descriptor: IDescriptor,
   ): any => {
     const _handler = getHandler(handler, ...args)
     const targetType = getTargetType(target, method, descriptor)
@@ -59,7 +59,7 @@ export function constructDecorator(
               get: getter,
               set: setter,
               enumerable: true,
-              configurable: true
+              configurable: true,
             })
           })(target, method)
         }
@@ -80,8 +80,8 @@ export function constructDecorator(
             (desc: IDescriptor, name: IPropName) => {
               desc.value = _handler(METHOD, desc.value)
               return desc
-            }
-          )
+            },
+          ),
         )
 
         return _handler(CLASS, target, ...args)
@@ -94,7 +94,7 @@ export function constructDecorator(
 
 export const getHandler = (
   handler: IHandler,
-  ...args: IDecoratorArgs
+  ...args: IDecoratorArgs,
 ): IHandler => {
   return (targetType, value: IPropValue): IPropValue => {
     const _value: IPropValue = handler(targetType, value, ...args)
@@ -112,7 +112,7 @@ export const getHandler = (
 export const getTargetType = (
   target: ITarget,
   method: IPropName | symbol,
-  descriptor: IDescriptor | void
+  descriptor: IDescriptor | void,
 ): ITargetType | null => {
   if (method && descriptor) {
     return isFunction(descriptor.value) ? METHOD : FIELD
@@ -131,14 +131,14 @@ export const getTargetType = (
 
 export const assertTargetType = (
   targetType: ITargetType | null,
-  allowedTypes: ITargetTypes | void
+  allowedTypes: ITargetTypes | void,
 ): void => {
   if (allowedTypes) {
     // @ts-ignore
     const allowed: string[] = [].concat(allowedTypes)
     if (!targetType || !allowed.includes(targetType)) {
       throw new Error(
-        `Decorator must be applied to allowed types only: ${allowed.join(', ')}`
+        `Decorator must be applied to allowed types only: ${allowed.join(', ')}`,
       )
     }
   }

@@ -4,8 +4,8 @@
   "description": "Tiny helper for js decorator building",
   "main": "dist/index.js",
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint:fix": "yarn lint --fix",
     "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
     "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn build && yarn jest",

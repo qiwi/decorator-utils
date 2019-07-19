@@ -4,7 +4,7 @@ import {
   METHOD,
   FIELD,
   CLASS
-} from '../../../dist'
+} from '../../../target/es5'
 
 describe('decoratorUtils babel', () => {
   describe('#getTargetType', () => {

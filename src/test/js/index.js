@@ -6,7 +6,7 @@ import factory, {
   FIELD,
   CLASS,
   TARGET_TYPES
-} from '../../../dist'
+} from '../../../target/es5'
 
 describe('index.js', () => {
   it('properly exposes inners', () => {

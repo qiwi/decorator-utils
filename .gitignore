@@ -18,9 +18,10 @@ coverage/
 .nyc_output
 
 # Bundle
-bundle/
-build/
-dist/
+bundle
+build
+dist
+target
 
 #Docs
 docs/

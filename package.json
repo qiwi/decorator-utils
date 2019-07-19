@@ -2,11 +2,12 @@
   "name": "@qiwi/decorator-utils",
   "version": "1.1.0",
   "description": "Tiny helper for js decorator building",
-  "main": "dist/index.js",
+  "main": "target/es5/index.js",
+  "types": "target/es5/index.d.ts",
   "scripts": {
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lint:fix": "yarn lint --fix",
-    "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
+    "build": "rimraf target && tsc -p tsconfig.json --skipLibCheck",
     "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn lint && yarn jest",
     "test:report": "yarn test && yarn coveralls:push",
@@ -24,7 +25,7 @@
   "files": [
     "README.md",
     "CHANGELOG.md",
-    "dist"
+    "target"
   ],
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",

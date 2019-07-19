@@ -13,7 +13,7 @@ export type IHandler = {
   (
     targetType: ITargetType | null,
     value: IPropValue,
-    ...args: IDecoratorArgs,
+    ...args: IDecoratorArgs
   ): IPropValue
 }
 export interface IProto {

@@ -94,7 +94,7 @@ export function constructDecorator(
 
 export const getHandler = (
   handler: IHandler,
-  ...args: IDecoratorArgs,
+  ...args: IDecoratorArgs
 ): IHandler => {
   return (targetType, value: IPropValue): IPropValue => {
     const _value: IPropValue = handler(targetType, value, ...args)

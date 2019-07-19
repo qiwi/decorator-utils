@@ -1,5 +1,4 @@
-// @flow
-import type {
+import {
   IProto,
   IInstance,
   IDescriptor,
@@ -10,11 +9,11 @@ import type {
 } from './interface'
 
 // TODO use lodash?
-export function isFunction (value: IAnyType): boolean {
+export function isFunction(value: IAnyType): boolean {
   return typeof value === 'function'
 }
 
-export function isUndefined (value: IAnyType): boolean {
+export function isUndefined(value: IAnyType): boolean {
   return typeof value === 'undefined'
 }
 
@@ -23,8 +22,13 @@ export function isUndefined (value: IAnyType): boolean {
  * @param {Function} fn
  * @return {Object}
  */
-export function mapValues (obj: IReducible, fn: IMapIterator): Object {
-  const _fn: IReduceIterator = (result: Object, value: IAnyType, key: string, obj: Object): Object => {
+export function mapValues(obj: IReducible, fn: IMapIterator): any {
+  const _fn: IReduceIterator = (
+    result: {[key: string]: any},
+    value: IAnyType,
+    key: string | number,
+    obj: Object
+  ): Object => {
     result[key] = fn(value, key, obj)
 
     return result
@@ -40,7 +44,7 @@ export function mapValues (obj: IReducible, fn: IMapIterator): Object {
  * @param {Object} memo
  * @returns {Object}
  */
-export function reduce<M> (obj: IReducible, fn: IReduceIterator, memo: M): M {
+export function reduce<M>(obj: IReducible, fn: IReduceIterator, memo: M): M {
   let result = memo
   let value: IAnyType
 
@@ -59,17 +63,29 @@ export function reduce<M> (obj: IReducible, fn: IReduceIterator, memo: M): M {
  * @param {*} instance
  * @returns {Object}
  */
-export function getPrototypeMethods (instance: IInstance): Object {
+export function getPrototypeMethods(instance: IInstance): any {
   const proto: IProto = instance.prototype || instance.constructor.prototype
   const propNames: IReducible = Object.getOwnPropertyNames(proto)
   const memo = {}
 
-  return reduce(propNames, (memo: Object, name: string) => {
-    const desc: ?IDescriptor = Object.getOwnPropertyDescriptor(proto, name)
+  return reduce(
+    propNames,
+    (memo: {[key: string]: any}, name: string) => {
+      const desc: IDescriptor | void = Object.getOwnPropertyDescriptor(
+        proto,
+        name
+      )
 
-    if (desc && isFunction(desc.value) && desc.value !== instance.constructor && desc.value !== instance) {
-      memo[name] = desc
-    }
-    return memo
-  }, memo)
+      if (
+        desc &&
+        isFunction(desc.value) &&
+        desc.value !== instance.constructor &&
+        desc.value !== instance
+      ) {
+        memo[name] = desc
+      }
+      return memo
+    },
+    memo
+  )
 }

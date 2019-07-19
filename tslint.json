@@ -1,0 +1,14 @@
+
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint-config-qiwi"
+  ],
+  "rules": {
+    "ter-padded-blocks": false,
+    "space-before-function-paren": false,
+    "brace-style": [true, "1tbs"],
+    "trailing-comma": [false]
+
+  }
+}

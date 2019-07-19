@@ -8,8 +8,9 @@
     "lint:fix": "yarn lint --fix",
     "build": "rimraf dist && tsc -p tsconfig.json --skipLibCheck",
     "jest": "jest -w 2 --config=jest.config.json",
-    "test": "yarn build && yarn jest",
-    "test:report": "yarn build && yarn jest --collect-coverage"
+    "test": "yarn lint && yarn jest",
+    "test:report": "yarn test && yarn coveralls:push",
+    "coveralls:push": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -47,10 +48,8 @@
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.8",
     "babel-jest": "^24.8.0",
-    "cross-env": "^5.2.0",
-    "glob": "^7.1.4",
+    "coveralls": "^3.0.5",
     "jest": "^24.8.0",
-    "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.18",
     "ts-jest": "^24.0.2",

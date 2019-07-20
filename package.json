@@ -7,7 +7,9 @@
   "scripts": {
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lint:fix": "yarn lint --fix",
-    "build": "rimraf target && tsc -p tsconfig.json --skipLibCheck",
+    "clean": "rimraf target",
+    "build": "yarn clean && yarn build:es5 && yarn docs",
+    "build:es5": "tsc -p tsconfig.json --skipLibCheck",
     "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn lint && yarn jest",
     "test:report": "yarn test && yarn coveralls:push",
@@ -43,6 +45,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.5.5",
     "@babel/runtime": "^7.5.5",
+    "@qiwi/semantic-release-gh-pages-plugin": "^1.10.3",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
     "@semantic-release/github": "^5.4.2",
@@ -66,7 +69,8 @@
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/git",
+      "@qiwi/semantic-release-gh-pages-plugin"
     ],
     "prepare": [
       "@semantic-release/changelog",
@@ -75,7 +79,8 @@
     ],
     "publish": [
       "@semantic-release/npm",
-      "@semantic-release/github"
+      "@semantic-release/github",
+      "@qiwi/semantic-release-gh-pages-plugin"
     ]
   }
 }

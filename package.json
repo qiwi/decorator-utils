@@ -11,7 +11,8 @@
     "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn lint && yarn jest",
     "test:report": "yarn test && yarn coveralls:push",
-    "coveralls:push": "cat ./coverage/lcov.info | coveralls"
+    "coveralls:push": "cat ./coverage/lcov.info | coveralls",
+    "docs": "typedoc --readme README.md --tsconfig tsconfig.json src/main --ignoreCompilerErrors || exit 0"
   },
   "repository": {
     "type": "git",
@@ -56,6 +57,8 @@
     "ts-jest": "^24.0.2",
     "tslint": "5.18.0",
     "tslint-config-qiwi": "^1.1.1",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-external-module-name": "^2.1.0",
     "typescript": "3.5.3"
   },
   "release": {

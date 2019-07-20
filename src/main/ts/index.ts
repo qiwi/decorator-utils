@@ -1,3 +1,5 @@
+/** @module @qiwi/decorator-utils */
+
 import {isFunction, isUndefined, mapValues, getPrototypeMethods} from './utils'
 import {
   IDecoratorArgs,

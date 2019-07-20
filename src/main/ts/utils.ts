@@ -1,3 +1,5 @@
+/** @module @qiwi/decorator-utils */
+
 import {
   IProto,
   IInstance,

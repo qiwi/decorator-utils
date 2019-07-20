@@ -1,3 +1,5 @@
+/** @module @qiwi/decorator-utils */
+
 export interface IDecorator {
   (...args: Array<any>): any
 }

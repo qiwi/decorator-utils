@@ -6,7 +6,7 @@ export interface IDecorator {
 
 export type IInstance = {
   constructor: IInstance
-  prototype: IProto
+  prototype?: IProto
 }
 
 export type IDecoratorArgs = any[]

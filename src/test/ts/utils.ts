@@ -1,4 +1,4 @@
-import {getPrototypeMethods} from '../../../target/es5/utils'
+import {getPrototypeMethods} from '../../main/ts/utils'
 
 describe('utils.js', () => {
   describe('#getPrototypeMethods', () => {

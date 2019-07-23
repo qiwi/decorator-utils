@@ -3,7 +3,7 @@ import {
   getTargetType,
   METHOD,
   FIELD,
-  CLASS
+  CLASS,
 } from '../../main/ts'
 
 describe('decoratorUtils babel', () => {
@@ -14,7 +14,7 @@ describe('decoratorUtils babel', () => {
       ['obj-str-{value: fn}', [{}, 'str', {value: () => {}}], METHOD],
       ['obj-str-obj', [{}, 'str', {}], FIELD],
       ['obj-str-null', [{}, 'str', {}], FIELD],
-      ['null', [null], null]
+      ['null', [null], null],
     ]
 
     cases.forEach(([title, args, expected]) => {
@@ -54,7 +54,7 @@ describe('decoratorUtils babel', () => {
               }
             }
             return
-          }
+          },
         )
 
         @addAge(100)
@@ -66,6 +66,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
         }
 
         const foo = new Foo('qux')
@@ -84,17 +85,19 @@ describe('decoratorUtils babel', () => {
               }
             }
             return
-          }
+          },
         )
 
         @decorator()
         class Foo {
+
           foo() {
             return 'bar'
           }
           baz() {
             return 'baz'
           }
+
         }
 
         const foo = new Foo()
@@ -108,12 +111,14 @@ describe('decoratorUtils babel', () => {
 
         @decorator()
         class Foo {
+
           foo() {
             return 'bar'
           }
           baz() {
             return 'baz'
           }
+
         }
 
         const foo = new Foo()
@@ -131,10 +136,11 @@ describe('decoratorUtils babel', () => {
               return (value: unknown) => param || 'qux'
             }
             return
-          }
+          },
         )
 
         class Foo {
+
           @decorator()
           foo() {
             return 'bar'
@@ -143,6 +149,7 @@ describe('decoratorUtils babel', () => {
           baz() {
             return 'baz'
           }
+
         }
 
         const foo = new Foo()
@@ -155,6 +162,7 @@ describe('decoratorUtils babel', () => {
         const decorator = constructDecorator(() => {})
 
         class Foo {
+
           @decorator('abc')
           foo() {
             return 'bar'
@@ -163,6 +171,7 @@ describe('decoratorUtils babel', () => {
           baz() {
             return 'baz'
           }
+
         }
 
         const foo = new Foo()
@@ -180,14 +189,16 @@ describe('decoratorUtils babel', () => {
               return () => (param || '') + target()
             }
             return
-          }
+          },
         )
 
         class Foo {
+
           @prefix('_')
           foo = 'bar'
           @prefix('__')
           baz = 'qux'
+
         }
 
         const foo = new Foo()
@@ -200,10 +211,12 @@ describe('decoratorUtils babel', () => {
         const decorator = constructDecorator(() => {})
 
         class Foo {
+
           @decorator('abc')
           foo = 'bar'
           @decorator('BAZ')
           baz = 'qux'
+
         }
 
         const foo = new Foo()
@@ -225,18 +238,20 @@ describe('decoratorUtils babel', () => {
         (targetType: unknown, target: Function, param: string) => {
           return (value: unknown) => param || 'qux'
         },
-        METHOD
+        METHOD,
       )
 
       expect(() => {
         @decorator()
         class Foo {
+
           foo() {
             return 'bar'
           }
           baz() {
             return 'baz'
           }
+
         }
 
         return new Foo()
@@ -244,10 +259,12 @@ describe('decoratorUtils babel', () => {
 
       expect(() => {
         class Foo {
+
           @decorator()
           foo() {
             return 'bar'
           }
+
         }
 
         return new Foo()

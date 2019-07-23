@@ -66,7 +66,8 @@ export function reduce<M>(obj: IReducible, fn: IReduceIterator, memo: M): M {
  * @returns {Object}
  */
 export function getPrototypeMethods(instance: IInstance): any {
-  const proto: IProto = instance.prototype || instance.constructor.prototype
+  // WORKAROUND: empty object fallback
+  const proto: IProto = instance.prototype || instance.constructor.prototype || {}
   const propNames: IReducible = Object.getOwnPropertyNames(proto)
   const memo = {}
 

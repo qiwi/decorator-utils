@@ -71,30 +71,34 @@
 					<a href="https://david-dm.org/qiwi/decorator-utils"><img src="https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600" alt="dependencyStatus"></a>
 					<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/qiwi/decorator-utils.svg" alt="Greenkeeper badge"></a>
 				<a href="http://standardjs.com"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="js-standard-style"></a></p>
-				<a href="#do-i-need-this" id="do-i-need-this" style="color: inherit; text-decoration: none;">
-					<h5>Do I need this?</h5>
+				<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
+					<h2>Motivation</h2>
 				</a>
 				<ol>
 					<li>— Decorator, what&#39;s that?<br>— It&#39;s just a proposal <a href="https://github.com/tc39/proposal-decorators">&quot;aspect&quot; syntax for JS</a>.</li>
 					<li>— How does it work?<br>— <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy Osmany&#39;s answer</a></li>
-					<li>— Is there any ready solution?<br>— Yes, there&#39;re many awesome things around. Look at <a href="https://www.npmjs.com/package/core-decorators">core-decorators</a> and <a href="https://www.npmjs.com/package/lodash-decorators">lodash-decorators</a>. </li>
-					<li>— Do I need this lib?<br>— You should try this one before: <a href="https://www.npmjs.com/package/decorator-utils">decorator-utils</a> by Luke Horvat</li>
+					<li>— Is there any ready solution?<br>— There&#39;re many awesome things around. Look at <a href="https://www.npmjs.com/package/core-decorators">core-decorators</a> and <a href="https://www.npmjs.com/package/lodash-decorators">lodash-decorators</a>. </li>
+					<li>— Do I need <em>this</em> lib?<br>— You should try this one before: <a href="https://www.npmjs.com/package/decorator-utils">decorator-utils</a> by Luke Horvat</li>
 					<li>— ...<br>— <a href="https://google.com/search?q=js+decorator+utils">Just give a chance to Google</a></li>
 					<li>— ...<br>— How about writing your own? <a href="https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c">Netanel Basal&#39;s practical tips</a> may be very helpful.</li>
-					<li>— ...<br>— <em>Yes</em>, but it&#39;s at your own risk</li>
+					<li>— ...<br>— <em>Yes</em>, go ahead.</li>
 				</ol>
 				<a href="#note" id="note" style="color: inherit; text-decoration: none;">
 					<h5>NOTE</h5>
 				</a>
 				<p>There&#39;s no right way to support both decorator types: with @parentheses() and @plain.
-				Holy War thread: <a href="https://github.com/wycats/javascript-decorators/issues/23">https://github.com/wycats/javascript-decorators/issues/23</a></p>
-				<a href="#usage-examples" id="usage-examples" style="color: inherit; text-decoration: none;">
-					<h5>Usage examples</h5>
+				Holy War Thread: <a href="https://github.com/wycats/javascript-decorators/issues/23">https://github.com/wycats/javascript-decorators/issues/23</a></p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<pre><code class="language-bash">yarn add @qiwi/decorator-utils</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
 				</a>
 				<a href="#field" id="field" style="color: inherit; text-decoration: none;">
-					<h6>Field</h6>
+					<h4>Field</h4>
 				</a>
-				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD} <span class="hljs-keyword">from</span> <span class="hljs-string">'qiwi-decorator-utils'</span>
+				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD} <span class="hljs-keyword">from</span> <span class="hljs-string">'@qiwi/decorator-utils'</span>
 
     <span class="hljs-keyword">const</span> prefix = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === FIELD) {
@@ -109,7 +113,7 @@
       baz = <span class="hljs-string">'qux'</span>
     }</code></pre>
 				<a href="#method" id="method" style="color: inherit; text-decoration: none;">
-					<h6>Method</h6>
+					<h4>Method</h4>
 				</a>
 				<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
           <span class="hljs-keyword">if</span> (targetType === METHOD) {
@@ -124,7 +128,7 @@
           baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">'baz'</span> }
         }</code></pre>
 				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
-					<h6>Class</h6>
+					<h4>Class</h4>
 				</a>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
           <span class="hljs-keyword">if</span> (targetType === CLASS) {
@@ -144,7 +148,7 @@
           }
           foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
         }</code></pre>
-				<p>Also you may apply decorator to the class, but decorate its methods</p>
+				<p>Also you may apply decorator to the class, but decorate its methods:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === METHOD) {
         <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {

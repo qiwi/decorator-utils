@@ -1,0 +1,251 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>protopipe</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">protopipe</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> protopipe</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#decorator-utils" id="decorator-utils" style="color: inherit; text-decoration: none;">
+					<h1>decorator-utils</h1>
+				</a>
+				<p><a href="https://travis-ci.com/qiwi/decorator-utils"><img src="https://travis-ci.com/qiwi/decorator-utils.svg?branch=master" alt="Build Status"></a>
+					<a href="https://codeclimate.com/github/qiwi/decorator-utils/maintainability"><img src="https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/maintainability" alt="Maintainability"></a>
+					<a href="https://codeclimate.com/github/qiwi/decorator-utils/test_coverage"><img src="https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/test_coverage" alt="Test Coverage"></a>
+					<a href="https://david-dm.org/qiwi/decorator-utils"><img src="https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600" alt="dependencyStatus"></a>
+					<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/qiwi/decorator-utils.svg" alt="Greenkeeper badge"></a>
+				<a href="http://standardjs.com"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="js-standard-style"></a></p>
+				<a href="#do-i-need-this" id="do-i-need-this" style="color: inherit; text-decoration: none;">
+					<h5>Do I need this?</h5>
+				</a>
+				<ol>
+					<li>— Decorator, what&#39;s that?<br>— It&#39;s just a proposal <a href="https://github.com/tc39/proposal-decorators">&quot;aspect&quot; syntax for JS</a>.</li>
+					<li>— How does it work?<br>— <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy Osmany&#39;s answer</a></li>
+					<li>— Is there any ready solution?<br>— Yes, there&#39;re many awesome things around. Look at <a href="https://www.npmjs.com/package/core-decorators">core-decorators</a> and <a href="https://www.npmjs.com/package/lodash-decorators">lodash-decorators</a>. </li>
+					<li>— Do I need this lib?<br>— You should try this one before: <a href="https://www.npmjs.com/package/decorator-utils">decorator-utils</a> by Luke Horvat</li>
+					<li>— ...<br>— <a href="https://google.com/search?q=js+decorator+utils">Just give a chance to Google</a></li>
+					<li>— ...<br>— How about writing your own? <a href="https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c">Netanel Basal&#39;s practical tips</a> may be very helpful.</li>
+					<li>— ...<br>— <em>Yes</em>, but it&#39;s at your own risk</li>
+				</ol>
+				<a href="#note" id="note" style="color: inherit; text-decoration: none;">
+					<h5>NOTE</h5>
+				</a>
+				<p>There&#39;s no right way to support both decorator types: with @parentheses() and @plain.
+				Holy War thread: <a href="https://github.com/wycats/javascript-decorators/issues/23">https://github.com/wycats/javascript-decorators/issues/23</a></p>
+				<a href="#usage-examples" id="usage-examples" style="color: inherit; text-decoration: none;">
+					<h5>Usage examples</h5>
+				</a>
+				<a href="#field" id="field" style="color: inherit; text-decoration: none;">
+					<h6>Field</h6>
+				</a>
+				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD} <span class="hljs-keyword">from</span> <span class="hljs-string">'qiwi-decorator-utils'</span>
+
+    <span class="hljs-keyword">const</span> prefix = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (targetType === FIELD) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (param || <span class="hljs-string">''</span>) + target()
+      }
+    })
+
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+      @prefix(<span class="hljs-string">'_'</span>)
+      foo = <span class="hljs-string">'bar'</span>
+      @prefix(<span class="hljs-string">'__'</span>)
+      baz = <span class="hljs-string">'qux'</span>
+    }</code></pre>
+				<a href="#method" id="method" style="color: inherit; text-decoration: none;">
+					<h6>Method</h6>
+				</a>
+				<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
+          <span class="hljs-keyword">if</span> (targetType === METHOD) {
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> param || <span class="hljs-string">'qux'</span>
+          }
+        })
+
+        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+          @decorator()
+          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
+          @decorator(<span class="hljs-string">'BAZ'</span>)
+          baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">'baz'</span> }
+        }</code></pre>
+				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
+					<h6>Class</h6>
+				</a>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
+          <span class="hljs-keyword">if</span> (targetType === CLASS) {
+            <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">target</span> </span>{
+              <span class="hljs-keyword">constructor</span> (name, age) {
+                <span class="hljs-keyword">super</span>(name)
+                <span class="hljs-keyword">this</span>.age = age
+              }
+            }
+          }
+        })
+
+        @decorator()
+        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+          <span class="hljs-keyword">constructor</span> (name) {
+            <span class="hljs-keyword">this</span>.name = name
+          }
+          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
+        }</code></pre>
+				<p>Also you may apply decorator to the class, but decorate its methods</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
+      <span class="hljs-keyword">if</span> (targetType === METHOD) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+          <span class="hljs-keyword">return</span> target().toUpperCase()
+        }
+      }
+    })
+
+    @decorator()
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+      foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
+      baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">'baz'</span> }
+    }</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interface_.html">"interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_.html">"utils"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

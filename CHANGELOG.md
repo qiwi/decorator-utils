@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/qiwi/decorator-utils/compare/v1.1.1...v1.2.0) (2019-08-26)
+
+
+### Features
+
+* add alias constructDecorator = createDecorator ([e0ec1b7](https://github.com/qiwi/decorator-utils/commit/e0ec1b7))
+
 ## [1.1.1](https://github.com/qiwi/decorator-utils/compare/v1.1.0...v1.1.1) (2019-08-26)
 
 

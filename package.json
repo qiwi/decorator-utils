@@ -5,7 +5,7 @@
   "main": "target/es5/index.js",
   "types": "target/es5/index.d.ts",
   "scripts": {
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "tslint -p tsconfig.json -c tslint.json && tslint -c tslint.json src/test/js/*.js",
     "lint:fix": "yarn lint --fix",
     "clean": "rimraf target",
     "build": "yarn clean && yarn build:es5 && yarn docs",

@@ -270,5 +270,26 @@ describe('decoratorUtils babel', () => {
         return new Foo()
       }).not.toThrow()
     })
+
+    it('applies several decorators at once', () => {
+      const plus = constructDecorator(
+        (targetType: unknown, target: Function, param: string) => {
+          return (value: number) => target(value) + param
+        },
+        METHOD,
+      )
+
+      class Foo {
+        @plus(2)
+        @plus(1)
+        bar(v: number) {
+          return v
+        }
+      }
+
+      const foo = new Foo()
+
+      expect(foo.bar(1)).toBe(4)
+    })
   })
 })

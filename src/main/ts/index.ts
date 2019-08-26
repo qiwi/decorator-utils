@@ -141,4 +141,6 @@ export const assertTargetType = (
   }
 }
 
+export const createDecorator = constructDecorator
+
 export default constructDecorator

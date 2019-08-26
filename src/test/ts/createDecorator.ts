@@ -1,4 +1,5 @@
 import {
+  createDecorator,
   constructDecorator,
   getTargetType,
   METHOD,
@@ -8,7 +9,7 @@ import {
 
 const noop = () => { /* noop */ }
 
-describe('decoratorUtils babel', () => {
+describe('decoratorUtils tsc', () => {
   describe('#getTargetType', () => {
     const cases = [
       ['function', [noop], CLASS],
@@ -31,6 +32,10 @@ describe('decoratorUtils babel', () => {
     it('returns fn', () => {
       const decorator = constructDecorator(noop)
       expect(typeof decorator).toBe('function')
+    })
+
+    it('alias to createDecorator', () => {
+      expect(createDecorator).toBe(constructDecorator)
     })
 
     it('throws error if handler is not a func', () => {

@@ -116,16 +116,14 @@ export const getTargetType = (
   method: IPropName | symbol,
   descriptor: IDescriptor | void,
 ): ITargetType | null => {
-  if (method && descriptor) {
-    return isFunction(descriptor.value) ? METHOD : FIELD
+  if (method) {
+    return descriptor && isFunction(descriptor.value)
+      ? METHOD
+      : FIELD
   }
 
   if (isFunction(target)) {
     return CLASS
-  }
-
-  if (method && !descriptor) {
-    return FIELD
   }
 
   return null

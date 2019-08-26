@@ -9,7 +9,7 @@
     "lint:fix": "yarn lint --fix",
     "clean": "rimraf target",
     "build": "yarn clean && yarn build:es5 && yarn docs",
-    "build:es5": "tsc -p tsconfig.json --skipLibCheck",
+    "build:es5": "tsc -p tsconfig.es5.json",
     "jest": "jest -w 2 --config=jest.config.json",
     "test": "yarn lint && yarn jest",
     "test:report": "yarn test && yarn coveralls:push",

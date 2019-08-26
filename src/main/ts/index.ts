@@ -25,10 +25,10 @@ export const TARGET_TYPES = {METHOD, CLASS, FIELD}
  * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
-export function constructDecorator(
+export const constructDecorator = (
   handler: IHandler,
   allowedTypes?: ITargetTypes,
-): IDecorator {
+): IDecorator => {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
   }
@@ -49,10 +49,7 @@ export function constructDecorator(
           return (function(target: {[key: string]: any}, key: string) {
             let val = target[key]
 
-            const getter = () => {
-              return val
-            }
-
+            const getter = () => val
             const setter = (next: unknown) => {
               val = _handler(targetType, () => next, next)()
             }

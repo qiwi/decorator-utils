@@ -5,7 +5,7 @@ import factory, {
   METHOD,
   FIELD,
   CLASS,
-  TARGET_TYPES
+  TARGET_TYPES,
 } from '../../main/ts'
 
 describe('index.js', () => {

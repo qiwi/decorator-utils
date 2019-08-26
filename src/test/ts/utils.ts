@@ -3,8 +3,10 @@ import {getPrototypeMethods} from '../../main/ts/utils'
 describe('utils.js', () => {
   describe('#getPrototypeMethods', () => {
     class Foo {
-      bar() {}
-      baz() {}
+
+      bar() { /* bar */ }
+      baz() { /* baz */ }
+
     }
     const foo = new Foo()
 

@@ -14,6 +14,6 @@
     "declaration": true,
     "moduleResolution": "node"
   },
-  "include": ["src/main/**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

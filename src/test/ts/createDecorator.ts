@@ -6,12 +6,14 @@ import {
   CLASS,
 } from '../../main/ts'
 
+const noop = () => { /* noop */ }
+
 describe('decoratorUtils babel', () => {
   describe('#getTargetType', () => {
     const cases = [
-      ['function', [() => {}], CLASS],
+      ['function', [noop], CLASS],
       ['class', [class Foo {}], CLASS],
-      ['obj-str-{value: fn}', [{}, 'str', {value: () => {}}], METHOD],
+      ['obj-str-{value: fn}', [{}, 'str', {value: noop}], METHOD],
       ['obj-str-obj', [{}, 'str', {}], FIELD],
       ['obj-str-null', [{}, 'str', {}], FIELD],
       ['null', [null], null],
@@ -27,7 +29,7 @@ describe('decoratorUtils babel', () => {
 
   describe('#constructDecorator', () => {
     it('returns fn', () => {
-      const decorator = constructDecorator(() => {})
+      const decorator = constructDecorator(noop)
       expect(typeof decorator).toBe('function')
     })
 
@@ -59,6 +61,7 @@ describe('decoratorUtils babel', () => {
 
         @addAge(100)
         class Foo {
+
           name: string
           constructor(name: string) {
             this.name = name
@@ -107,7 +110,7 @@ describe('decoratorUtils babel', () => {
       })
 
       it('has no effect if handler returns null', () => {
-        const decorator = constructDecorator(() => {})
+        const decorator = constructDecorator(noop)
 
         @decorator()
         class Foo {
@@ -159,7 +162,7 @@ describe('decoratorUtils babel', () => {
       })
 
       it('has no effect if handler returns null', () => {
-        const decorator = constructDecorator(() => {})
+        const decorator = constructDecorator(noop)
 
         class Foo {
 
@@ -208,7 +211,7 @@ describe('decoratorUtils babel', () => {
       })
 
       it('has no effect if handler returns null', () => {
-        const decorator = constructDecorator(() => {})
+        const decorator = constructDecorator(noop)
 
         class Foo {
 
@@ -228,8 +231,8 @@ describe('decoratorUtils babel', () => {
 
     describe('for weird type', () => {
       it('returns undefined', () => {
-        const decorator = constructDecorator(() => {})
-        expect(decorator(() => {})({})).toBeUndefined()
+        const decorator = constructDecorator(noop)
+        expect(decorator(noop)({})).toBeUndefined()
       })
     })
 
@@ -280,11 +283,13 @@ describe('decoratorUtils babel', () => {
       )
 
       class Foo {
+
         @plus(2)
         @plus(1)
         bar(v: number) {
           return v
         }
+
       }
 
       const foo = new Foo()

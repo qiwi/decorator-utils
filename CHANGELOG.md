@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/qiwi/decorator-utils/compare/v1.1.0...v1.1.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **package:** regenerate yarn.lock ([d22d1cd](https://github.com/qiwi/decorator-utils/commit/d22d1cd))
+
 # [1.1.0](https://github.com/qiwi/decorator-utils/compare/v1.0.0...v1.1.0) (2019-07-19)
 
 

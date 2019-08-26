@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/decorator-utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tiny helper for js decorator building",
   "main": "target/es5/index.js",
   "types": "target/es5/index.d.ts",

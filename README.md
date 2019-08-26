@@ -7,30 +7,36 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/qiwi/decorator-utils.svg)](https://greenkeeper.io/)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
-##### Do I need this?
+## Motivation
 1. — Decorator, what's that?  
    — It's just a proposal ["aspect" syntax for JS](https://github.com/tc39/proposal-decorators).
 2. — How does it work?  
    — [Addy Osmany's answer](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
 3. — Is there any ready solution?  
-   — Yes, there're many awesome things around. Look at [core-decorators](https://www.npmjs.com/package/core-decorators) and [lodash-decorators](https://www.npmjs.com/package/lodash-decorators). 
-4. — Do I need this lib?  
+   — There're many awesome things around. Look at [core-decorators](https://www.npmjs.com/package/core-decorators) and [lodash-decorators](https://www.npmjs.com/package/lodash-decorators). 
+4. — Do I need _this_ lib?  
    — You should try this one before: [decorator-utils](https://www.npmjs.com/package/decorator-utils) by Luke Horvat
 5. — ...  
    — [Just give a chance to Google](https://google.com/search?q=js+decorator+utils)
 6. — ...   
    — How about writing your own? [Netanel Basal's practical tips](https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c) may be very helpful.
 6. — ...  
-   — *Yes*, but it's at your own risk
+   — *Yes*, go ahead.
 
 ##### NOTE
 There's no right way to support both decorator types: with @parentheses() and @plain.
-Holy War thread: [https://github.com/wycats/javascript-decorators/issues/23](https://github.com/wycats/javascript-decorators/issues/23)
+Holy War Thread: [https://github.com/wycats/javascript-decorators/issues/23](https://github.com/wycats/javascript-decorators/issues/23)
 
-##### Usage examples
-###### Field
+
+## Install
+```bash
+yarn add @qiwi/decorator-utils
+```
+
+## Usage
+#### Field
 ```javascript
-    import {createDecorator, FIELD} from 'qiwi-decorator-utils'
+    import {createDecorator, FIELD} from '@qiwi/decorator-utils'
     
     const prefix = constructDecorator((targetType, target, param) => {
       if (targetType === FIELD) {
@@ -46,7 +52,7 @@ Holy War thread: [https://github.com/wycats/javascript-decorators/issues/23](htt
     }
 ```
 
-###### Method
+#### Method
 ```javascript
  const decorator = constructDecorator((targetType, target, param) => {
           if (targetType === METHOD) {
@@ -62,7 +68,7 @@ Holy War thread: [https://github.com/wycats/javascript-decorators/issues/23](htt
         }
 ```
 
-###### Class
+#### Class
 ```javascript
 const decorator = constructDecorator((targetType, target) => {
           if (targetType === CLASS) {
@@ -84,7 +90,7 @@ const decorator = constructDecorator((targetType, target) => {
         }
 ```
 
-Also you may apply decorator to the class, but decorate its methods
+Also you may apply decorator to the class, but decorate its methods:
 
 ```javascript
 const decorator = constructDecorator((targetType, target) => {

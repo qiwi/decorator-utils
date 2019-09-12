@@ -40,3 +40,12 @@ typings/
 .eslintcache
 .node_repl_history
 .env
+
+# Typescript
+*.tsbuildinfo
+.tsbuildinfo
+buildcache
+.buildcache
+.rts2_cache_cjs
+.rts2_cache_es
+.rts2_cache_umd

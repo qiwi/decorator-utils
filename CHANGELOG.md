@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/qiwi/decorator-utils/compare/v1.2.0...v1.3.0) (2019-09-12)
+
+
+### Bug Fixes
+
+* **package:** add missed esm dev dep ([f002551](https://github.com/qiwi/decorator-utils/commit/f002551))
+
+
+### Features
+
+* add FlowType libdefs ([7c5adb7](https://github.com/qiwi/decorator-utils/commit/7c5adb7)), closes [#32](https://github.com/qiwi/decorator-utils/issues/32)
+
 # [1.2.0](https://github.com/qiwi/decorator-utils/compare/v1.1.1...v1.2.0) (2019-08-26)
 
 

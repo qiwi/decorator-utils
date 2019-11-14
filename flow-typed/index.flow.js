@@ -92,6 +92,7 @@ declare module "@qiwi/decorator-utils/target/es5/utils" {
 
 declare module "@qiwi/decorator-utils/target/es5/index" {
   import type {
+    IDecoratorArgs,
     IHandler,
     IDecorator,
     ITargetType
@@ -120,7 +121,7 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
   ) => IDecorator;
   declare export var getHandler: (
     handler: IHandler,
-    ...args: any[]
+    ...args: IDecoratorArgs
   ) => IHandler;
 
   /**

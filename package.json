@@ -76,7 +76,7 @@
     "flowgen": "1.10.0",
     "jest": "^24.9.0",
     "microbundle": "^0.11.0",
-    "replace-in-file": "^4.2.0",
+    "replace-in-file": "^5.0.2",
     "rimraf": "^3.0.0",
     "semantic-release": "^15.13.30",
     "terser": "^4.4.0",

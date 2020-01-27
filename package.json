@@ -64,7 +64,7 @@
     "@qiwi/license": "^1.1.1",
     "@qiwi/semantic-release-gh-pages-plugin": "^1.14.2",
     "@semantic-release/changelog": "^3.0.5",
-    "@semantic-release/git": "^7.0.18",
+    "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^5.5.5",
     "@semantic-release/npm": "^5.3.4",
     "@types/jest": "^24.0.23",

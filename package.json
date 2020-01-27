@@ -66,7 +66,7 @@
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/git": "^7.0.18",
     "@semantic-release/github": "^5.5.5",
-    "@semantic-release/npm": "^5.3.4",
+    "@semantic-release/npm": "^7.0.0",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.7",
     "babel-jest": "^24.9.0",

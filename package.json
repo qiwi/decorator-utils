@@ -44,7 +44,8 @@
   "files": [
     "README.md",
     "CHANGELOG.md",
-    "target"
+    "target",
+    "typings"
   ],
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",

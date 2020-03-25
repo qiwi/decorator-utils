@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/qiwi/decorator-utils/compare/v1.3.0...v1.3.1) (2020-03-25)
+
+
+### Bug Fixes
+
+* **package:** publish typings dir ([6e69130](https://github.com/qiwi/decorator-utils/commit/6e691308919139336b7979c086c292b784726d4e))
+
 # [1.3.0](https://github.com/qiwi/decorator-utils/compare/v1.2.0...v1.3.0) (2019-09-12)
 
 

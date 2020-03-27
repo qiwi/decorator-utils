@@ -21,7 +21,7 @@ export const TARGET_TYPES = {METHOD, CLASS, FIELD}
 /**
  * Constructs decorator by given function.
  * Holywar goes here: https://github.com/wycats/javascript-decorators/issues/23
- * @param {Function} handler
+ * @param {IHandler} handler
  * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
@@ -53,7 +53,12 @@ export const constructDecorator = (
 
             const getter = () => val
             const setter = (next: unknown) => {
-              val = _handler({targetType, target: () => next, args})()
+              val = _handler({
+                targetType,
+                target: () => next,
+                args,
+                propName: method
+              })()
             }
 
             Object.defineProperty(target, key, {
@@ -72,7 +77,12 @@ export const constructDecorator = (
         return
 
       case METHOD:
-        descriptor.value = _handler({targetType, target: descriptor.value, args})
+        descriptor.value = _handler({
+          targetType,
+          target: descriptor.value,
+          propName: method,
+          args
+        })
         return
 
       case CLASS:

@@ -205,6 +205,23 @@ describe('decoratorUtils tsc', () => {
         expect(foo.constructor).toEqual(Foo)
         expect(foo.foo()).toEqual('bar')
       })
+
+      it('operates with method name', () => {
+        const decorator = constructDecorator(({propName}: IDecoratorContext) => () => propName)
+
+        class Foo {
+
+          @decorator()
+          foo() {
+            return 'bar'
+          }
+
+        }
+
+        const foo = new Foo()
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('foo')
+      })
     })
 
     describe('for field', () => {

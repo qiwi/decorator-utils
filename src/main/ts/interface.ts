@@ -14,22 +14,14 @@ export type IDecoratorArgs = any[]
 export type IDecoratorContext = {
   targetType: ITargetType | null,
   target: ITarget,
-  propName: IPropName | null
-  paramIndex: IParamIndex | null,
   args: IDecoratorArgs
+  propName?: IPropName
+  paramIndex?: IParamIndex
 }
 
 export type IParamIndex = number
 
-// export type IHandler = (context: IDecoratorContext) => ITarget
-
-export type IHandler = {
-  (
-    targetType: ITargetType | null,
-    value: IPropValue,
-    ...args: IDecoratorArgs
-  ): IPropValue
-}
+export type IHandler = (context: IDecoratorContext) => ITarget
 
 export interface IProto {
   [key: string]: IAnyType

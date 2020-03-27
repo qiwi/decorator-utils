@@ -18,14 +18,16 @@ declare module "@qiwi/decorator-utils/target/es5/interface" {
     ...
   };
   declare export type IDecoratorArgs = any[];
-  declare export type IHandler = {
-    (
-      targetType: ITargetType | null,
-      value: IPropValue,
-      ...args: IDecoratorArgs
-    ): IPropValue,
+  declare export type IDecoratorContext = {
+    targetType: ITargetType | null,
+    target: ITarget,
+    args: IDecoratorArgs,
+    propName?: IPropName,
+    paramIndex?: IParamIndex,
     ...
   };
+  declare export type IParamIndex = number;
+  declare export type IHandler = (context: IDecoratorContext) => ITarget;
   declare export interface IProto {
     [key: string]: IAnyType;
   }
@@ -92,7 +94,6 @@ declare module "@qiwi/decorator-utils/target/es5/utils" {
 
 declare module "@qiwi/decorator-utils/target/es5/index" {
   import type {
-    IDecoratorArgs,
     IHandler,
     IDecorator,
     ITargetType
@@ -119,10 +120,6 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
     handler: IHandler,
     allowedTypes?: string | ITargetType[] | null | void
   ) => IDecorator;
-  declare export var getHandler: (
-    handler: IHandler,
-    ...args: IDecoratorArgs
-  ) => IHandler;
 
   /**
    * Detects decorated target type.

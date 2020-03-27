@@ -42,7 +42,7 @@ describe('decoratorUtils babel', () => {
   describe('decorator', () => {
     describe('for constructor', () => {
       it('extends target class', () => {
-        const decorator = constructDecorator((targetType, target) => {
+        const decorator = constructDecorator(({targetType, target}) => {
           if (targetType === CLASS) {
             return class Bar extends target {
               constructor(name, age) {
@@ -72,7 +72,7 @@ describe('decoratorUtils babel', () => {
       })
 
       it('overrides proto', () => {
-        const decorator = constructDecorator((targetType, target) => {
+        const decorator = constructDecorator(({targetType, target}) => {
           if (targetType === METHOD) {
             return () => {
               return target().toUpperCase()
@@ -122,7 +122,7 @@ describe('decoratorUtils babel', () => {
 
     describe('for method', () => {
       it('replaces target with the new impl', () => {
-        const decorator = constructDecorator((targetType, target, param) => {
+        const decorator = constructDecorator(({targetType, target, args: [param]}) => {
           if (targetType === METHOD) {
             return value => param || 'qux'
           }
@@ -172,7 +172,7 @@ describe('decoratorUtils babel', () => {
 
     describe('for field', () => {
       it('replaces target initializer', () => {
-        const prefix = constructDecorator((targetType, target, param) => {
+        const prefix = constructDecorator(({targetType, target, args: [param]}) => {
           if (targetType === FIELD) {
             return () => (param || '') + target()
           }
@@ -220,7 +220,7 @@ describe('decoratorUtils babel', () => {
     })
 
     it('asserts allowedType if defined', () => {
-      const decorator = constructDecorator((targetType, target, param) => {
+      const decorator = constructDecorator(({targetType, target, args: [param]}) => {
         return value => param || 'qux'
       }, METHOD)
 

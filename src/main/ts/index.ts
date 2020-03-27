@@ -53,7 +53,7 @@ export const constructDecorator = (
 
             const getter = () => val
             const setter = (next: unknown) => {
-              val = _handler(targetType, () => next, ...args)()
+              val = _handler({targetType, target: () => next, args})()
             }
 
             Object.defineProperty(target, key, {
@@ -68,11 +68,11 @@ export const constructDecorator = (
         }
 
         // @ts-ignore
-        descriptor.initializer = _handler(targetType, descriptor.initializer, ...args)
+        descriptor.initializer = _handler({targetType, target: descriptor.initializer, args})
         return
 
       case METHOD:
-        descriptor.value = _handler(targetType, descriptor.value, ...args)
+        descriptor.value = _handler({targetType, target: descriptor.value, args})
         return
 
       case CLASS:
@@ -81,13 +81,13 @@ export const constructDecorator = (
           mapValues(
             getPrototypeMethods(target),
             (desc: IDescriptor, name: IPropName) => {
-              desc.value = _handler(METHOD, desc.value, ...args)
+              desc.value = _handler({targetType: METHOD, target: desc.value, args})
               return desc
             },
           ),
         )
 
-        return _handler(CLASS, target, ...args)
+        return _handler({targetType: CLASS, target, args})
 
       default:
         return
@@ -135,14 +135,15 @@ export const assertTargetType = (
 }
 
 const getSafeHandler = (handler: IHandler): IHandler =>
-  (targetType, value, ...args) => {
-    const _value = handler(targetType, value, ...args)
+  (context) => {
+    const {targetType, target} = context
+    const _target = handler(context)
 
-    return ((targetType === CLASS || targetType === METHOD) && !isFunction(_value))
-      ? value
-      : isUndefined(_value)
-        ? value
-        : _value
+    return ((targetType === CLASS || targetType === METHOD) && !isFunction(_target))
+      ? target
+      : isUndefined(_target)
+        ? target
+        : _target
   }
 
 export const createDecorator = constructDecorator

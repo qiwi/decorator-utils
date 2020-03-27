@@ -6,6 +6,7 @@ import {
   FIELD,
   CLASS,
 } from '../../main/ts'
+import {IDecoratorContext} from '../../main/ts/interface'
 
 const noop = () => { /* noop */ }
 
@@ -50,7 +51,7 @@ describe('decoratorUtils tsc', () => {
     describe('for constructor', () => {
       it('extends target class', () => {
         const addAge = constructDecorator(
-          (targetType: unknown, target: any, age: number) => {
+          ({targetType, target, args: [age]}: IDecoratorContext) => {
             if (targetType === CLASS) {
               return class Bar extends target {
                 age: number
@@ -86,7 +87,7 @@ describe('decoratorUtils tsc', () => {
 
       it('overrides proto', () => {
         const decorator = constructDecorator(
-          (targetType: unknown, target: Function) => {
+          ({targetType, target}) => {
             if (targetType === METHOD) {
               return () => {
                 return target().toUpperCase()
@@ -139,7 +140,7 @@ describe('decoratorUtils tsc', () => {
     describe('for method', () => {
       it('replaces target with the new impl', () => {
         const decorator = constructDecorator(
-          (targetType: unknown, target: Function, param: unknown) => {
+          ({targetType, target, args: [param]}) => {
             if (targetType === METHOD) {
               return (value: unknown) => param || 'qux'
             }
@@ -197,6 +198,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
         }
 
         const foo = new Foo()
@@ -208,7 +210,7 @@ describe('decoratorUtils tsc', () => {
     describe('for field', () => {
       it('replaces target initializer', () => {
         const prefix = constructDecorator(
-          (targetType: unknown, target: Function, param: unknown): unknown => {
+          ({targetType, target, args: [param]}): unknown => {
             if (targetType === FIELD) {
               return () => (param || '') + target()
             }
@@ -259,7 +261,7 @@ describe('decoratorUtils tsc', () => {
 
     it('asserts allowedType if defined', () => {
       const decorator = constructDecorator(
-        (targetType: unknown, target: Function, param: string) => {
+        ({targetType, target, args: [param]}) => {
           return (value: unknown) => param || 'qux'
         },
         METHOD,
@@ -297,7 +299,7 @@ describe('decoratorUtils tsc', () => {
 
     it('applies several decorators at once', () => {
       const plus = constructDecorator(
-        (targetType: unknown, target: Function, param: string) => {
+        ({targetType, target, args: [param]}) => {
           return (value: number) => target(value) + param
         },
         METHOD,

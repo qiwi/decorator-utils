@@ -11,6 +11,18 @@ export type IInstance = {
 
 export type IDecoratorArgs = any[]
 
+export type IDecoratorContext = {
+  targetType: ITargetType | null,
+  target: ITarget,
+  propName: IPropName | null
+  paramIndex: IParamIndex | null,
+  args: IDecoratorArgs
+}
+
+export type IParamIndex = number
+
+// export type IHandler = (context: IDecoratorContext) => ITarget
+
 export type IHandler = {
   (
     targetType: ITargetType | null,
@@ -18,6 +30,7 @@ export type IHandler = {
     ...args: IDecoratorArgs
   ): IPropValue
 }
+
 export interface IProto {
   [key: string]: IAnyType
 }

@@ -187,6 +187,22 @@ describe('decoratorUtils tsc', () => {
         expect(foo.foo()).toEqual('bar')
         expect(foo.baz()).toEqual('baz')
       })
+
+      it('verifies that handler returns a function, use prev value if not', () => {
+        const decorator = constructDecorator(() => 'not-a-function')
+
+        class Foo {
+
+          @decorator('abc')
+          foo() {
+            return 'bar'
+          }
+        }
+
+        const foo = new Foo()
+        expect(foo.constructor).toEqual(Foo)
+        expect(foo.foo()).toEqual('bar')
+      })
     })
 
     describe('for field', () => {

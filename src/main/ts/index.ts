@@ -57,7 +57,7 @@ export const constructDecorator = (
                 targetType,
                 target: () => next,
                 args,
-                propName: method
+                propName: method,
               })()
             }
 
@@ -81,7 +81,7 @@ export const constructDecorator = (
           targetType,
           target: descriptor.value,
           propName: method,
-          args
+          args,
         })
         return
 

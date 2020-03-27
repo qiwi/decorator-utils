@@ -112,7 +112,7 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
   /**
    * Constructs decorator by given function.
    * Holywar goes here: https://github.com/wycats/javascript-decorators/issues/23
-   * @param {Function} handler
+   * @param {IHandler} handler
    * @param {ITargetTypes} [allowedTypes]
    * @returns {function(...[any])}
    */

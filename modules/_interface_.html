@@ -81,10 +81,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#ianytype" class="tsd-kind-icon">IAny<wbr>Type</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#idecoratorargs" class="tsd-kind-icon">IDecorator<wbr>Args</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#idecoratorcontext" class="tsd-kind-icon">IDecorator<wbr>Context</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#idescriptor" class="tsd-kind-icon">IDescriptor</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#ihandler" class="tsd-kind-icon">IHandler</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#iinstance" class="tsd-kind-icon">IInstance</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#imapiterator" class="tsd-kind-icon">IMap<wbr>Iterator</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#iparamindex" class="tsd-kind-icon">IParam<wbr>Index</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#ipropname" class="tsd-kind-icon">IProp<wbr>Name</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#ipropvalue" class="tsd-kind-icon">IProp<wbr>Value</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_interface_.html#ireduceiterator" class="tsd-kind-icon">IReduce<wbr>Iterator</a></li>
@@ -104,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">IAny<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L36">interface.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L41">interface.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -114,9 +116,39 @@
 					<div class="tsd-signature tsd-kind-icon">IDecorator<wbr>Args<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L12">interface.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L12">interface.ts:12</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="idecoratorcontext" class="tsd-anchor"></a>
+					<h3>IDecorator<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">IDecorator<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>args<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorargs" class="tsd-signature-type">IDecoratorArgs</a><span class="tsd-signature-symbol">; </span>paramIndex<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L14">interface.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>args<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorargs" class="tsd-signature-type">IDecoratorArgs</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> param<wbr>Index<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> prop<wbr>Name<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>target<wbr>Type<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="idescriptor" class="tsd-anchor"></a>
@@ -124,17 +156,17 @@
 					<div class="tsd-signature tsd-kind-icon">IDescriptor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PropertyDescriptor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L42">interface.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L47">interface.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="ihandler" class="tsd-anchor"></a>
 					<h3>IHandler</h3>
-					<div class="tsd-signature tsd-kind-icon">IHandler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>targetType<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, value<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorargs" class="tsd-signature-type">IDecoratorArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a></div>
+					<div class="tsd-signature tsd-kind-icon">IHandler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorcontext" class="tsd-signature-type">IDecoratorContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L14">interface.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L24">interface.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -142,23 +174,17 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>targetType<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, value<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorargs" class="tsd-signature-type">IDecoratorArgs</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorcontext" class="tsd-signature-type">IDecoratorContext</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>targetType: <a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-											</li>
-											<li>
-												<h5>value: <a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a></h5>
-											</li>
-											<li>
-												<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <a href="_interface_.html#idecoratorargs" class="tsd-signature-type">IDecoratorArgs</a></h5>
+												<h5>context: <a href="_interface_.html#idecoratorcontext" class="tsd-signature-type">IDecoratorContext</a></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="_interface_.html#ipropvalue" class="tsd-signature-type">IPropValue</a></h4>
+										<h4 class="tsd-returns-title">Returns <a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></h4>
 									</li>
 								</ul>
 							</li>
@@ -171,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">IInstance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><a href="_interface_.html#iinstance" class="tsd-signature-type">IInstance</a><span class="tsd-signature-symbol">; </span>prototype<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_interface_.iproto.html" class="tsd-signature-type">IProto</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L7">interface.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L7">interface.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -192,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">IMap<wbr>Iterator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, obj<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L24">interface.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L29">interface.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -224,12 +250,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="iparamindex" class="tsd-anchor"></a>
+					<h3>IParam<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">IParam<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L22">interface.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="ipropname" class="tsd-anchor"></a>
 					<h3>IProp<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">IProp<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L31">interface.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L36">interface.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -239,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">IProp<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L32">interface.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L37">interface.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -249,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">IReduce<wbr>Iterator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a>, value<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, obj<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_interface_.html#ianytype" class="tsd-signature-type">IAnyType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L27">interface.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L32">interface.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -289,7 +325,7 @@
 					<div class="tsd-signature tsd-kind-icon">ITarget<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L33">interface.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L38">interface.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -299,7 +335,7 @@
 					<div class="tsd-signature tsd-kind-icon">ITarget<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L34">interface.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L39">interface.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -309,7 +345,7 @@
 					<div class="tsd-signature tsd-kind-icon">ITarget<wbr>Types<span class="tsd-signature-symbol">:</span> <a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/6e69130/src/main/ts/interface.ts#L35">interface.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/a3304e2/src/main/ts/interface.ts#L40">interface.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -350,6 +386,9 @@
 						<a href="_interface_.html#idecoratorargs" class="tsd-kind-icon">IDecorator<wbr>Args</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_interface_.html#idecoratorcontext" class="tsd-kind-icon">IDecorator<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_interface_.html#idescriptor" class="tsd-kind-icon">IDescriptor</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
@@ -360,6 +399,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_interface_.html#imapiterator" class="tsd-kind-icon">IMap<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_interface_.html#iparamindex" class="tsd-kind-icon">IParam<wbr>Index</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_interface_.html#ipropname" class="tsd-kind-icon">IProp<wbr>Name</a>

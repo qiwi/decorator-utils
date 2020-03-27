@@ -5,18 +5,19 @@ import {
   IDecoratorArgs,
   IHandler,
   IPropName,
-  IPropValue,
   IDecorator,
   ITarget,
   ITargetTypes,
   ITargetType,
-  IDescriptor, IDecoratorContext,
+  IDescriptor,
+  IParamIndex,
 } from './interface'
 
 export const METHOD = 'method'
 export const CLASS = 'class'
 export const FIELD = 'field'
-export const TARGET_TYPES = {METHOD, CLASS, FIELD}
+export const PARAM = 'param'
+export const TARGET_TYPES = {METHOD, CLASS, FIELD, PARAM}
 
 /**
  * Constructs decorator by given function.
@@ -36,7 +37,7 @@ export const constructDecorator = (
   return (...args: IDecoratorArgs): Function => (
     target: ITarget,
     method: IPropName,
-    descriptor: IDescriptor,
+    descriptor: IDescriptor | IParamIndex,
   ): any => {
 
     const _handler = getSafeHandler(handler)
@@ -45,6 +46,10 @@ export const constructDecorator = (
     assertTargetType(targetType, allowedTypes)
 
     switch (targetType) {
+      case PARAM:
+        // Add param decorators support
+        return
+
       case FIELD:
         if (!descriptor) {
 
@@ -77,12 +82,14 @@ export const constructDecorator = (
         return
 
       case METHOD:
-        descriptor.value = _handler({
-          targetType,
-          target: descriptor.value,
-          propName: method,
-          args,
-        })
+        if (typeof descriptor === 'object') {
+          descriptor.value = _handler({
+            targetType,
+            target: descriptor.value,
+            propName: method,
+            args,
+          })
+        }
         return
 
       case CLASS:
@@ -115,8 +122,13 @@ export const constructDecorator = (
 export const getTargetType = (
   target: ITarget,
   method: IPropName | symbol,
-  descriptor: IDescriptor | void,
+  descriptor: IDescriptor | IParamIndex | void,
 ): ITargetType | null => {
+
+  if (typeof descriptor === 'number') {
+    return PARAM
+  }
+
   if (method) {
     return descriptor && isFunction(descriptor.value)
       ? METHOD

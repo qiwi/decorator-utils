@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/qiwi/decorator-utils/compare/v1.3.1...v2.0.0) (2020-03-27)
+
+
+### Features
+
+* pass propName to method decorators ([37fd934](https://github.com/qiwi/decorator-utils/commit/37fd93424525bc9652ea89a51e950dde2b9748cd))
+* safeHandleFactory asserts the result of method substitution ([e7f1fad](https://github.com/qiwi/decorator-utils/commit/e7f1fad0902e6daa3e44cf39ab7327ed75b40a85))
+* use IDecoratorContext as the only argument of IHandler ([7caaafc](https://github.com/qiwi/decorator-utils/commit/7caaafc08483ac11884e9556e2e4898f359e61f5))
+
+
+### BREAKING CHANGES
+
+* IHandler does not process the prev arg scheme
+
 ## [1.3.1](https://github.com/qiwi/decorator-utils/compare/v1.3.0...v1.3.1) (2020-03-25)
 
 

@@ -47,7 +47,15 @@ export const constructDecorator = (
 
     switch (targetType) {
       case PARAM:
-        // Add param decorators support
+        if (typeof descriptor === 'number') {
+          _handler({
+            target,
+            targetType,
+            propName: method,
+            paramIndex: descriptor,
+            args
+          })
+        }
         return
 
       case FIELD:

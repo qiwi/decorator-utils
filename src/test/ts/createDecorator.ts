@@ -5,6 +5,7 @@ import {
   METHOD,
   FIELD,
   CLASS,
+  PARAM,
 } from '../../main/ts'
 import {IDecoratorContext} from '../../main/ts/interface'
 
@@ -48,7 +49,7 @@ describe('decoratorUtils tsc', () => {
   })
 
   describe('decorator', () => {
-    describe('for constructor', () => {
+    describe('for class/constructor', () => {
       it('extends target class', () => {
         const addAge = constructDecorator(
           ({targetType, target, args: [age]}: IDecoratorContext) => {
@@ -221,6 +222,41 @@ describe('decoratorUtils tsc', () => {
         const foo = new Foo()
         expect(foo.constructor).toEqual(Foo)
         expect(foo.foo()).toEqual('foo')
+      })
+    })
+
+    describe('for param', () => {
+      it('allows to attach some meta', () => {
+        const meta: any = {}
+        const decorator = constructDecorator(({propName, paramIndex, targetType, target}: IDecoratorContext) => {
+          if (targetType === PARAM) {
+            if (propName && typeof paramIndex === 'number') {
+              meta[propName] = meta[propName] || {}
+              meta[propName][paramIndex] = target.constructor
+            }
+          }
+        })
+
+        class Foo {
+
+          foo(@decorator() one: any, two: any, @decorator() three: any) {
+            return 'foo'
+          }
+
+          bar(one: any, @decorator() two: any) {
+            return 'bar'
+          }
+        }
+
+        expect(meta).toEqual({
+          foo: {
+            0: Foo,
+            2: Foo
+          },
+          bar: {
+            1: Foo
+          }
+        })
       })
     })
 

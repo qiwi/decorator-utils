@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/qiwi/decorator-utils/compare/v2.1.0...v2.2.0) (2020-03-28)
+
+
+### Features
+
+* add proto and ctor refs to IDecoratorContext ([ec3e937](https://github.com/qiwi/decorator-utils/commit/ec3e937a2fea3b2cb22ab1c315db9c759535a3a9))
+
 # [2.1.0](https://github.com/qiwi/decorator-utils/compare/v2.0.0...v2.1.0) (2020-03-28)
 
 

@@ -374,4 +374,60 @@ describe('decoratorUtils tsc', () => {
       expect(foo.bar(1)).toBe(4)
     })
   })
+
+  describe('context', () => {
+    fit('allows to operate with meta', () => {
+      const meta: any = {}
+      const decorator = constructDecorator((context: IDecoratorContext) => {
+        const {args: [arg]} = context
+        meta[arg] = context
+      })
+
+      @decorator('class')
+      class Foo {
+
+        @decorator('method')
+        foo(@decorator('p0') a: any, b: any, @decorator('p2') c: any) {
+          return 'foo'
+        }
+
+      }
+
+      expect(meta).toEqual({
+        class: {
+          targetType: CLASS,
+          target: Foo,
+          ctor: Foo,
+          proto: Foo.prototype,
+          args: ['class'],
+        },
+        method: {
+          targetType: METHOD,
+          target: Foo.prototype.foo,
+          propName: 'foo',
+          ctor: Foo,
+          proto: Foo.prototype,
+          args: ['method'],
+        },
+        p0: {
+          targetType: PARAM,
+          target: Foo.prototype.foo,
+          propName: 'foo',
+          paramIndex: 0,
+          ctor: Foo,
+          proto: Foo.prototype,
+          args: ['p0'],
+        },
+        p2: {
+          targetType: PARAM,
+          target: Foo.prototype.foo,
+          propName: 'foo',
+          paramIndex: 2,
+          ctor: Foo,
+          proto: Foo.prototype,
+          args: ['p2'],
+        },
+      })
+    })
+  })
 })

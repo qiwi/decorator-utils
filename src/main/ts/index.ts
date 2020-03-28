@@ -11,6 +11,7 @@ import {
   ITargetType,
   IDescriptor,
   IParamIndex,
+  IProto,
 } from './interface'
 
 export const METHOD = 'method'
@@ -49,11 +50,13 @@ export const constructDecorator = (
       case PARAM:
         if (typeof descriptor === 'number') {
           _handler({
-            target,
+            target: target[method],
             targetType,
+            args,
+            ctor: target.constructor,
+            proto: target,
             propName: method,
             paramIndex: descriptor,
-            args,
           })
         }
         return
@@ -61,7 +64,7 @@ export const constructDecorator = (
       case FIELD:
         if (!descriptor) {
 
-          return (function(target: {[key: string]: any}, key: string) {
+          return (function(target: IProto, key: string) {
             let val = target[key]
 
             const getter = () => val
@@ -70,6 +73,8 @@ export const constructDecorator = (
                 targetType,
                 target: () => next,
                 args,
+                ctor: target.constructor,
+                proto: target,
                 propName: method,
               })()
             }
@@ -94,8 +99,10 @@ export const constructDecorator = (
           descriptor.value = _handler({
             targetType,
             target: descriptor.value,
-            propName: method,
             args,
+            ctor: target.constructor,
+            proto: target,
+            propName: method,
           })
         }
         return
@@ -106,13 +113,25 @@ export const constructDecorator = (
           mapValues(
             getPrototypeMethods(target),
             (desc: IDescriptor, name: IPropName) => {
-              desc.value = _handler({targetType: METHOD, target: desc.value, args})
+              desc.value = _handler({
+                targetType: METHOD,
+                target: desc.value,
+                ctor: target,
+                proto: target.prototype,
+                args,
+              })
               return desc
             },
           ),
         )
 
-        return _handler({targetType: CLASS, target, args})
+        return _handler({
+          targetType: CLASS,
+          target,
+          ctor: target,
+          proto: target.prototype,
+          args,
+        })
 
       default:
         return

@@ -15,6 +15,8 @@ export type IDecoratorContext = {
   targetType: ITargetType | null,
   target: ITarget,
   args: IDecoratorArgs
+  proto: IProto,
+  ctor: Function,
   propName?: IPropName
   paramIndex?: IParamIndex
 }

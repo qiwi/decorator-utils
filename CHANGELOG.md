@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/qiwi/decorator-utils/compare/v2.0.0...v2.1.0) (2020-03-28)
+
+
+### Features
+
+* handle param decorators ([22956df](https://github.com/qiwi/decorator-utils/commit/22956df1aa5d93befc25cbcf83a0b7f76da591bb))
+
 # [2.0.0](https://github.com/qiwi/decorator-utils/compare/v1.3.1...v2.0.0) (2020-03-27)
 
 

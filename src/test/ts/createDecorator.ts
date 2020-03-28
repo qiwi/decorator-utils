@@ -232,7 +232,7 @@ describe('decoratorUtils tsc', () => {
           if (targetType === PARAM) {
             if (propName && typeof paramIndex === 'number') {
               meta[propName] = meta[propName] || {}
-              meta[propName][paramIndex] = target.constructor
+              meta[propName][paramIndex] = target
             }
           }
         })
@@ -251,11 +251,11 @@ describe('decoratorUtils tsc', () => {
 
         expect(meta).toEqual({
           foo: {
-            0: Foo,
-            2: Foo,
+            0: Foo.prototype.foo,
+            2: Foo.prototype.foo,
           },
           bar: {
-            1: Foo,
+            1: Foo.prototype.bar,
           },
         })
       })
@@ -376,7 +376,7 @@ describe('decoratorUtils tsc', () => {
   })
 
   describe('context', () => {
-    fit('allows to operate with meta', () => {
+    it('allows to operate with meta', () => {
       const meta: any = {}
       const decorator = constructDecorator((context: IDecoratorContext) => {
         const {args: [arg]} = context

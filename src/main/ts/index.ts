@@ -53,7 +53,7 @@ export const constructDecorator = (
             targetType,
             propName: method,
             paramIndex: descriptor,
-            args
+            args,
           })
         }
         return

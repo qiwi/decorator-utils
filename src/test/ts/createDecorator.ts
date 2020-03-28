@@ -246,16 +246,17 @@ describe('decoratorUtils tsc', () => {
           bar(one: any, @decorator() two: any) {
             return 'bar'
           }
+
         }
 
         expect(meta).toEqual({
           foo: {
             0: Foo,
-            2: Foo
+            2: Foo,
           },
           bar: {
-            1: Foo
-          }
+            1: Foo,
+          },
         })
       })
     })

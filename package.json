@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "tslint -p tsconfig.json -c tslint.json && tslint -c tslint.json src/test/js/*.js",
     "jest": "jest -w 1 --config=jest.config.json",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "tslint -p tsconfig.json -c tslint.json --fix && tslint -c tslint.json src/test/js/*.js --fix",
     "test": "yarn lint && yarn jest",
     "clean": "rimraf target typings",
     "build": "yarn clean && yarn build:es5 && yarn build:es6 && yarn build:ts && yarn libdef && yarn docs && yarn uglify && yarn build:bundle",

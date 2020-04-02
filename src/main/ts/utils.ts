@@ -7,12 +7,12 @@ import {
   IReducible,
 } from './interface'
 
-import get from 'lodash/get'
-import set from 'lodash/set'
-import mapValues from 'lodash/mapValues'
-import reduce from 'lodash/reduce'
-import isFunction from 'lodash/isFunction'
-import isUndefined from 'lodash/isUndefined'
+import get from 'lodash.get'
+import set from 'lodash.set'
+import mapValues from 'lodash.mapvalues'
+import reduce from 'lodash.reduce'
+import isFunction from 'lodash.isfunction'
+import isUndefined from 'lodash.isundefined'
 
 export {
   get,

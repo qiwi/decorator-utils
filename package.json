@@ -106,5 +106,14 @@
       "@semantic-release/github",
       "@qiwi/semantic-release-gh-pages-plugin"
     ]
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "lodash.get": "^4.4.2",
+    "lodash.isfunction": "^3.0.9",
+    "lodash.isundefined": "^3.0.1",
+    "lodash.mapvalues": "^4.6.0",
+    "lodash.reduce": "^4.6.0",
+    "lodash.set": "^4.3.2"
   }
 }

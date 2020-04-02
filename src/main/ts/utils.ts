@@ -4,60 +4,22 @@ import {
   IProto,
   IInstance,
   IDescriptor,
-  IAnyType,
   IReducible,
-  IMapIterator,
-  IReduceIterator,
 } from './interface'
 
-// TODO use lodash?
-export function isFunction(value: IAnyType): boolean {
-  return typeof value === 'function'
-}
+import get from 'lodash/get'
+import set from 'lodash/set'
+import mapValues from 'lodash/mapValues'
+import reduce from 'lodash/reduce'
+import isFunction from 'lodash/isFunction'
+import isUndefined from 'lodash/isUndefined'
 
-export function isUndefined(value: IAnyType): boolean {
-  return typeof value === 'undefined'
-}
-
-/**
- * @param {Object} obj
- * @param {Function} fn
- * @return {Object}
- */
-export function mapValues(obj: IReducible, fn: IMapIterator): any {
-  const _fn: IReduceIterator = (
-    result: {[key: string]: any},
-    value: IAnyType,
-    key: string | number,
-    obj: Object,
-  ): Object => {
-    result[key] = fn(value, key, obj)
-
-    return result
-  }
-
-  return reduce(obj, _fn, {})
-}
-
-/**
- *
- * @param {Object} obj
- * @param {Function} fn
- * @param {Object} memo
- * @returns {Object}
- */
-export function reduce<M>(obj: IReducible, fn: IReduceIterator, memo: M): M {
-  let result = memo
-  let value: IAnyType
-
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      value = obj[key]
-      result = fn(result, value, key, obj)
-    }
-  }
-
-  return result
+export {
+  get,
+  set,
+  mapValues,
+  isUndefined,
+  isFunction,
 }
 
 /**
@@ -65,11 +27,11 @@ export function reduce<M>(obj: IReducible, fn: IReduceIterator, memo: M): M {
  * @param {*} instance
  * @returns {Object}
  */
-export function getPrototypeMethods(instance: IInstance): any {
+export function getPrototypeMethods(instance: IInstance): PropertyDescriptorMap {
   // WORKAROUND: empty object fallback
   const proto: IProto = instance.prototype || instance.constructor.prototype || {}
   const propNames: IReducible = Object.getOwnPropertyNames(proto)
-  const memo = {}
+  const memo: PropertyDescriptorMap = {}
 
   return reduce(
     propNames,

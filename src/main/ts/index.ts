@@ -14,6 +14,8 @@ import {
   IProto,
 } from './interface'
 
+export {injectMeta} from './meta'
+
 export const METHOD = 'method'
 export const CLASS = 'class'
 export const FIELD = 'field'

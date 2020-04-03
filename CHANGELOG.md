@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/qiwi/decorator-utils/compare/v2.2.0...v2.3.0) (2020-04-03)
+
+
+### Features
+
+* add injectMeta helper ([caad7b9](https://github.com/qiwi/decorator-utils/commit/caad7b9357c7f328e7d6c6e740d778bd269e3718))
+
+
+### Performance Improvements
+
+* **package:** up deps ([e577955](https://github.com/qiwi/decorator-utils/commit/e577955233a769e8770b24ebdb47facbac0b62fd))
+
 # [2.2.0](https://github.com/qiwi/decorator-utils/compare/v2.1.0...v2.2.0) (2020-03-28)
 
 

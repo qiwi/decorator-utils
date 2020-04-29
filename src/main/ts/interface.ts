@@ -14,16 +14,19 @@ export type IDecoratorArgs = any[]
 export type IDecoratorContext = {
   targetType: ITargetType | null,
   target: ITarget,
-  args: IDecoratorArgs
   proto: IProto,
   ctor: Function,
   propName?: IPropName
   paramIndex?: IParamIndex
 }
 
+export type IDecoratorHandlerContext = IDecoratorContext & {
+  args: IDecoratorArgs
+}
+
 export type IParamIndex = number
 
-export type IHandler = (context: IDecoratorContext) => ITarget
+export type IHandler = (context: IDecoratorHandlerContext) => ITarget
 
 export interface IProto {
   [key: string]: IAnyType

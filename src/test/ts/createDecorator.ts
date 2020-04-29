@@ -7,7 +7,7 @@ import {
   CLASS,
   PARAM,
 } from '../../main/ts'
-import {IDecoratorContext} from '../../main/ts/interface'
+import {IDecoratorHandlerContext} from '../../main/ts/interface'
 
 const noop = () => { /* noop */ }
 
@@ -52,7 +52,7 @@ describe('decoratorUtils tsc', () => {
     describe('for class/constructor', () => {
       it('extends target class', () => {
         const addAge = constructDecorator(
-          ({targetType, target, args: [age]}: IDecoratorContext) => {
+          ({targetType, target, args: [age]}: IDecoratorHandlerContext) => {
             if (targetType === CLASS) {
               return class Bar extends target {
                 age: number
@@ -208,7 +208,7 @@ describe('decoratorUtils tsc', () => {
       })
 
       it('operates with method name', () => {
-        const decorator = constructDecorator(({propName}: IDecoratorContext) => () => propName)
+        const decorator = constructDecorator(({propName}: IDecoratorHandlerContext) => () => propName)
 
         class Foo {
 
@@ -228,7 +228,7 @@ describe('decoratorUtils tsc', () => {
     describe('for param', () => {
       it('allows to attach some meta', () => {
         const meta: any = {}
-        const decorator = constructDecorator(({propName, paramIndex, targetType, target}: IDecoratorContext) => {
+        const decorator = constructDecorator(({propName, paramIndex, targetType, target}: IDecoratorHandlerContext) => {
           if (targetType === PARAM) {
             if (propName && typeof paramIndex === 'number') {
               meta[propName] = meta[propName] || {}
@@ -378,7 +378,7 @@ describe('decoratorUtils tsc', () => {
   describe('context', () => {
     it('allows to operate with meta', () => {
       const meta: any = {}
-      const decorator = constructDecorator((context: IDecoratorContext) => {
+      const decorator = constructDecorator((context: IDecoratorHandlerContext) => {
         const {args: [arg]} = context
         meta[arg] = context
       })

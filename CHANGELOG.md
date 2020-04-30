@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/qiwi/decorator-utils/compare/v2.3.0...v3.0.0) (2020-04-30)
+
+
+### Bug Fixes
+
+* correct FIELD decorators handling ([91ff8ee](https://github.com/qiwi/decorator-utils/commit/91ff8ee02dd7875955da61c6e264de62b1596d82))
+
+
+### BREAKING CHANGES
+
+* field decorator does not affect proto now
+
 # [2.3.0](https://github.com/qiwi/decorator-utils/compare/v2.2.0...v2.3.0) (2020-04-03)
 
 

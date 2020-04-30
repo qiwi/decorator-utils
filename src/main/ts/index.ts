@@ -14,13 +14,18 @@ import {
   IProto,
 } from './interface'
 
+import {
+  METHOD,
+  CLASS,
+  FIELD,
+  PARAM,
+  getTargetType,
+  getDecoratorContext
+} from './resolver'
+
 export {injectMeta} from './meta'
 
-export const METHOD = 'method'
-export const CLASS = 'class'
-export const FIELD = 'field'
-export const PARAM = 'param'
-export const TARGET_TYPES = {METHOD, CLASS, FIELD, PARAM}
+export * from './resolver'
 
 /**
  * Constructs decorator by given function.
@@ -45,22 +50,20 @@ export const constructDecorator = (
 
     const _handler = getSafeHandler(handler)
     const targetType = getTargetType(target, method, descriptor)
+    const decoratorContext = getDecoratorContext(target, method, descriptor)
+
+    if (!decoratorContext) {
+      return
+    }
+
+    const handlerContext = {...decoratorContext, args}
 
     assertTargetType(targetType, allowedTypes)
 
     switch (targetType) {
       case PARAM:
-        if (typeof descriptor === 'number') {
-          _handler({
-            target: target[method],
-            targetType,
-            args,
-            ctor: target.constructor,
-            proto: target,
-            propName: method,
-            paramIndex: descriptor,
-          })
-        }
+        _handler(handlerContext)
+
         return
 
       case FIELD:
@@ -72,12 +75,8 @@ export const constructDecorator = (
             const getter = () => val
             const setter = (next: unknown) => {
               val = _handler({
-                targetType,
+                ...handlerContext,
                 target: () => next,
-                args,
-                ctor: target.constructor,
-                proto: target,
-                propName: method,
               })()
             }
 
@@ -98,14 +97,7 @@ export const constructDecorator = (
 
       case METHOD:
         if (typeof descriptor === 'object') {
-          descriptor.value = _handler({
-            targetType,
-            target: descriptor.value,
-            args,
-            ctor: target.constructor,
-            proto: target,
-            propName: method,
-          })
+          descriptor.value = _handler(handlerContext)
         }
         return
 
@@ -139,36 +131,6 @@ export const constructDecorator = (
         return
     }
   }
-}
-
-/**
- * Detects decorated target type.
- * @param {*} target
- * @param {string} [method]
- * @param {Object} [descriptor]
- * @returns {*}
- */
-export const getTargetType = (
-  target: ITarget,
-  method: IPropName | symbol,
-  descriptor: IDescriptor | IParamIndex | void,
-): ITargetType | null => {
-
-  if (typeof descriptor === 'number') {
-    return PARAM
-  }
-
-  if (method) {
-    return descriptor && isFunction(descriptor.value)
-      ? METHOD
-      : FIELD
-  }
-
-  if (isFunction(target)) {
-    return CLASS
-  }
-
-  return null
 }
 
 export const assertTargetType = (

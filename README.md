@@ -34,24 +34,6 @@ yarn add @qiwi/decorator-utils
 ```
 
 ## Usage
-#### Field
-```javascript
-    import {createDecorator, FIELD} from '@qiwi/decorator-utils'
-    
-    const prefix = constructDecorator((targetType, target, param) => {
-      if (targetType === FIELD) {
-        return () => (param || '') + target()
-      }
-    })
-
-    class Foo {
-      @prefix('_')
-      foo = 'bar'
-      @prefix('__')
-      baz = 'qux'
-    }
-```
-
 #### Method
 ```javascript
  const decorator = constructDecorator((targetType, target, param) => {
@@ -88,6 +70,53 @@ const decorator = constructDecorator((targetType, target) => {
           }
           foo () { return 'bar' }
         }
+```
+
+#### Field & Param
+```javascript
+    import {createDecorator, FIELD, PARAM} from '@qiwi/decorator-utils'
+    
+    const meta: any = {}
+    const decorator = constructDecorator(({
+        propName,
+        paramIndex,
+        targetType,
+        target,
+        args: [param]
+    }: IDecoratorHandlerContext) => {
+      if (targetType === PARAM) {
+        if (propName && typeof paramIndex === 'number') {
+          meta[propName] = meta[propName] || {}
+          meta[propName][paramIndex] = target
+        }
+      }
+
+      if (targetType === FIELD) {
+        if (propName) {
+          meta[propName] = param
+        }
+      }
+
+    })
+
+    class Foo {
+      @decorator('arg')
+      foo = 'bar'
+
+      bar(one: any, @decorator() two: any) {
+        return 'bar'
+      }
+    }
+
+/**
+    Now `meta` is smth like:
+    {
+      foo: 'arg',
+      bar: {
+        1: Foo.prototype.bar,
+      },
+    }
+*/
 ```
 
 Also you may apply decorator to the class, but decorate its methods:

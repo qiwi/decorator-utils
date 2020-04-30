@@ -48,39 +48,37 @@ export const constructDecorator = (
     descriptor: IDescriptor | IParamIndex,
   ): any => {
 
-    const _handler = getSafeHandler(handler)
-    const targetType = getTargetType(target, propName, descriptor)
     const decoratorContext = getDecoratorContext(target, propName, descriptor)
-
     if (!decoratorContext) {
       return
     }
 
-    const handlerContext = {...decoratorContext, args}
-
+    const targetType = getTargetType(target, propName, descriptor)
     assertTargetType(targetType, allowedTypes)
+
+    const handlerContext = {...decoratorContext, args}
+    const _handler = getSafeHandler(handler)
 
     switch (targetType) {
       case PARAM:
         _handler(handlerContext)
-
-        return
+        break
 
       case FIELD:
         if (!descriptor) {
           _handler(handlerContext)
-          return
         }
-
-        // @ts-ignore
-        descriptor.initializer = _handler({...handlerContext, target: descriptor.initializer})
-        return
+        else {
+          // @ts-ignore
+          descriptor.initializer = _handler({...handlerContext, target: descriptor.initializer})
+        }
+        break
 
       case METHOD:
         if (typeof descriptor === 'object') {
           descriptor.value = _handler(handlerContext)
         }
-        return
+        break
 
       case CLASS:
         Object.defineProperties(
@@ -99,9 +97,6 @@ export const constructDecorator = (
         )
 
         return _handler(handlerContext)
-
-      default:
-        return
     }
   }
 }
@@ -125,11 +120,15 @@ const getSafeHandler = (handler: IHandler): IHandler =>
     const {targetType, target} = context
     const _target = handler(context)
 
-    return ((targetType === CLASS || targetType === METHOD) && !isFunction(_target))
-      ? target
-      : isUndefined(_target)
-        ? target
-        : _target
+    if (isUndefined(_target)) {
+      return target
+    }
+
+    if ((targetType === CLASS || targetType === METHOD) && !isFunction(_target)) {
+      return target
+    }
+
+    return _target
   }
 
 export const createDecorator = constructDecorator

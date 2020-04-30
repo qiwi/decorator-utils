@@ -174,11 +174,7 @@ describe('decoratorUtils babel', () => {
       it('allows to attach some meta', () => {
         const meta = {}
         const decorator = constructDecorator(
-          (opts) => {
-            const {targetType, propName, args: [param]} = opts
-
-            console.log('!!!!', opts)
-
+          ({targetType, propName, args: [param]}) => {
             if (targetType === FIELD) {
               if (propName) {
                 meta[propName] = param

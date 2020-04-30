@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>protopipe</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for protopipe">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -75,13 +75,20 @@
 					<h2>Motivation</h2>
 				</a>
 				<ol>
-					<li>— Decorator, what&#39;s that?<br>— It&#39;s just a proposal <a href="https://github.com/tc39/proposal-decorators">&quot;aspect&quot; syntax for JS</a>.</li>
-					<li>— How does it work?<br>— <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy Osmany&#39;s answer</a></li>
-					<li>— Is there any ready solution?<br>— There&#39;re many awesome things around. Look at <a href="https://www.npmjs.com/package/core-decorators">core-decorators</a> and <a href="https://www.npmjs.com/package/lodash-decorators">lodash-decorators</a>. </li>
-					<li>— Do I need <em>this</em> lib?<br>— You should try this one before: <a href="https://www.npmjs.com/package/decorator-utils">decorator-utils</a> by Luke Horvat</li>
-					<li>— ...<br>— <a href="https://google.com/search?q=js+decorator+utils">Just give a chance to Google</a></li>
-					<li>— ...<br>— How about writing your own? <a href="https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c">Netanel Basal&#39;s practical tips</a> may be very helpful.</li>
-					<li>— ...<br>— <em>Yes</em>, go ahead.</li>
+					<li>— Decorator, what&#39;s that?
+					— It&#39;s just a proposal <a href="https://github.com/tc39/proposal-decorators">&quot;aspect&quot; syntax for JS</a>.</li>
+					<li>— How does it work?
+					— <a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841">Addy Osmany&#39;s answer</a></li>
+					<li>— Is there any ready solution?
+					— There&#39;re many awesome things around. Look at <a href="https://www.npmjs.com/package/core-decorators">core-decorators</a> and <a href="https://www.npmjs.com/package/lodash-decorators">lodash-decorators</a>. </li>
+					<li>— Do I need <em>this</em> lib?
+					— You should try this one before: <a href="https://www.npmjs.com/package/decorator-utils">decorator-utils</a> by Luke Horvat</li>
+					<li>— ...
+					— <a href="https://google.com/search?q=js+decorator+utils">Just give a chance to Google</a></li>
+					<li>— ...
+					— How about writing your own? <a href="https://netbasal.com/create-and-test-decorators-in-javascript-85e8d5cf879c">Netanel Basal&#39;s practical tips</a> may be very helpful.</li>
+					<li>— ...
+					— <em>Yes</em>, go ahead.</li>
 				</ol>
 				<a href="#note" id="note" style="color: inherit; text-decoration: none;">
 					<h5>NOTE</h5>
@@ -95,23 +102,6 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<a href="#field" id="field" style="color: inherit; text-decoration: none;">
-					<h4>Field</h4>
-				</a>
-				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD} <span class="hljs-keyword">from</span> <span class="hljs-string">'@qiwi/decorator-utils'</span>
-
-    <span class="hljs-keyword">const</span> prefix = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
-      <span class="hljs-keyword">if</span> (targetType === FIELD) {
-        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> (param || <span class="hljs-string">''</span>) + target()
-      }
-    })
-
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-      @prefix(<span class="hljs-string">'_'</span>)
-      foo = <span class="hljs-string">'bar'</span>
-      @prefix(<span class="hljs-string">'__'</span>)
-      baz = <span class="hljs-string">'qux'</span>
-    }</code></pre>
 				<a href="#method" id="method" style="color: inherit; text-decoration: none;">
 					<h4>Method</h4>
 				</a>
@@ -148,6 +138,52 @@
           }
           foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
         }</code></pre>
+				<a href="#field-amp-param" id="field-amp-param" style="color: inherit; text-decoration: none;">
+					<h4>Field &amp; Param</h4>
+				</a>
+				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD, PARAM} <span class="hljs-keyword">from</span> <span class="hljs-string">'@qiwi/decorator-utils'</span>
+
+    <span class="hljs-keyword">const</span> meta: any = {}
+    <span class="hljs-keyword">const</span> decorator = constructDecorator(({
+        propName,
+        paramIndex,
+        targetType,
+        target,
+        <span class="hljs-attr">args</span>: [param]
+    }: IDecoratorHandlerContext) =&gt; {
+      <span class="hljs-keyword">if</span> (targetType === PARAM) {
+        <span class="hljs-keyword">if</span> (propName &amp;&amp; <span class="hljs-keyword">typeof</span> paramIndex === <span class="hljs-string">'number'</span>) {
+          meta[propName] = meta[propName] || {}
+          meta[propName][paramIndex] = target
+        }
+      }
+
+      <span class="hljs-keyword">if</span> (targetType === FIELD) {
+        <span class="hljs-keyword">if</span> (propName) {
+          meta[propName] = param
+        }
+      }
+
+    })
+
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+      @decorator(<span class="hljs-string">'arg'</span>)
+      foo = <span class="hljs-string">'bar'</span>
+
+      bar(one: any, @decorator() two: any) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>
+      }
+    }
+
+<span class="hljs-comment">/**
+    Now `meta` is smth like:
+    {
+      foo: 'arg',
+      bar: {
+        1: Foo.prototype.bar,
+      },
+    }
+*/</span></code></pre>
 				<p>Also you may apply decorator to the class, but decorate its methods:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === METHOD) {
@@ -178,6 +214,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_meta_.html">&quot;meta&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_resolver_.html">&quot;resolver&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_utils_.html">&quot;utils&quot;</a>

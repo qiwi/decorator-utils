@@ -20,7 +20,7 @@ import {
   FIELD,
   PARAM,
   getTargetType,
-  getDecoratorContext
+  getDecoratorContext,
 } from './resolver'
 
 export {injectMeta} from './meta'
@@ -44,13 +44,13 @@ export const constructDecorator = (
 
   return (...args: IDecoratorArgs): Function => (
     target: ITarget,
-    method: IPropName,
+    propName: IPropName,
     descriptor: IDescriptor | IParamIndex,
   ): any => {
 
     const _handler = getSafeHandler(handler)
-    const targetType = getTargetType(target, method, descriptor)
-    const decoratorContext = getDecoratorContext(target, method, descriptor)
+    const targetType = getTargetType(target, propName, descriptor)
+    const decoratorContext = getDecoratorContext(target, propName, descriptor)
 
     if (!decoratorContext) {
       return
@@ -68,31 +68,12 @@ export const constructDecorator = (
 
       case FIELD:
         if (!descriptor) {
-
-          return (function(target: IProto, key: string) {
-            let val = target[key]
-
-            const getter = () => val
-            const setter = (next: unknown) => {
-              val = _handler({
-                ...handlerContext,
-                target: () => next,
-              })()
-            }
-
-            Object.defineProperty(target, key, {
-              get: getter,
-              set: setter,
-              enumerable: true,
-              configurable: true,
-            })
-
-            return target
-          })(target, method)
+          _handler(handlerContext)
+          return
         }
 
         // @ts-ignore
-        descriptor.initializer = _handler({targetType, target: descriptor.initializer, args})
+        descriptor.initializer = _handler({...handlerContext, target: descriptor.initializer})
         return
 
       case METHOD:
@@ -106,26 +87,18 @@ export const constructDecorator = (
           target.prototype,
           mapValues(
             getPrototypeMethods(target),
-            (desc: IDescriptor, name: IPropName) => {
+            (desc: IDescriptor) => {
               desc.value = _handler({
+                ...handlerContext,
                 targetType: METHOD,
                 target: desc.value,
-                ctor: target,
-                proto: target.prototype,
-                args,
               })
               return desc
             },
           ),
         )
 
-        return _handler({
-          targetType: CLASS,
-          target,
-          ctor: target,
-          proto: target.prototype,
-          args,
-        })
+        return _handler(handlerContext)
 
       default:
         return

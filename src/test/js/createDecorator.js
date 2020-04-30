@@ -171,44 +171,33 @@ describe('decoratorUtils babel', () => {
     })
 
     describe('for field', () => {
-      it('replaces target initializer', () => {
-        const prefix = constructDecorator(({targetType, target, args: [param]}) => {
-          if (targetType === FIELD) {
-            return () => (param || '') + target()
-          }
+      it('allows to attach some meta', () => {
+        const meta = {}
+        const decorator = constructDecorator(
+          (opts) => {
+            const {targetType, propName, args: [param]} = opts
+
+            console.log('!!!!', opts)
+
+            if (targetType === FIELD) {
+              if (propName) {
+                meta[propName] = param
+              }
+            }
+          },
+        )
+
+        class Foo {
+
+          @decorator('arg')
+          foo = 'bar'
+          baz = 'qux'
+
+        }
+
+        expect(meta).toEqual({
+          foo: 'arg',
         })
-
-        class Foo {
-
-          @prefix('_')
-          foo = 'bar'
-          @prefix('__')
-          baz = 'qux'
-
-        }
-
-        const foo = new Foo()
-        expect(foo.constructor).toEqual(Foo)
-        expect(foo.foo).toEqual('_bar')
-        expect(foo.baz).toEqual('__qux')
-      })
-
-      it('has no effect if handler returns null', () => {
-        const decorator = constructDecorator(noop)
-
-        class Foo {
-
-          @decorator('abc')
-          foo = 'bar'
-          @decorator('BAZ')
-          baz = 'qux'
-
-        }
-
-        const foo = new Foo()
-        expect(foo.constructor).toEqual(Foo)
-        expect(foo.foo).toEqual('bar')
-        expect(foo.baz).toEqual('qux')
       })
     })
 

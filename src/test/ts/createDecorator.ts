@@ -262,11 +262,14 @@ describe('decoratorUtils tsc', () => {
     })
 
     describe('for field', () => {
-      it('replaces target initializer', () => {
-        const prefix = constructDecorator(
-          ({targetType, target, args: [param]}): unknown => {
+      it('allows to attach some meta', () => {
+        const meta: any = {}
+        const decorator = constructDecorator(
+          ({targetType, propName, target, args: [param]}): unknown => {
             if (targetType === FIELD) {
-              return () => (param || '') + target()
+              if (propName) {
+                meta[propName] = param
+              }
             }
             return
           },
@@ -274,36 +277,17 @@ describe('decoratorUtils tsc', () => {
 
         class Foo {
 
-          @prefix('_')
+          @decorator('arg')
           foo = 'bar'
-          @prefix('__')
           baz = 'qux'
 
         }
 
-        const foo = new Foo()
-        expect(foo.constructor).toEqual(Foo)
-        expect(foo.foo).toEqual('_bar')
-        expect(foo.baz).toEqual('__qux')
+        expect(meta).toEqual({
+          foo: 'arg',
+        })
       })
 
-      it('has no effect if handler returns null', () => {
-        const decorator = constructDecorator(noop)
-
-        class Foo {
-
-          @decorator('abc')
-          foo = 'bar'
-          @decorator('BAZ')
-          baz = 'qux'
-
-        }
-
-        const foo = new Foo()
-        expect(foo.constructor).toEqual(Foo)
-        expect(foo.foo).toEqual('bar')
-        expect(foo.baz).toEqual('qux')
-      })
     })
 
     describe('for weird type', () => {

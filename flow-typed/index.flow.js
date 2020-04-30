@@ -21,13 +21,18 @@ declare module "@qiwi/decorator-utils/target/es5/interface" {
   declare export type IDecoratorContext = {
     targetType: ITargetType | null,
     target: ITarget,
-    args: IDecoratorArgs,
+    proto: IProto,
+    ctor: Function,
     propName?: IPropName,
     paramIndex?: IParamIndex,
     ...
   };
+  declare export type IDecoratorHandlerContext = IDecoratorContext & {
+    args: IDecoratorArgs,
+    ...
+  };
   declare export type IParamIndex = number;
-  declare export type IHandler = (context: IDecoratorContext) => ITarget;
+  declare export type IHandler = (context: IDecoratorHandlerContext) => ITarget;
   declare export interface IProto {
     [key: string]: IAnyType;
   }
@@ -53,43 +58,77 @@ declare module "@qiwi/decorator-utils/target/es5/interface" {
 }
 
 declare module "@qiwi/decorator-utils/target/es5/utils" {
-  import type {
-    IInstance,
-    IAnyType,
-    IReducible,
-    IMapIterator,
-    IReduceIterator
-  } from "@qiwi/decorator-utils/target/es5/interface";
+  import type { IInstance } from "@qiwi/decorator-utils/target/es5/interface";
 
-  declare export function isFunction(value: IAnyType): boolean;
+  import typeof get from "@qiwi/decorator-utils/target/es5/lodash.get";
 
-  declare export function isUndefined(value: IAnyType): boolean;
+  import typeof set from "@qiwi/decorator-utils/target/es5/lodash.set";
 
-  /**
-   * @param {Object} obj
-   * @param {Function} fn
-   * @return {Object}
-   */
-  declare export function mapValues(obj: IReducible, fn: IMapIterator): any;
+  import typeof mapValues from "@qiwi/decorator-utils/target/es5/lodash.mapvalues";
 
-  /**
-   * @param {Object} obj
-   * @param {Function} fn
-   * @param {Object} memo
-   * @returns {Object}
-   */
-  declare export function reduce<M>(
-    obj: IReducible,
-    fn: IReduceIterator,
-    memo: M
-  ): M;
+  import typeof isFunction from "@qiwi/decorator-utils/target/es5/lodash.isfunction";
+
+  import typeof isUndefined from "@qiwi/decorator-utils/target/es5/lodash.isundefined";
+
+  declare export { get, set, mapValues, isUndefined, isFunction };
 
   /**
    * Extracts prototype methods of instance.
    * @param {*} instance
    * @returns {Object}
    */
-  declare export function getPrototypeMethods(instance: IInstance): any;
+  declare export function getPrototypeMethods(
+    instance: IInstance
+  ): PropertyDescriptorMap;
+}
+
+declare module "@qiwi/decorator-utils/target/es5/resolver" {
+  import type {
+    IDecoratorContext,
+    ITargetType
+  } from "@qiwi/decorator-utils/target/es5/interface";
+
+  declare export var METHOD: any; // "method"
+  declare export var CLASS: any; // "class"
+  declare export var FIELD: any; // "field"
+  declare export var PARAM: any; // "param"
+  declare export var TARGET_TYPES: {
+    METHOD: string,
+    CLASS: string,
+    FIELD: string,
+    PARAM: string,
+    ...
+  };
+  declare export var getDecoratorContext: (
+    target: any,
+    propName: string,
+    descriptor: number | PropertyDescriptor
+  ) => IDecoratorContext | null;
+
+  /**
+   * Detects decorated target type.
+   * @param {*} target
+   * @param {string} [method]
+   * @param {Object} [descriptor]
+   * @returns {*}
+   */
+  declare export var getTargetType: (
+    target: any,
+    method: string | Symbol,
+    descriptor: number | void | PropertyDescriptor
+  ) => ITargetType;
+}
+
+declare module "@qiwi/decorator-utils/target/es5/meta" {
+  import type { IMetadataProvider } from "@qiwi/decorator-utils/target/es5/@qiwi/substrate";
+
+  declare export var injectMeta: (
+    prv: IMetadataProvider,
+    scope: string,
+    path: string,
+    value: mixed,
+    target: any
+  ) => void;
 }
 
 declare module "@qiwi/decorator-utils/target/es5/index" {
@@ -99,15 +138,9 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
     ITargetType
   } from "@qiwi/decorator-utils/target/es5/interface";
 
-  declare export var METHOD: any; // "method"
-  declare export var CLASS: any; // "class"
-  declare export var FIELD: any; // "field"
-  declare export var TARGET_TYPES: {
-    METHOD: string,
-    CLASS: string,
-    FIELD: string,
-    ...
-  };
+  declare export { injectMeta } from "@qiwi/decorator-utils/target/es5/meta";
+
+  declare export * from "@qiwi/decorator-utils/target/es5/resolver"
 
   /**
    * Constructs decorator by given function.
@@ -120,19 +153,6 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
     handler: IHandler,
     allowedTypes?: string | ITargetType[] | null | void
   ) => IDecorator;
-
-  /**
-   * Detects decorated target type.
-   * @param {*} target
-   * @param {string} [method]
-   * @param {Object} [descriptor]
-   * @returns {*}
-   */
-  declare export var getTargetType: (
-    target: any,
-    method: string | Symbol,
-    descriptor: void | PropertyDescriptor
-  ) => ITargetType;
   declare export var assertTargetType: (
     targetType: ITargetType,
     allowedTypes: string | void | ITargetType[] | null

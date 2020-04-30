@@ -6,7 +6,7 @@ import {
   IParamIndex,
   IPropName,
   ITarget,
-  ITargetType
+  ITargetType,
 } from './interface'
 import {isFunction} from './utils'
 
@@ -18,40 +18,37 @@ export const TARGET_TYPES = {METHOD, CLASS, FIELD, PARAM}
 
 export const getDecoratorContext = (
   target: ITarget,
-  method: IPropName,
+  propName: IPropName,
   descriptor: IDescriptor | IParamIndex,
 ): IDecoratorContext | null => {
 
-  const targetType = getTargetType(target, method, descriptor)
+  const targetType = getTargetType(target, propName, descriptor)
 
   switch (targetType) {
     case PARAM:
       if (typeof descriptor === 'number') {
         return {
-          target: target[method],
+          target: target[propName],
           targetType,
           ctor: target.constructor,
           proto: target,
-          propName: method,
+          propName,
           paramIndex: descriptor,
         }
       }
+      break
 
     case FIELD:
-      if (!descriptor) {
-
-        return {
-          targetType,
-          target,
-          ctor: target.constructor,
-          proto: target,
-          propName: method,
-        }
-
+      return {
+        targetType,
+        ctor: target.constructor,
+        proto: target,
+        propName,
+        target: descriptor
+          // @ts-ignore
+          ? descriptor.initializer
+          : target,
       }
-
-      // @ts-ignore
-      return { targetType, target: descriptor.initializer }
 
     case METHOD:
       if (typeof descriptor === 'object') {
@@ -60,10 +57,10 @@ export const getDecoratorContext = (
           target: descriptor.value,
           ctor: target.constructor,
           proto: target,
-          propName: method,
+          propName,
         }
       }
-
+      break
 
     case CLASS:
       return {
@@ -72,10 +69,9 @@ export const getDecoratorContext = (
         ctor: target,
         proto: target.prototype,
       }
-
-    default:
-      return null
   }
+
+  return null
 }
 
 /**

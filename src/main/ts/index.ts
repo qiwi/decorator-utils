@@ -18,7 +18,6 @@ import {
   CLASS,
   FIELD,
   PARAM,
-  getTargetType,
   getDecoratorContext,
 } from './resolver'
 
@@ -52,7 +51,7 @@ export const constructDecorator = (
       return
     }
 
-    const targetType = getTargetType(target, propName, descriptor)
+    const {targetType} = decoratorContext
     assertTargetType(targetType, allowedTypes)
 
     const handlerContext = {...decoratorContext, args}

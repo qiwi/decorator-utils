@@ -85,6 +85,10 @@ declare module "@qiwi/decorator-utils/target/es5/utils" {
 declare module "@qiwi/decorator-utils/target/es5/resolver" {
   import type {
     IDecoratorContext,
+    IDescriptor,
+    IParamIndex,
+    IPropName,
+    ITarget,
     ITargetType
   } from "@qiwi/decorator-utils/target/es5/interface";
 
@@ -99,24 +103,33 @@ declare module "@qiwi/decorator-utils/target/es5/resolver" {
     PARAM: string,
     ...
   };
-  declare export var getDecoratorContext: (
-    target: any,
-    propName: string,
-    descriptor: number | PropertyDescriptor
-  ) => IDecoratorContext | null;
+  declare type IResolver = {
+    (
+      target: ITarget,
+      propName: IPropName,
+      descriptor: IDescriptor | IParamIndex | void
+    ): IDecoratorContext | null,
+    ...
+  };
+  declare export var getDecoratorContext: IResolver;
+  declare export var getClassDecoratorContext: IResolver;
+  declare export var getMethodDecoratorContext: IResolver;
+  declare export var getParamDecoratorContext: IResolver;
+  declare export var getFieldDecoratorContext: IResolver;
 
   /**
    * Detects decorated target type.
    * @param {*} target
-   * @param {string} [method]
+   * @param {string} [propName]
    * @param {Object} [descriptor]
    * @returns {*}
    */
   declare export var getTargetType: (
     target: any,
-    method: string | Symbol,
+    propName: string,
     descriptor: number | void | PropertyDescriptor
   ) => ITargetType;
+  declare export {};
 }
 
 declare module "@qiwi/decorator-utils/target/es5/meta" {

@@ -80,7 +80,11 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#getclassdecoratorcontext" class="tsd-kind-icon">get<wbr>Class<wbr>Decorator<wbr>Context</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#getdecoratorcontext" class="tsd-kind-icon">get<wbr>Decorator<wbr>Context</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#getfielddecoratorcontext" class="tsd-kind-icon">get<wbr>Field<wbr>Decorator<wbr>Context</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#getmethoddecoratorcontext" class="tsd-kind-icon">get<wbr>Method<wbr>Decorator<wbr>Context</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#getparamdecoratorcontext" class="tsd-kind-icon">get<wbr>Param<wbr>Decorator<wbr>Context</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_resolver_.html#gettargettype" class="tsd-kind-icon">get<wbr>Target<wbr>Type</a></li>
 							</ul>
 						</section>
@@ -101,7 +105,7 @@
 					<div class="tsd-signature tsd-kind-icon">CLASS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"class"</span><span class="tsd-signature-symbol"> = &quot;class&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L14">resolver.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L14">src/main/ts/resolver.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">FIELD<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"field"</span><span class="tsd-signature-symbol"> = &quot;field&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L15">resolver.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L15">src/main/ts/resolver.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -121,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">METHOD<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"method"</span><span class="tsd-signature-symbol"> = &quot;method&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L13">resolver.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L13">src/main/ts/resolver.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -131,7 +135,7 @@
 					<div class="tsd-signature tsd-kind-icon">PARAM<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"param"</span><span class="tsd-signature-symbol"> = &quot;param&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L16">resolver.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L16">src/main/ts/resolver.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,31 +143,135 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="getdecoratorcontext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Decorator<wbr>Context</h3>
+					<a name="getclassdecoratorcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Class<wbr>Decorator<wbr>Context</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a>, propName<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a>, descriptor<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idescriptor" class="tsd-signature-type">IDescriptor</a><span class="tsd-signature-symbol"> | </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.html#idecoratorcontext" class="tsd-signature-type">IDecoratorContext</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Class<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L19">resolver.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L33">src/main/ts/resolver.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></h5>
-								</li>
-								<li>
-									<h5>propName: <a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a></h5>
-								</li>
-								<li>
-									<h5>descriptor: <a href="_interface_.html#idescriptor" class="tsd-signature-type">IDescriptor</a><span class="tsd-signature-symbol"> | </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a></h5>
+									<h5>target: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_interface_.html#idecoratorcontext" class="tsd-signature-type">IDecoratorContext</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getdecoratorcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Decorator<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">; </span>paramIndex<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interface_.iproto.html" class="tsd-signature-type">IProto</a><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L27">src/main/ts/resolver.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">; </span>paramIndex<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">?: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interface_.iproto.html" class="tsd-signature-type">IProto</a><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getfielddecoratorcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Field<wbr>Decorator<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Field<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L66">src/main/ts/resolver.ts:66</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>propName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>descriptor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getmethoddecoratorcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Method<wbr>Decorator<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Method<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L43">src/main/ts/resolver.ts:43</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>propName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>descriptor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getparamdecoratorcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Param<wbr>Decorator<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Param<wbr>Decorator<wbr>Context<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, descriptor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>paramIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L54">src/main/ts/resolver.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>propName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>descriptor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PropertyDescriptor</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>ctor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>paramIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>propName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>proto<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>targetType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -171,13 +279,13 @@
 					<a name="gettargettype" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Target<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Target<wbr>Type<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a>, method<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, descriptor<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idescriptor" class="tsd-signature-type">IDescriptor</a><span class="tsd-signature-symbol"> | </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Target<wbr>Type<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a>, propName<span class="tsd-signature-symbol">: </span><a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a>, descriptor<span class="tsd-signature-symbol">: </span><a href="_interface_.html#idescriptor" class="tsd-signature-type">IDescriptor</a><span class="tsd-signature-symbol"> | </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interface_.html#itargettype" class="tsd-signature-type">ITargetType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L84">resolver.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L87">src/main/ts/resolver.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,7 +299,7 @@
 									<h5>target: <a href="_interface_.html#itarget" class="tsd-signature-type">ITarget</a></h5>
 								</li>
 								<li>
-									<h5>method: <a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+									<h5>propName: <a href="_interface_.html#ipropname" class="tsd-signature-type">IPropName</a></h5>
 								</li>
 								<li>
 									<h5>descriptor: <a href="_interface_.html#idescriptor" class="tsd-signature-type">IDescriptor</a><span class="tsd-signature-symbol"> | </span><a href="_interface_.html#iparamindex" class="tsd-signature-type">IParamIndex</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></h5>
@@ -210,7 +318,7 @@
 					<div class="tsd-signature tsd-kind-icon">TARGET_<wbr>TYPES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L17">resolver.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L17">src/main/ts/resolver.ts:17</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -219,7 +327,7 @@
 						<div class="tsd-signature tsd-kind-icon">CLASS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L17">resolver.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L17">src/main/ts/resolver.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -229,7 +337,7 @@
 						<div class="tsd-signature tsd-kind-icon">FIELD<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L17">resolver.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L17">src/main/ts/resolver.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -239,7 +347,7 @@
 						<div class="tsd-signature tsd-kind-icon">METHOD<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L17">resolver.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L17">src/main/ts/resolver.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -249,7 +357,7 @@
 						<div class="tsd-signature tsd-kind-icon">PARAM<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/efd986b/src/main/ts/resolver.ts#L17">resolver.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/86ca548/src/main/ts/resolver.ts#L17">src/main/ts/resolver.ts:17</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -294,7 +402,19 @@
 						<a href="_resolver_.html#param" class="tsd-kind-icon">PARAM</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_resolver_.html#getclassdecoratorcontext" class="tsd-kind-icon">get<wbr>Class<wbr>Decorator<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_resolver_.html#getdecoratorcontext" class="tsd-kind-icon">get<wbr>Decorator<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_resolver_.html#getfielddecoratorcontext" class="tsd-kind-icon">get<wbr>Field<wbr>Decorator<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_resolver_.html#getmethoddecoratorcontext" class="tsd-kind-icon">get<wbr>Method<wbr>Decorator<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_resolver_.html#getparamdecoratorcontext" class="tsd-kind-icon">get<wbr>Param<wbr>Decorator<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_resolver_.html#gettargettype" class="tsd-kind-icon">get<wbr>Target<wbr>Type</a>

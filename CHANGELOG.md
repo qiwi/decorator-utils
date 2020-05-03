@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/qiwi/decorator-utils/compare/v3.0.0...v3.0.1) (2020-05-03)
+
+
+### Performance Improvements
+
+* refactor resolver ([86ca548](https://github.com/qiwi/decorator-utils/commit/86ca5488e1f6b1ec82d118a5f87418928d71d08c))
+
 # [3.0.0](https://github.com/qiwi/decorator-utils/compare/v2.3.0...v3.0.0) (2020-04-30)
 
 

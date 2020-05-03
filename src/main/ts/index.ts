@@ -11,7 +11,6 @@ import {
   ITargetType,
   IDescriptor,
   IParamIndex,
-  IProto,
 } from './interface'
 
 import {

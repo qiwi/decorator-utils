@@ -9,6 +9,7 @@ import {
 
 import {
   IDecoratorArgs,
+  IDecoratorHandlerContext,
   IHandler,
   IPropName,
   IDecorator,
@@ -59,47 +60,75 @@ export const constructDecorator = (
     const handlerContext = {...decoratorContext, args}
     const _handler = getSafeHandler(handler)
 
-    switch (targetType) {
-      case PARAM:
-        _handler(handlerContext)
-        break
-
-      case FIELD:
-        if (!descriptor) {
-          _handler(handlerContext)
-        }
-        else {
-          // @ts-ignore
-          descriptor.initializer = _handler({...handlerContext, target: descriptor.initializer})
-        }
-        break
-
-      case METHOD:
-        if (typeof descriptor === 'object') {
-          descriptor.value = _handler(handlerContext)
-        }
-        break
-
-      case CLASS:
-        Object.defineProperties(
-          target.prototype,
-          mapValues(
-            getPrototypeMethods(target),
-            (desc: IDescriptor) => {
-              desc.value = _handler({
-                ...handlerContext,
-                targetType: METHOD,
-                target: desc.value,
-              })
-              return desc
-            },
-          ),
-        )
-
-        return _handler(handlerContext)
-    }
+    return decorate(_handler, handlerContext, descriptor)
   }
 }
+
+type IDecoratorApplier = (
+  handler: IHandler,
+  context: IDecoratorHandlerContext,
+  descriptor: IDescriptor | IParamIndex,
+) => any
+
+const decorate: IDecoratorApplier = (handler, context, descriptor) => {
+  const {targetType} = context
+
+  switch (targetType) {
+    case PARAM:
+      decorateParam(handler, context, descriptor)
+      break
+
+    case FIELD:
+      decorateField(handler, context, descriptor)
+      break
+
+    case METHOD:
+      decorateMethod(handler, context, descriptor)
+      break
+
+    case CLASS:
+      return decorateClass(handler, context, descriptor)
+  }
+}
+
+const decorateClass: IDecoratorApplier = (handler, context) => {
+  const {proto, target} = context
+
+  Object.defineProperties(
+    proto,
+    mapValues(
+      getPrototypeMethods(target),
+      (desc: IDescriptor) => {
+        desc.value = handler({
+          ...context,
+          targetType: METHOD,
+          target: desc.value,
+        })
+        return desc
+      },
+    ),
+  )
+
+  return handler(context)
+}
+
+const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
+  if (!descriptor) {
+    handler(context)
+  }
+  else {
+    // @ts-ignore
+    descriptor.initializer = handler({...context, target: descriptor.initializer})
+  }
+}
+
+const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
+  if (typeof descriptor === 'object') {
+    descriptor.value = handler(context)
+  }
+}
+
+const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
 export const assertTargetType = (
   targetType: ITargetType | null,

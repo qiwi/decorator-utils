@@ -132,28 +132,12 @@ declare module "@qiwi/decorator-utils/target/es5/resolver" {
   declare export {};
 }
 
-declare module "@qiwi/decorator-utils/target/es5/meta" {
-  import type { IMetadataProvider } from "@qiwi/decorator-utils/target/es5/@qiwi/substrate";
-
-  declare export var injectMeta: (
-    prv: IMetadataProvider,
-    scope: string,
-    path: string,
-    value: mixed,
-    target: any
-  ) => void;
-}
-
-declare module "@qiwi/decorator-utils/target/es5/index" {
+declare module "@qiwi/decorator-utils/target/es5/decorator" {
   import type {
     IHandler,
     IDecorator,
     ITargetType
   } from "@qiwi/decorator-utils/target/es5/interface";
-
-  declare export { injectMeta } from "@qiwi/decorator-utils/target/es5/meta";
-
-  declare export * from "@qiwi/decorator-utils/target/es5/resolver"
 
   /**
    * Constructs decorator by given function.
@@ -174,6 +158,29 @@ declare module "@qiwi/decorator-utils/target/es5/index" {
     handler: IHandler,
     allowedTypes?: string | ITargetType[] | null | void
   ) => IDecorator;
+}
+
+declare module "@qiwi/decorator-utils/target/es5/meta" {
+  import type { IMetadataProvider } from "@qiwi/decorator-utils/target/es5/@qiwi/substrate";
+
+  declare export var injectMeta: (
+    prv: IMetadataProvider,
+    scope: string,
+    path: string,
+    value: mixed,
+    target: any
+  ) => void;
+}
+
+declare module "@qiwi/decorator-utils/target/es5/index" {
+  import type { constructDecorator } from "@qiwi/decorator-utils/target/es5/decorator";
+
+  declare export { injectMeta } from "@qiwi/decorator-utils/target/es5/meta";
+
+  declare export * from "@qiwi/decorator-utils/target/es5/resolver"
+
+  declare export * from "@qiwi/decorator-utils/target/es5/decorator"
+
   declare export default typeof constructDecorator;
 }
 

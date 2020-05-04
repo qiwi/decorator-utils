@@ -1,6 +1,6 @@
 {
   "name": "@qiwi/decorator-utils",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Tiny helper for js decorator building",
   "source": "src/main/ts/index.ts",
   "main": "target/bundle/decorator-utils.js",

@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/qiwi/decorator-utils/compare/v3.0.2...v3.0.3) (2020-05-05)
+
+
+### Bug Fixes
+
+* fix typings generation ([6959927](https://github.com/qiwi/decorator-utils/commit/6959927eb793be5a1c4d5fe259a1a4ef97c93c86))
+
 ## [3.0.2](https://github.com/qiwi/decorator-utils/compare/v3.0.1...v3.0.2) (2020-05-04)
 
 

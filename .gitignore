@@ -22,6 +22,8 @@ bundle
 build
 dist
 target
+typings
+flow-typed
 
 #Docs
 docs/
@@ -30,7 +32,6 @@ doc/
 # Deps
 node_modules/
 jspm_packages/
-typings/
 
 #IDE
 .idea

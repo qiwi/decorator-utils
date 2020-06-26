@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/qiwi/decorator-utils/compare/v3.0.3...v3.1.0) (2020-06-26)
+
+
+### Features
+
+* add descriptor ref to METHOD decorator context ([486dc42](https://github.com/qiwi/decorator-utils/commit/486dc420b48c78bf13b1d9dbc3f1cb4774034c40))
+
 ## [3.0.3](https://github.com/qiwi/decorator-utils/compare/v3.0.2...v3.0.3) (2020-05-05)
 
 

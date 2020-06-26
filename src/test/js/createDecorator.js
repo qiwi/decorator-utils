@@ -4,7 +4,7 @@ import {
   METHOD,
   FIELD,
   CLASS,
-} from '../../../target/es5'
+} from '../../../target/bundle/decorator-utils'
 
 const noop = () => { /* noop */ }
 

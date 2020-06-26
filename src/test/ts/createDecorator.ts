@@ -397,7 +397,7 @@ describe('decoratorUtils tsc', () => {
             enumerable: true,
             writable: true,
             value: expect.any(Function),
-          }
+          },
         },
         p0: {
           targetType: PARAM,

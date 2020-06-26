@@ -12,6 +12,8 @@
     "module": "ES2015",
     "outDir": "./target/es5",
     "strict": true,
+    "importHelpers": false,
+    "noEmitHelpers": false,
     "experimentalDecorators": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,

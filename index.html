@@ -107,15 +107,15 @@
 				</a>
 				<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
           <span class="hljs-keyword">if</span> (targetType === METHOD) {
-            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> param || <span class="hljs-string">'qux'</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> param || <span class="hljs-string">&#x27;qux&#x27;</span>
           }
         })
 
         <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
           @decorator()
-          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
-          @decorator(<span class="hljs-string">'BAZ'</span>)
-          baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">'baz'</span> }
+          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
+          @decorator(<span class="hljs-string">&#x27;BAZ&#x27;</span>)
+          baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;baz&#x27;</span> }
         }</code></pre>
 				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
 					<h4>Class</h4>
@@ -124,8 +124,8 @@
           <span class="hljs-keyword">if</span> (targetType === CLASS) {
             <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">target</span> </span>{
               <span class="hljs-keyword">constructor</span> (name, age) {
-                <span class="hljs-keyword">super</span>(name)
-                <span class="hljs-keyword">this</span>.age = age
+                <span class="hljs-built_in">super</span>(name)
+                <span class="hljs-built_in">this</span>.age = age
               }
             }
           }
@@ -134,25 +134,25 @@
         @decorator()
         <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
           <span class="hljs-keyword">constructor</span> (name) {
-            <span class="hljs-keyword">this</span>.name = name
+            <span class="hljs-built_in">this</span>.name = name
           }
-          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
+          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
         }</code></pre>
 				<a href="#field-amp-param" id="field-amp-param" style="color: inherit; text-decoration: none;">
 					<h4>Field &amp; Param</h4>
 				</a>
-				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD, PARAM} <span class="hljs-keyword">from</span> <span class="hljs-string">'@qiwi/decorator-utils'</span>
+				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD, PARAM} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@qiwi/decorator-utils&#x27;</span>
 
     <span class="hljs-keyword">const</span> meta: any = {}
-    <span class="hljs-keyword">const</span> decorator = constructDecorator(({
+    <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">{
         propName,
         paramIndex,
         targetType,
         target,
-        <span class="hljs-attr">args</span>: [param]
-    }: IDecoratorHandlerContext) =&gt; {
+        args: [param]
+    }: IDecoratorHandlerContext</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === PARAM) {
-        <span class="hljs-keyword">if</span> (propName &amp;&amp; <span class="hljs-keyword">typeof</span> paramIndex === <span class="hljs-string">'number'</span>) {
+        <span class="hljs-keyword">if</span> (propName &amp;&amp; <span class="hljs-keyword">typeof</span> paramIndex === <span class="hljs-string">&#x27;number&#x27;</span>) {
           meta[propName] = meta[propName] || {}
           meta[propName][paramIndex] = target
         }
@@ -167,18 +167,18 @@
     })
 
     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-      @decorator(<span class="hljs-string">'arg'</span>)
-      foo = <span class="hljs-string">'bar'</span>
+      @decorator(<span class="hljs-string">&#x27;arg&#x27;</span>)
+      foo = <span class="hljs-string">&#x27;bar&#x27;</span>
 
       bar(one: any, @decorator() two: any) {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span>
       }
     }
 
 <span class="hljs-comment">/**
     Now `meta` is smth like:
     {
-      foo: 'arg',
+      foo: &#x27;arg&#x27;,
       bar: {
         1: Foo.prototype.bar,
       },
@@ -187,7 +187,7 @@
 				<p>Also you may apply decorator to the class, but decorate its methods:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === METHOD) {
-        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
           <span class="hljs-keyword">return</span> target().toUpperCase()
         }
       }
@@ -195,8 +195,8 @@
 
     @decorator()
     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-      foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span> }
-      baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">'baz'</span> }
+      foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
+      baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;baz&#x27;</span> }
     }</code></pre>
 			</div>
 		</div>
@@ -206,23 +206,8 @@
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_.html">&quot;decorator&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_interface_.html">&quot;interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_meta_.html">&quot;meta&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_resolver_.html">&quot;resolver&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_utils_.html">&quot;utils&quot;</a>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="modules/reflection-172.html">&lt;em&gt;<wbr>Module&lt;/em&gt;</a>
 					</li>
 				</ul>
 			</nav>
@@ -237,15 +222,6 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-			</ul>
 		</div>
 	</div>
 </footer>

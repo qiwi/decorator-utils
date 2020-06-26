@@ -392,6 +392,12 @@ describe('decoratorUtils tsc', () => {
           ctor: Foo,
           proto: Foo.prototype,
           args: ['method'],
+          descriptor: {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: expect.any(Function),
+          }
         },
         p0: {
           targetType: PARAM,

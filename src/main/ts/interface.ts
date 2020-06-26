@@ -17,7 +17,8 @@ export type IDecoratorContext = {
   proto: IProto,
   ctor: Function,
   propName?: IPropName
-  paramIndex?: IParamIndex
+  paramIndex?: IParamIndex,
+  descriptor?: IDescriptor
 }
 
 export type IDecoratorHandlerContext = IDecoratorContext & {

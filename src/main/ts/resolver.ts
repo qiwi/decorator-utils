@@ -48,6 +48,7 @@ export const getMethodDecoratorContext: IResolver = (target, propName, descripto
       ctor: target.constructor,
       proto: target,
       propName,
+      descriptor,
     }
     : null
 

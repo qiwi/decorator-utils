@@ -101,6 +101,7 @@ const decorateClass: IDecoratorApplier = (handler, context) => {
       (desc: IDescriptor) => {
         desc.value = handler({
           ...context,
+          descriptor: desc,
           targetType: METHOD,
           target: desc.value,
         })

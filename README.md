@@ -4,8 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/maintainability)](https://codeclimate.com/github/qiwi/decorator-utils/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/test_coverage)](https://codeclimate.com/github/qiwi/decorator-utils/test_coverage)
 [![dependencyStatus](https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600)](https://david-dm.org/qiwi/decorator-utils)
-[![Greenkeeper badge](https://badges.greenkeeper.io/qiwi/decorator-utils.svg)](https://greenkeeper.io/)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
+[![CodeStyle](https://img.shields.io/badge/code%20style-tslint--config--qiwi-brightgreen.svg)](https://github.com/qiwi/tslint-config-qiwi)
 
 ## Motivation
 1. — Decorator, what's that?  

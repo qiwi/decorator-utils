@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/qiwi/decorator-utils/compare/v3.1.0...v3.1.1) (2020-06-27)
+
+
+### Performance Improvements
+
+* tweak up building of bundle ([40e6938](https://github.com/qiwi/decorator-utils/commit/40e69385a0898059e0a06c20ce1405e08787640b))
+
 # [3.1.0](https://github.com/qiwi/decorator-utils/compare/v3.0.3...v3.1.0) (2020-06-26)
 
 

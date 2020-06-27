@@ -6,8 +6,7 @@
     "target": "es5",
     "lib": [
       "es6",
-      "esnext",
-      "dom"
+      "esnext"
     ],
     "module": "ES2015",
     "outDir": "./target/es5",
@@ -15,8 +14,6 @@
     "importHelpers": false,
     "noEmitHelpers": false,
     "experimentalDecorators": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
     "declaration": true,

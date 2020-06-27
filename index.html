@@ -69,8 +69,7 @@
 					<a href="https://codeclimate.com/github/qiwi/decorator-utils/maintainability"><img src="https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/maintainability" alt="Maintainability"></a>
 					<a href="https://codeclimate.com/github/qiwi/decorator-utils/test_coverage"><img src="https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/test_coverage" alt="Test Coverage"></a>
 					<a href="https://david-dm.org/qiwi/decorator-utils"><img src="https://img.shields.io/david/qiwi/decorator-utils.svg?maxAge=3600" alt="dependencyStatus"></a>
-					<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/qiwi/decorator-utils.svg" alt="Greenkeeper badge"></a>
-				<a href="http://standardjs.com"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="js-standard-style"></a></p>
+				<a href="https://github.com/qiwi/tslint-config-qiwi"><img src="https://img.shields.io/badge/code%20style-tslint--config--qiwi-brightgreen.svg" alt="CodeStyle"></a></p>
 				<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
 					<h2>Motivation</h2>
 				</a>
@@ -105,75 +104,76 @@
 				<a href="#method" id="method" style="color: inherit; text-decoration: none;">
 					<h4>Method</h4>
 				</a>
-				<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
-          <span class="hljs-keyword">if</span> (targetType === METHOD) {
-            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> param || <span class="hljs-string">&#x27;qux&#x27;</span>
-          }
-        })
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {constructDecorator} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@qiwi/decorator-utils&#x27;</span>
 
-        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-          @decorator()
-          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
-          @decorator(<span class="hljs-string">&#x27;BAZ&#x27;</span>)
-          baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;baz&#x27;</span> }
-        }</code></pre>
+<span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target, param</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (targetType === METHOD) {
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> param || <span class="hljs-string">&#x27;qux&#x27;</span>
+  }
+})
+
+<span class="hljs-keyword">class</span> Foo {
+  <span class="hljs-meta">@decorator</span>()
+  foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
+  <span class="hljs-meta">@decorator</span>(<span class="hljs-string">&#x27;BAZ&#x27;</span>)
+  baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;baz&#x27;</span> }
+}</code></pre>
 				<a href="#class" id="class" style="color: inherit; text-decoration: none;">
 					<h4>Class</h4>
 				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
-          <span class="hljs-keyword">if</span> (targetType === CLASS) {
-            <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">target</span> </span>{
-              <span class="hljs-keyword">constructor</span> (name, age) {
-                <span class="hljs-built_in">super</span>(name)
-                <span class="hljs-built_in">this</span>.age = age
-              }
-            }
-          }
-        })
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (targetType === CLASS) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> Bar <span class="hljs-keyword">extends</span> target {
+      <span class="hljs-keyword">constructor</span> (<span class="hljs-params">name, age</span>) {
+        <span class="hljs-built_in">super</span>(name)
+        <span class="hljs-built_in">this</span>.age = age
+      }
+    }
+  }
+})
 
-        @decorator()
-        <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-          <span class="hljs-keyword">constructor</span> (name) {
-            <span class="hljs-built_in">this</span>.name = name
-          }
-          foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
-        }</code></pre>
+<span class="hljs-meta">@decorator</span>()
+<span class="hljs-keyword">class</span> Foo {
+  <span class="hljs-keyword">constructor</span> (<span class="hljs-params">name</span>) {
+    <span class="hljs-built_in">this</span>.name = name
+  }
+  foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
+}</code></pre>
 				<a href="#field-amp-param" id="field-amp-param" style="color: inherit; text-decoration: none;">
 					<h4>Field &amp; Param</h4>
 				</a>
-				<pre><code class="language-javascript">    <span class="hljs-keyword">import</span> {createDecorator, FIELD, PARAM} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@qiwi/decorator-utils&#x27;</span>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {createDecorator, FIELD, PARAM} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@qiwi/decorator-utils&#x27;</span>
 
-    <span class="hljs-keyword">const</span> meta: any = {}
-    <span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">{
-        propName,
-        paramIndex,
-        targetType,
-        target,
-        args: [param]
-    }: IDecoratorHandlerContext</span>) =&gt;</span> {
-      <span class="hljs-keyword">if</span> (targetType === PARAM) {
-        <span class="hljs-keyword">if</span> (propName &amp;&amp; <span class="hljs-keyword">typeof</span> paramIndex === <span class="hljs-string">&#x27;number&#x27;</span>) {
-          meta[propName] = meta[propName] || {}
-          meta[propName][paramIndex] = target
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (targetType === FIELD) {
-        <span class="hljs-keyword">if</span> (propName) {
-          meta[propName] = param
-        }
-      }
-
-    })
-
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
-      @decorator(<span class="hljs-string">&#x27;arg&#x27;</span>)
-      foo = <span class="hljs-string">&#x27;bar&#x27;</span>
-
-      bar(one: any, @decorator() two: any) {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span>
-      }
+<span class="hljs-keyword">const</span> meta: <span class="hljs-built_in">any</span> = {}
+<span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">{
+    propName,
+    paramIndex,
+    targetType,
+    target,
+    args: [param]
+}: IDecoratorHandlerContext</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (targetType === PARAM) {
+    <span class="hljs-keyword">if</span> (propName &amp;&amp; <span class="hljs-keyword">typeof</span> paramIndex === <span class="hljs-string">&#x27;number&#x27;</span>) {
+      meta[propName] = meta[propName] || {}
+      meta[propName][paramIndex] = target
     }
+  }
+
+  <span class="hljs-keyword">if</span> (targetType === FIELD) {
+    <span class="hljs-keyword">if</span> (propName) {
+      meta[propName] = param
+    }
+  }
+})
+
+<span class="hljs-keyword">class</span> Foo {
+  <span class="hljs-meta">@decorator</span>(<span class="hljs-string">&#x27;arg&#x27;</span>)
+  foo = <span class="hljs-string">&#x27;bar&#x27;</span>
+
+  bar(one: <span class="hljs-built_in">any</span>, <span class="hljs-meta">@decorator</span>() two: <span class="hljs-built_in">any</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span>
+  }
+}
 
 <span class="hljs-comment">/**
     Now `meta` is smth like:
@@ -184,8 +184,8 @@
       },
     }
 */</span></code></pre>
-				<p>Also you may apply decorator to the class, but decorate its methods:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
+				<p>You may also apply the decorator to the class, but decorate its methods:</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> decorator = constructDecorator(<span class="hljs-function">(<span class="hljs-params">targetType, target</span>) =&gt;</span> {
       <span class="hljs-keyword">if</span> (targetType === METHOD) {
         <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
           <span class="hljs-keyword">return</span> target().toUpperCase()
@@ -193,11 +193,26 @@
       }
     })
 
-    @decorator()
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> </span>{
+    <span class="hljs-meta">@decorator</span>()
+    <span class="hljs-keyword">class</span> Foo {
       foo () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;bar&#x27;</span> }
       baz () { <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;baz&#x27;</span> }
     }</code></pre>
+				<a href="#idecoratorhandlercontext" id="idecoratorhandlercontext" style="color: inherit; text-decoration: none;">
+					<h4>IDecoratorHandlerContext</h4>
+				</a>
+				<p><code>constructDecorator</code> factory provides the handler access to the decorator context.
+				This data describes the specifics of the decorated target, decorator arguments and so on.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> IDecoratorHandlerContext = {
+  targetType: ITargetType | <span class="hljs-literal">null</span>
+  target: ITarget
+  proto: IProto
+  ctor: <span class="hljs-built_in">Function</span>
+  propName?: IPropName
+  paramIndex?: IParamIndex
+  descriptor?: IDescriptor
+  args: IDecoratorArgs
+}</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

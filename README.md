@@ -34,78 +34,79 @@ yarn add @qiwi/decorator-utils
 
 ## Usage
 #### Method
-```javascript
- const decorator = constructDecorator((targetType, target, param) => {
-          if (targetType === METHOD) {
-            return value => param || 'qux'
-          }
-        })
+```typescript
+import {constructDecorator} from '@qiwi/decorator-utils'
 
-        class Foo {
-          @decorator()
-          foo () { return 'bar' }
-          @decorator('BAZ')
-          baz () { return 'baz' }
-        }
+const decorator = constructDecorator((targetType, target, param) => {
+  if (targetType === METHOD) {
+    return value => param || 'qux'
+  }
+})
+
+class Foo {
+  @decorator()
+  foo () { return 'bar' }
+  @decorator('BAZ')
+  baz () { return 'baz' }
+}
 ```
 
 #### Class
-```javascript
+```typescript
 const decorator = constructDecorator((targetType, target) => {
-          if (targetType === CLASS) {
-            return class Bar extends target {
-              constructor (name, age) {
-                super(name)
-                this.age = age
-              }
-            }
-          }
-        })
+  if (targetType === CLASS) {
+    return class Bar extends target {
+      constructor (name, age) {
+        super(name)
+        this.age = age
+      }
+    }
+  }
+})
 
-        @decorator()
-        class Foo {
-          constructor (name) {
-            this.name = name
-          }
-          foo () { return 'bar' }
-        }
+@decorator()
+class Foo {
+  constructor (name) {
+    this.name = name
+  }
+  foo () { return 'bar' }
+}
 ```
 
 #### Field & Param
-```javascript
-    import {createDecorator, FIELD, PARAM} from '@qiwi/decorator-utils'
-    
-    const meta: any = {}
-    const decorator = constructDecorator(({
-        propName,
-        paramIndex,
-        targetType,
-        target,
-        args: [param]
-    }: IDecoratorHandlerContext) => {
-      if (targetType === PARAM) {
-        if (propName && typeof paramIndex === 'number') {
-          meta[propName] = meta[propName] || {}
-          meta[propName][paramIndex] = target
-        }
-      }
+```typescript
+import {createDecorator, FIELD, PARAM} from '@qiwi/decorator-utils'
 
-      if (targetType === FIELD) {
-        if (propName) {
-          meta[propName] = param
-        }
-      }
-
-    })
-
-    class Foo {
-      @decorator('arg')
-      foo = 'bar'
-
-      bar(one: any, @decorator() two: any) {
-        return 'bar'
-      }
+const meta: any = {}
+const decorator = constructDecorator(({
+    propName,
+    paramIndex,
+    targetType,
+    target,
+    args: [param]
+}: IDecoratorHandlerContext) => {
+  if (targetType === PARAM) {
+    if (propName && typeof paramIndex === 'number') {
+      meta[propName] = meta[propName] || {}
+      meta[propName][paramIndex] = target
     }
+  }
+
+  if (targetType === FIELD) {
+    if (propName) {
+      meta[propName] = param
+    }
+  }
+})
+
+class Foo {
+  @decorator('arg')
+  foo = 'bar'
+
+  bar(one: any, @decorator() two: any) {
+    return 'bar'
+  }
+}
 
 /**
     Now `meta` is smth like:
@@ -118,9 +119,9 @@ const decorator = constructDecorator((targetType, target) => {
 */
 ```
 
-Also you may apply decorator to the class, but decorate its methods:
+You may also apply the decorator to the class, but decorate its methods:
 
-```javascript
+```typescript
 const decorator = constructDecorator((targetType, target) => {
       if (targetType === METHOD) {
         return () => {
@@ -134,4 +135,20 @@ const decorator = constructDecorator((targetType, target) => {
       foo () { return 'bar' }
       baz () { return 'baz' }
     }
+```
+
+#### IDecoratorHandlerContext
+`constructDecorator` factory provides the handler access to the decorator context.
+This data describes the specifics of the decorated target, decorator arguments and so on.
+```typescript
+export type IDecoratorHandlerContext = {
+  targetType: ITargetType | null
+  target: ITarget
+  proto: IProto
+  ctor: Function
+  propName?: IPropName
+  paramIndex?: IParamIndex
+  descriptor?: IDescriptor
+  args: IDecoratorArgs
+}
 ```

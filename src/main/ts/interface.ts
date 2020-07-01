@@ -12,7 +12,7 @@ export type IInstance = {
 export type IDecoratorArgs = any[]
 
 export type IDecoratorContext = {
-  targetType: ITargetType | null,
+  targetType: ITargetType,
   target: ITarget,
   proto: IProto,
   ctor: Function,
@@ -42,7 +42,7 @@ export type IReduceIterator = {
 export type IPropName = string
 export type IPropValue = any
 export type ITarget = any
-export type ITargetType = string | null
+export type ITargetType = string
 export type ITargetTypes = ITargetType | Array<ITargetType>
 export type IAnyType = any
 export interface IReducible {

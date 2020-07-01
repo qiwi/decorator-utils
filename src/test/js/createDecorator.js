@@ -223,7 +223,7 @@ describe('decoratorUtils babel', () => {
         }
 
         return new Foo()
-      }).toThrow('Decorator is compatible with \'method\' type only, but was applied to \'class\'')
+      }).toThrow('Decorator is compatible with \'method\' only, but was applied to \'class\'')
 
       expect(() => {
         class Foo {

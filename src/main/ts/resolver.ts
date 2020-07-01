@@ -89,4 +89,4 @@ export const getTargetType = (
   target: ITarget,
   propName: IPropName,
   descriptor: IDescriptor | IParamIndex | void,
-): ITargetType | null => (getDecoratorContext(target, propName, descriptor) || {}).targetType || null // NOTE optional chaining (?.) breaks microbundle
+): ITargetType | null => getDecoratorContext(target, propName, descriptor)?.targetType || null

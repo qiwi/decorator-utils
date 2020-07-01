@@ -132,16 +132,15 @@ const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
 const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
 export const assertTargetType = (
-  targetType: ITargetType | null,
+  targetType: ITargetType,
   allowedTypes?: ITargetTypes,
 ): void => {
-  if (allowedTypes && allowedTypes.length) {
+  if (allowedTypes?.length) {
     // @ts-ignore
     const allowed: string[] = [].concat(allowedTypes)
 
-    if (!targetType || !allowed.includes(targetType)) {
-      throw new Error(`Decorator is compatible with ${allowed
-        .map(v => `'${v}'`).join(', ')} type${allowed.length > 1 ? 's' : ''} only, but was applied to '${targetType}'`)
+    if (!allowed.includes(targetType)) {
+      throw new Error(`Decorator is compatible with ${allowed.map(v => `'${v}'`).join(', ')} only, but was applied to '${targetType}'`)
     }
   }
 }

@@ -55,6 +55,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.4",
     "@babel/polyfill": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
@@ -104,6 +105,7 @@
     ]
   },
   "dependencies": {
+    "@qiwi/substrate": "^1.18.33",
     "@types/lodash.get": "^4.4.6",
     "@types/lodash.isfunction": "^3.0.6",
     "@types/lodash.isundefined": "^3.0.6",
@@ -115,7 +117,6 @@
     "lodash.isundefined": "^3.0.1",
     "lodash.mapvalues": "^4.6.0",
     "lodash.reduce": "^4.6.0",
-    "lodash.set": "^4.3.2",
-    "@qiwi/substrate": "^1.18.33"
+    "lodash.set": "^4.3.2"
   }
 }

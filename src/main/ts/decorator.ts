@@ -133,14 +133,15 @@ const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
 export const assertTargetType = (
   targetType: ITargetType | null,
-  allowedTypes: ITargetTypes | void,
+  allowedTypes?: ITargetTypes,
 ): void => {
-  if (allowedTypes) {
+  if (allowedTypes && allowedTypes.length) {
     // @ts-ignore
     const allowed: string[] = [].concat(allowedTypes)
 
     if (!targetType || !allowed.includes(targetType)) {
-      throw new Error(`Decorator must be applied to allowed types only: ${allowed.join(', ')}`)
+      throw new Error(`Decorator is compatible with ${allowed
+        .map(v => `'${v}'`).join(', ')} type${allowed.length > 1 ? 's' : ''} only, but was applied to '${targetType}'`)
     }
   }
 }

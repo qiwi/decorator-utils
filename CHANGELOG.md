@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/qiwi/decorator-utils/compare/v3.1.1...v3.2.0) (2020-07-01)
+
+
+### Features
+
+* ignore allowedTypes if it's empty, add a bit more details to error messages ([985e8b9](https://github.com/qiwi/decorator-utils/commit/985e8b939471c87f1d28126a0aaee99dbc56df58))
+
 ## [3.1.1](https://github.com/qiwi/decorator-utils/compare/v3.1.0...v3.1.1) (2020-06-27)
 
 

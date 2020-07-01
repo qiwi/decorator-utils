@@ -302,7 +302,7 @@ describe('decoratorUtils tsc', () => {
         ({targetType, target, args: [param]}) => {
           return (value: unknown) => param || 'qux'
         },
-        METHOD,
+        [METHOD, FIELD],
       )
 
       expect(() => {
@@ -319,9 +319,32 @@ describe('decoratorUtils tsc', () => {
         }
 
         return new Foo()
-      }).toThrow('Decorator must be applied to allowed types only: method')
+      }).toThrow('Decorator is compatible with \'method\', \'field\' types only, but was applied to \'class\'')
 
       expect(() => {
+        class Foo {
+
+          @decorator()
+          foo() {
+            return 'bar'
+          }
+
+        }
+
+        return new Foo()
+      }).not.toThrow()
+    })
+
+    it('empty allowedType array should be ignored', () => {
+      const decorator = constructDecorator(
+        ({targetType, target, args: [param]}) => {
+          return (value: unknown) => param || 'qux'
+        },
+        [],
+      )
+
+      expect(() => {
+        @decorator()
         class Foo {
 
           @decorator()

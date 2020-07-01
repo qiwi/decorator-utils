@@ -319,7 +319,7 @@ describe('decoratorUtils tsc', () => {
         }
 
         return new Foo()
-      }).toThrow('Decorator is compatible with \'method\', \'field\' types only, but was applied to \'class\'')
+      }).toThrow('Decorator is compatible with \'method\', \'field\' only, but was applied to \'class\'')
 
       expect(() => {
         class Foo {

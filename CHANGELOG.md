@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/qiwi/decorator-utils/compare/v3.2.1...v3.2.2) (2020-10-09)
+
+
+### Performance Improvements
+
+* **package:** up deps ([ee7f7c6](https://github.com/qiwi/decorator-utils/commit/ee7f7c6d951342fc39143bcbfcd0d87e68760920))
+
 ## [3.2.1](https://github.com/qiwi/decorator-utils/compare/v3.2.0...v3.2.1) (2020-07-15)
 
 

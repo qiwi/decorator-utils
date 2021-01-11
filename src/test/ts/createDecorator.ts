@@ -260,7 +260,7 @@ describe('decoratorUtils tsc', () => {
       it('allows to attach some meta', () => {
         const meta: any = {}
         const decorator = constructDecorator(
-          ({ targetType, propName, target, args: [param] }): unknown => {
+          ({ targetType, propName, target, args: [param] }): void => {
             if (targetType === FIELD && propName) {
               meta[propName] = param
             }

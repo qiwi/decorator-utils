@@ -1,7 +1,7 @@
-import {IMetadataProvider} from '@qiwi/substrate'
+import { IMetadataProvider } from '@qiwi/substrate'
 
-import {injectMeta} from '../../main/ts'
-import {get,set} from '../../main/ts/utils'
+import { injectMeta } from '../../main/ts'
+import { get, set } from '../../main/ts/utils'
 
 describe('injectMeta', () => {
   const scope = '__scope__'
@@ -28,7 +28,7 @@ describe('injectMeta', () => {
     injectMeta(prv, scope, 'foo', ['bar'], target)
     injectMeta(prv, scope, 'foo', 'baz', target)
 
-    expect(prv.getMetadata(scope, target)).toEqual({foo: ['bar', 'baz']})
+    expect(prv.getMetadata(scope, target)).toEqual({ foo: ['bar', 'baz'] })
   })
 
   it('replaces value otherwise', () => {
@@ -36,6 +36,6 @@ describe('injectMeta', () => {
     injectMeta(prv, scope, 'foo', 'bar', target)
     injectMeta(prv, scope, 'foo', 'baz', target)
 
-    expect(prv.getMetadata(scope, target)).toEqual({foo: 'baz'})
+    expect(prv.getMetadata(scope, target)).toEqual({ foo: 'baz' })
   })
 })

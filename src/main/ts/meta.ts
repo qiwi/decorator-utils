@@ -1,6 +1,6 @@
-import {IMetadataProvider} from '@qiwi/substrate'
+import { IMetadataProvider } from '@qiwi/substrate'
 
-import {get, set} from './utils'
+import { get, set } from './utils'
 
 export const injectMeta = (
   prv: IMetadataProvider,
@@ -11,9 +11,7 @@ export const injectMeta = (
 ): void => {
   const meta = prv.getOwnMetadata(scope, target) || {}
   const prev = get(meta, path)
-  const next = Array.isArray(prev)
-    ? prev.concat(value)
-    : value
+  const next = Array.isArray(prev) ? prev.concat(value) : value
 
   prv.defineMetadata(scope, set(meta, path, next), target)
 }

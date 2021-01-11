@@ -5,7 +5,8 @@ module.exports = {
         'prettier/@typescript-eslint',
     ],
     rules: {
-        'unicorn/no-null': 'off'
+        'unicorn/no-null': 'off',
+        'lines-between-class-members': 'off'
     },
     overrides: [
         {

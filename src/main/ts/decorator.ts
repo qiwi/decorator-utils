@@ -68,11 +68,9 @@ const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
   if (!descriptor) {
     handler(context)
   } else {
+    // prettier-ignore
     // @ts-ignore
-    descriptor.initializer = handler({
-      ...context,
-      target: descriptor.initializer,
-    })
+    descriptor.initializer = handler({ ...context, target: descriptor.initializer })
   }
 }
 

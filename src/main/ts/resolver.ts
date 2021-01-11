@@ -1,6 +1,5 @@
 /** @module @qiwi/decorator-utils */
 
-import {isFunction} from './utils'
 import {
   IDecoratorContext,
   IDescriptor,
@@ -9,6 +8,7 @@ import {
   ITarget,
   ITargetType,
 } from './interface'
+import {isFunction} from './utils'
 
 export const METHOD = 'method'
 export const CLASS = 'class'

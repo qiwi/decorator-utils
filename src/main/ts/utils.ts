@@ -1,18 +1,18 @@
 /** @module @qiwi/decorator-utils */
 
-import {
-  IProto,
-  IInstance,
-  IDescriptor,
-  IReducible,
-} from './interface'
-
 import get from 'lodash.get'
-import set from 'lodash.set'
-import mapValues from 'lodash.mapvalues'
-import reduce from 'lodash.reduce'
 import isFunction from 'lodash.isfunction'
 import isUndefined from 'lodash.isundefined'
+import mapValues from 'lodash.mapvalues'
+import reduce from 'lodash.reduce'
+import set from 'lodash.set'
+
+import {
+  IDescriptor,
+  IInstance,
+  IProto,
+  IReducible,
+} from './interface'
 
 export {
   get,

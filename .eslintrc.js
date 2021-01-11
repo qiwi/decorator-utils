@@ -1,0 +1,18 @@
+module.exports = {
+    extends: [
+        'eslint-config-qiwi',
+        'prettier',
+        'prettier/@typescript-eslint',
+    ],
+    rules: {
+        'unicorn/no-null': 'off'
+    },
+    overrides: [
+        {
+            files: ['./src/test/**/*.{ts,js}'],
+            rules: {
+                '@typescript-eslint/no-unused-vars': 'off'
+            }
+        }
+    ]
+};

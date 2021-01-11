@@ -1,10 +1,10 @@
 import factory, {
-  constructDecorator,
-  getTargetType,
   assertTargetType,
-  METHOD,
-  FIELD,
   CLASS,
+  constructDecorator,
+  FIELD,
+  getTargetType,
+  METHOD,
   TARGET_TYPES,
 } from '../../main/ts'
 

@@ -1,6 +1,7 @@
-import {injectMeta} from '../../main/ts'
 import {IMetadataProvider} from '@qiwi/substrate'
-import {set, get} from '../../main/ts/utils'
+
+import {injectMeta} from '../../main/ts'
+import {get,set} from '../../main/ts/utils'
 
 describe('injectMeta', () => {
   const scope = '__scope__'

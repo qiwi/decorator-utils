@@ -1,9 +1,9 @@
 import {
+  CLASS,
   constructDecorator,
+  FIELD,
   getTargetType,
   METHOD,
-  FIELD,
-  CLASS,
 } from '../../../target/bundle/decorator-utils'
 
 const noop = () => { /* noop */ }
@@ -59,6 +59,7 @@ describe('decoratorUtils babel', () => {
           constructor(name) {
             this.name = name
           }
+
           foo() {
             return 'bar'
           }
@@ -86,6 +87,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }
@@ -107,6 +109,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }
@@ -134,6 +137,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
           @decorator('BAZ')
           baz() {
             return 'baz'
@@ -156,6 +160,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
           @decorator('BAZ')
           baz() {
             return 'baz'
@@ -175,10 +180,8 @@ describe('decoratorUtils babel', () => {
         const meta = {}
         const decorator = constructDecorator(
           ({targetType, propName, args: [param]}) => {
-            if (targetType === FIELD) {
-              if (propName) {
-                meta[propName] = param
-              }
+            if (targetType === FIELD && propName) {
+              meta[propName] = param
             }
           },
         )
@@ -187,6 +190,7 @@ describe('decoratorUtils babel', () => {
 
           @decorator('arg')
           foo = 'bar'
+
           baz = 'qux'
 
         }
@@ -216,6 +220,7 @@ describe('decoratorUtils babel', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }

@@ -1,4 +1,5 @@
 import {IMetadataProvider} from '@qiwi/substrate'
+
 import {get, set} from './utils'
 
 export const injectMeta = (

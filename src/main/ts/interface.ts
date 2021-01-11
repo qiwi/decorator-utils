@@ -1,6 +1,6 @@
 /** @module @qiwi/decorator-utils */
 
-import { IConstructor } from '@qiwi/substrate'
+import { ICallable } from '@qiwi/substrate'
 
 export { ICallable } from '@qiwi/substrate'
 
@@ -34,12 +34,12 @@ export type IInstance = {
 export type IDecoratorArgs = any[]
 
 export type IDecoratorContext = {
-  targetType: ITargetType,
-  target: ITarget,
-  proto: IProto,
-  ctor: IConstructor,
+  targetType: ITargetType
+  target: ITarget
+  proto: IProto
+  ctor: ICallable
   propName?: IPropName
-  paramIndex?: IParamIndex,
+  paramIndex?: IParamIndex
   descriptor?: IDescriptor
 }
 
@@ -55,4 +55,3 @@ export type IMapIterator = {
 export type IReduceIterator = {
   (result: IAnyType, value: IAnyType, key: string, obj: IAnyType): IAnyType
 }
-

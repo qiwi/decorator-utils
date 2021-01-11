@@ -7,16 +7,18 @@ import {
   METHOD,
   PARAM,
 } from '../../main/ts'
-import {IDecoratorHandlerContext} from '../../main/ts/interface'
+import { IDecoratorHandlerContext } from '../../main/ts/interface'
 
-const noop = () => { /* noop */ }
+const noop = () => {
+  /* noop */
+}
 
 describe('decoratorUtils tsc', () => {
   describe('#getTargetType', () => {
     const cases = [
       ['function', [noop], CLASS],
       ['class', [class Foo {}], CLASS],
-      ['obj-str-{value: fn}', [{}, 'str', {value: noop}], METHOD],
+      ['obj-str-{value: fn}', [{}, 'str', { value: noop }], METHOD],
       ['obj-str-obj', [{}, 'str', {}], FIELD],
       ['obj-str-null', [{}, 'str', {}], FIELD],
       ['null', [null], null],
@@ -52,7 +54,7 @@ describe('decoratorUtils tsc', () => {
     describe('for class/constructor', () => {
       it('extends target class', () => {
         const addAge = constructDecorator(
-          ({targetType, target, args: [age]}: IDecoratorHandlerContext) => {
+          ({ targetType, target, args: [age] }: IDecoratorHandlerContext) => {
             if (targetType === CLASS) {
               return class Bar extends target {
                 age: number
@@ -62,13 +64,11 @@ describe('decoratorUtils tsc', () => {
                 }
               }
             }
-            
           },
         )
 
         @addAge(100)
         class Foo {
-
           name: string
           constructor(name: string) {
             this.name = name
@@ -77,7 +77,6 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
-
         }
 
         const foo = new Foo('qux')
@@ -88,20 +87,14 @@ describe('decoratorUtils tsc', () => {
       })
 
       it('overrides proto', () => {
-        const decorator = constructDecorator(
-          ({targetType, target}) => {
-            if (targetType === METHOD) {
-              return () => {
-                return target().toUpperCase()
-              }
-            }
-            
-          },
-        )
+        const decorator = constructDecorator(({ targetType, target }) => {
+          if (targetType === METHOD) {
+            return () => target().toUpperCase()
+          }
+        })
 
         @decorator()
         class Foo {
-
           foo() {
             return 'bar'
           }
@@ -109,7 +102,6 @@ describe('decoratorUtils tsc', () => {
           baz() {
             return 'baz'
           }
-
         }
 
         const foo = new Foo()
@@ -123,7 +115,6 @@ describe('decoratorUtils tsc', () => {
 
         @decorator()
         class Foo {
-
           foo() {
             return 'bar'
           }
@@ -131,7 +122,6 @@ describe('decoratorUtils tsc', () => {
           baz() {
             return 'baz'
           }
-
         }
 
         const foo = new Foo()
@@ -144,16 +134,14 @@ describe('decoratorUtils tsc', () => {
     describe('for method', () => {
       it('replaces target with the new impl', () => {
         const decorator = constructDecorator(
-          ({targetType, target, args: [param]}) => {
+          ({ targetType, target, args: [param] }) => {
             if (targetType === METHOD) {
               return (value: unknown) => param || 'qux'
             }
-            
           },
         )
 
         class Foo {
-
           @decorator()
           foo() {
             return 'bar'
@@ -163,7 +151,6 @@ describe('decoratorUtils tsc', () => {
           baz() {
             return 'baz'
           }
-
         }
 
         const foo = new Foo()
@@ -176,7 +163,6 @@ describe('decoratorUtils tsc', () => {
         const decorator = constructDecorator(noop)
 
         class Foo {
-
           @decorator('abc')
           foo() {
             return 'bar'
@@ -186,7 +172,6 @@ describe('decoratorUtils tsc', () => {
           baz() {
             return 'baz'
           }
-
         }
 
         const foo = new Foo()
@@ -199,12 +184,10 @@ describe('decoratorUtils tsc', () => {
         const decorator = constructDecorator(() => 'not-a-function')
 
         class Foo {
-
           @decorator('abc')
           foo() {
             return 'bar'
           }
-
         }
 
         const foo = new Foo()
@@ -213,15 +196,15 @@ describe('decoratorUtils tsc', () => {
       })
 
       it('operates with method name', () => {
-        const decorator = constructDecorator(({propName}: IDecoratorHandlerContext) => () => propName)
+        const decorator = constructDecorator(
+          ({ propName }: IDecoratorHandlerContext) => () => propName,
+        )
 
         class Foo {
-
           @decorator()
           foo() {
             return 'bar'
           }
-
         }
 
         const foo = new Foo()
@@ -233,15 +216,25 @@ describe('decoratorUtils tsc', () => {
     describe('for param', () => {
       it('allows to attach some meta', () => {
         const meta: any = {}
-        const decorator = constructDecorator(({propName, paramIndex, targetType, target}: IDecoratorHandlerContext) => {
-          if (targetType === PARAM && propName && typeof paramIndex === 'number') {
-            meta[propName] = meta[propName] || {}
-            meta[propName][paramIndex] = target
-          }
-        })
+        const decorator = constructDecorator(
+          ({
+            propName,
+            paramIndex,
+            targetType,
+            target,
+          }: IDecoratorHandlerContext) => {
+            if (
+              targetType === PARAM &&
+              propName &&
+              typeof paramIndex === 'number'
+            ) {
+              meta[propName] = meta[propName] || {}
+              meta[propName][paramIndex] = target
+            }
+          },
+        )
 
         class Foo {
-
           foo(@decorator() one: any, two: any, @decorator() three: any) {
             return 'foo'
           }
@@ -249,7 +242,6 @@ describe('decoratorUtils tsc', () => {
           bar(one: any, @decorator() two: any) {
             return 'bar'
           }
-
         }
 
         expect(meta).toEqual({
@@ -268,28 +260,24 @@ describe('decoratorUtils tsc', () => {
       it('allows to attach some meta', () => {
         const meta: any = {}
         const decorator = constructDecorator(
-          ({targetType, propName, target, args: [param]}): unknown => {
+          ({ targetType, propName, target, args: [param] }): unknown => {
             if (targetType === FIELD && propName) {
               meta[propName] = param
             }
-            
           },
         )
 
         class Foo {
-
           @decorator('arg')
           foo = 'bar'
 
           baz = 'qux'
-
         }
 
         expect(meta).toEqual({
           foo: 'arg',
         })
       })
-
     })
 
     describe('for weird type', () => {
@@ -301,7 +289,7 @@ describe('decoratorUtils tsc', () => {
 
     it('asserts allowedType if defined', () => {
       const decorator = constructDecorator(
-        ({targetType, target, args: [param]}) => {
+        ({ targetType, target, args: [param] }) => {
           return (value: unknown) => param || 'qux'
         },
         [METHOD, FIELD],
@@ -310,7 +298,6 @@ describe('decoratorUtils tsc', () => {
       expect(() => {
         @decorator()
         class Foo {
-
           foo() {
             return 'bar'
           }
@@ -318,20 +305,19 @@ describe('decoratorUtils tsc', () => {
           baz() {
             return 'baz'
           }
-
         }
 
         return new Foo()
-      }).toThrow('Decorator is compatible with \'method\', \'field\' only, but was applied to \'class\'')
+      }).toThrow(
+        "Decorator is compatible with 'method', 'field' only, but was applied to 'class'",
+      )
 
       expect(() => {
         class Foo {
-
           @decorator()
           foo() {
             return 'bar'
           }
-
         }
 
         return new Foo()
@@ -340,7 +326,7 @@ describe('decoratorUtils tsc', () => {
 
     it('empty allowedType array should be ignored', () => {
       const decorator = constructDecorator(
-        ({targetType, target, args: [param]}) => {
+        ({ targetType, target, args: [param] }) => {
           return (value: unknown) => param || 'qux'
         },
         [],
@@ -349,12 +335,10 @@ describe('decoratorUtils tsc', () => {
       expect(() => {
         @decorator()
         class Foo {
-
           @decorator()
           foo() {
             return 'bar'
           }
-
         }
 
         return new Foo()
@@ -363,20 +347,18 @@ describe('decoratorUtils tsc', () => {
 
     it('applies several decorators at once', () => {
       const plus = constructDecorator(
-        ({targetType, target, args: [param]}) => {
+        ({ targetType, target, args: [param] }) => {
           return (value: number) => target(value) + param
         },
         METHOD,
       )
 
       class Foo {
-
         @plus(2)
         @plus(1)
         bar(v: number) {
           return v
         }
-
       }
 
       const foo = new Foo()
@@ -388,19 +370,21 @@ describe('decoratorUtils tsc', () => {
   describe('context', () => {
     it('allows to operate with meta', () => {
       const meta: any = {}
-      const decorator = constructDecorator((context: IDecoratorHandlerContext) => {
-        const {args: [arg]} = context
-        meta[arg] = context
-      })
+      const decorator = constructDecorator(
+        (context: IDecoratorHandlerContext) => {
+          const {
+            args: [arg],
+          } = context
+          meta[arg] = context
+        },
+      )
 
       @decorator('class')
       class Foo {
-
         @decorator('method')
         foo(@decorator('p0') a: any, b: any, @decorator('p2') c: any) {
           return 'foo'
         }
-
       }
 
       expect(meta).toEqual({

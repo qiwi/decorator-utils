@@ -1,8 +1,8 @@
 /** @module @qiwi/decorator-utils */
 
-import {constructDecorator} from './decorator'
+import { constructDecorator } from './decorator'
 
-export {injectMeta} from './meta'
+export { injectMeta } from './meta'
 export * from './resolver'
 export * from './decorator'
 

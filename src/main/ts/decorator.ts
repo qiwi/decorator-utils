@@ -1,32 +1,31 @@
 /** @module @qiwi/decorator-utils */
 
 import {
+  ICallable,
+  IDecorator,
+  IDecoratorArgs,
+  IDecoratorHandlerContext,
+  IDescriptor,
+  IHandler,
+  IParamIndex,
+  IPropName,
+  ITarget,
+  ITargetType,
+  ITargetTypes,
+} from './interface'
+import {
+  CLASS,
+  FIELD,
+  getDecoratorContext,
+  METHOD,
+  PARAM,
+} from './resolver'
+import {
+  getPrototypeMethods,
   isFunction,
   isUndefined,
   mapValues,
-  getPrototypeMethods,
 } from './utils'
-
-import {
-  IDecoratorArgs,
-  IDecoratorHandlerContext,
-  IHandler,
-  IPropName,
-  IDecorator,
-  ITarget,
-  ITargetTypes,
-  ITargetType,
-  IDescriptor,
-  IParamIndex,
-} from './interface'
-
-import {
-  METHOD,
-  CLASS,
-  FIELD,
-  PARAM,
-  getDecoratorContext,
-} from './resolver'
 
 /**
  * Constructs decorator by given function.
@@ -43,7 +42,7 @@ export const constructDecorator = (
     throw new Error('Decorator handler must be a function')
   }
 
-  return (...args: IDecoratorArgs): Function => (
+  return (...args: IDecoratorArgs): ICallable => (
     target: ITarget,
     propName: IPropName,
     descriptor: IDescriptor | IParamIndex,
@@ -67,27 +66,24 @@ export const constructDecorator = (
 type IDecoratorApplier = (
   handler: IHandler,
   context: IDecoratorHandlerContext,
-  descriptor: IDescriptor | IParamIndex,
+  descriptor?: IDescriptor | IParamIndex,
 ) => any
 
-const decorate: IDecoratorApplier = (handler, context, descriptor) => {
-  const {targetType} = context
+const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
-  switch (targetType) {
-    case PARAM:
-      decorateParam(handler, context, descriptor)
-      break
+const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
+  if (!descriptor) {
+    handler(context)
+  }
+  else {
+    // @ts-ignore
+    descriptor.initializer = handler({...context, target: descriptor.initializer})
+  }
+}
 
-    case FIELD:
-      decorateField(handler, context, descriptor)
-      break
-
-    case METHOD:
-      decorateMethod(handler, context, descriptor)
-      break
-
-    case CLASS:
-      return decorateClass(handler, context, descriptor)
+const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
+  if (typeof descriptor === 'object') {
+    descriptor.value = handler(context)
   }
 }
 
@@ -113,23 +109,26 @@ const decorateClass: IDecoratorApplier = (handler, context) => {
   return handler(context)
 }
 
-const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
-  if (!descriptor) {
-    handler(context)
-  }
-  else {
-    // @ts-ignore
-    descriptor.initializer = handler({...context, target: descriptor.initializer})
+const decorate: IDecoratorApplier = (handler, context, descriptor) => {
+  const {targetType} = context
+
+  switch (targetType) {
+    case PARAM:
+      decorateParam(handler, context)
+      break
+
+    case FIELD:
+      decorateField(handler, context, descriptor)
+      break
+
+    case METHOD:
+      decorateMethod(handler, context, descriptor)
+      break
+
+    case CLASS:
+      return decorateClass(handler, context)
   }
 }
-
-const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
-  if (typeof descriptor === 'object') {
-    descriptor.value = handler(context)
-  }
-}
-
-const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
 export const assertTargetType = (
   targetType: ITargetType,

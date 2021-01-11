@@ -1,10 +1,10 @@
 import {
-  createDecorator,
+  CLASS,
   constructDecorator,
+  createDecorator,
+  FIELD,
   getTargetType,
   METHOD,
-  FIELD,
-  CLASS,
   PARAM,
 } from '../../main/ts'
 import {IDecoratorHandlerContext} from '../../main/ts/interface'
@@ -25,7 +25,7 @@ describe('decoratorUtils tsc', () => {
     cases.forEach(([title, args, expected]) => {
       it(`detects ${title} as ${expected}`, () => {
         // @ts-ignore
-        expect(getTargetType.apply(null, args)).toEqual(expected)
+        expect(getTargetType.apply(null, args)).toEqual(expected) // eslint-disable-line prefer-spread
       })
     })
   })
@@ -62,7 +62,7 @@ describe('decoratorUtils tsc', () => {
                 }
               }
             }
-            return
+            
           },
         )
 
@@ -73,6 +73,7 @@ describe('decoratorUtils tsc', () => {
           constructor(name: string) {
             this.name = name
           }
+
           foo() {
             return 'bar'
           }
@@ -94,7 +95,7 @@ describe('decoratorUtils tsc', () => {
                 return target().toUpperCase()
               }
             }
-            return
+            
           },
         )
 
@@ -104,6 +105,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }
@@ -125,6 +127,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }
@@ -145,7 +148,7 @@ describe('decoratorUtils tsc', () => {
             if (targetType === METHOD) {
               return (value: unknown) => param || 'qux'
             }
-            return
+            
           },
         )
 
@@ -155,6 +158,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
           @decorator('BAZ')
           baz() {
             return 'baz'
@@ -177,6 +181,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
           @decorator('BAZ')
           baz() {
             return 'baz'
@@ -229,11 +234,9 @@ describe('decoratorUtils tsc', () => {
       it('allows to attach some meta', () => {
         const meta: any = {}
         const decorator = constructDecorator(({propName, paramIndex, targetType, target}: IDecoratorHandlerContext) => {
-          if (targetType === PARAM) {
-            if (propName && typeof paramIndex === 'number') {
-              meta[propName] = meta[propName] || {}
-              meta[propName][paramIndex] = target
-            }
+          if (targetType === PARAM && propName && typeof paramIndex === 'number') {
+            meta[propName] = meta[propName] || {}
+            meta[propName][paramIndex] = target
           }
         })
 
@@ -266,12 +269,10 @@ describe('decoratorUtils tsc', () => {
         const meta: any = {}
         const decorator = constructDecorator(
           ({targetType, propName, target, args: [param]}): unknown => {
-            if (targetType === FIELD) {
-              if (propName) {
-                meta[propName] = param
-              }
+            if (targetType === FIELD && propName) {
+              meta[propName] = param
             }
-            return
+            
           },
         )
 
@@ -279,6 +280,7 @@ describe('decoratorUtils tsc', () => {
 
           @decorator('arg')
           foo = 'bar'
+
           baz = 'qux'
 
         }
@@ -312,6 +314,7 @@ describe('decoratorUtils tsc', () => {
           foo() {
             return 'bar'
           }
+
           baz() {
             return 'baz'
           }

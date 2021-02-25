@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>utils | protopipe</title>
+	<title>IReducible | protopipe</title>
 	<meta name="description" content="Documentation for protopipe">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -1624,6 +1624,12 @@ pre code {
   background-color: transparent;
 }
 
+blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 4px solid gray;
+}
+
 .tsd-typography {
   line-height: 1.333em;
 }
@@ -2676,1255 +2682,119 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-function tsd-parent-kind-module">
-			<a href="utils.html#getprototypemethods" class="tsd-kind-icon">get<wbr>Prototype<wbr>Methods</a>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="_qiwi_decorator_utils.idecorator.html" class="tsd-kind-icon">IDecorator</a>
 		</li>
-		<li class=" tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-			<a href="utils.html#get" class="tsd-kind-icon">get</a>
+		<li class=" tsd-kind-interface tsd-parent-kind-module">
+			<a href="_qiwi_decorator_utils.iproto.html" class="tsd-kind-icon">IProto</a>
 		</li>
-		<li class=" tsd-kind-method tsd-parent-kind-module tsd-is-external">
-			<a href="utils.html#isfunction" class="tsd-kind-icon">is<wbr>Function</a>
+		<li class="current tsd-kind-interface tsd-parent-kind-module">
+			<a href="_qiwi_decorator_utils.ireducible.html" class="tsd-kind-icon">IReducible</a>
+			<ul>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_qiwi_decorator_utils.ireducible.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a>
+				</li>
+			</ul>
 		</li>
-		<li class=" tsd-kind-method tsd-parent-kind-module tsd-is-external">
-			<a href="utils.html#isundefined" class="tsd-kind-icon">is<wbr>Undefined</a>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#ianytype" class="tsd-kind-icon">IAny<wbr>Type</a>
 		</li>
-		<li class=" tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-			<a href="utils.html#mapvalues" class="tsd-kind-icon">map<wbr>Values</a>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
+			<a href="../modules/_qiwi_decorator_utils.html#icallable" class="tsd-kind-icon">ICallable</a>
 		</li>
-		<li class=" tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-			<a href="utils.html#set" class="tsd-kind-icon">set</a>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#idecoratorargs" class="tsd-kind-icon">IDecorator<wbr>Args</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#idecoratorcontext" class="tsd-kind-icon">IDecorator<wbr>Context</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#idecoratorhandlercontext" class="tsd-kind-icon">IDecorator<wbr>Handler<wbr>Context</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#idescriptor" class="tsd-kind-icon">IDescriptor</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#ihandler" class="tsd-kind-icon">IHandler</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#iinstance" class="tsd-kind-icon">IInstance</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#imapiterator" class="tsd-kind-icon">IMap<wbr>Iterator</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#iparamindex" class="tsd-kind-icon">IParam<wbr>Index</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#ipropname" class="tsd-kind-icon">IProp<wbr>Name</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#ipropvalue" class="tsd-kind-icon">IProp<wbr>Value</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#ireduceiterator" class="tsd-kind-icon">IReduce<wbr>Iterator</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#itarget" class="tsd-kind-icon">ITarget</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#itargettype" class="tsd-kind-icon">ITarget<wbr>Type</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+			<a href="../modules/_qiwi_decorator_utils.html#itargettypes" class="tsd-kind-icon">ITarget<wbr>Types</a>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">IReducible</span>
+				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel tsd-kind-interface tsd-parent-kind-module">
+			<h3 class="tsd-before-signature">Indexable</h3>
+			<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../modules/_qiwi_decorator_utils.html#ianytype" class="tsd-signature-type" data-tsd-kind="Type alias">IAnyType</a></div>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Functions</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-function tsd-parent-kind-module"><a href="utils.html#getprototypemethods" class="tsd-kind-icon">get<wbr>Prototype<wbr>Methods</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section tsd-is-external">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external"><a href="utils.html#get" class="tsd-kind-icon">get</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-module tsd-is-external"><a href="utils.html#isfunction" class="tsd-kind-icon">is<wbr>Function</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-module tsd-is-external"><a href="utils.html#isundefined" class="tsd-kind-icon">is<wbr>Undefined</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external"><a href="utils.html#mapvalues" class="tsd-kind-icon">map<wbr>Values</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external"><a href="utils.html#set" class="tsd-kind-icon">set</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_qiwi_decorator_utils.ireducible.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Functions</h2>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-				<a name="getprototypemethods" class="tsd-anchor"></a>
-				<h3>get<wbr>Prototype<wbr>Methods</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Prototype<wbr>Methods<span class="tsd-signature-symbol">(</span>instance<span class="tsd-signature-symbol">: </span><a href="interface.html#iinstance" class="tsd-signature-type" data-tsd-kind="Type alias">IInstance</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDescriptorMap</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/855a07a/src/main/ts/utils.ts#L19">src/main/ts/utils.ts:19</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Extracts prototype methods of instance.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>instance: <a href="interface.html#iinstance" class="tsd-signature-type" data-tsd-kind="Type alias">IInstance</a></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDescriptorMap</span></h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-external">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-				<a name="get" class="tsd-anchor"></a>
-				<h3>get</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey, TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3, TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3, TKey4&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3, TKey4&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TObject, TKey1, TKey2, TKey3, TKey4, TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;T&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;T&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;T, TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TDefault</span></li>
-					<li class="tsd-signature tsd-kind-icon">get&lt;TDefault&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDefault</span></li>
-					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span></li>
-					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="hasownproperty" class="tsd-anchor"></a>
+				<h3>has<wbr>Own<wbr>Property</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Property<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1032</li>
+								<li>Defined in <a href="https://github.com/qiwi/decorator-utils/blob/c75ee13/src/main/ts/interface.ts#L19">src/main/ts/interface.ts:19</a></li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets the property value at path of object. If the resolved value is undefined the defaultValue is used
-								in its place.</p>
-							</div>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>object: <span class="tsd-signature-type">TObject</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The object to query.</p>
-								</div>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The path of the property to get.</p>
-								</div>
+								<h5>name: <span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></h4>
-						<p>Returns the resolved value.</p>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1036</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1040</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1044</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1048</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1052</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1056</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1060</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1064</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1068</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1072</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1076</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TKey1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TKey4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TObject</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDefault</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TObject</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey1</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey2</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey3</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey4</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1080</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1084</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1088</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">TDefault</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1092</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TDefault</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>defaultValue: <span class="tsd-signature-type">TDefault</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDefault</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1096</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1100</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.get</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">any</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">any</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-module tsd-is-external">
-				<a name="isfunction" class="tsd-anchor"></a>
-				<h3>is<wbr>Function</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-module tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">is<wbr>Function<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/lang.d.ts:728</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Checks if value is a callable function.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>value: <span class="tsd-signature-type">any</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The value to check.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
-						<p>Returns true if value is correctly classified, else false.</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-module tsd-is-external">
-				<a name="isundefined" class="tsd-anchor"></a>
-				<h3>is<wbr>Undefined</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-module tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">is<wbr>Undefined<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">undefined</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/lang.d.ts:1297</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Checks if value is undefined.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>value: <span class="tsd-signature-type">any</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The value to check.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type">undefined</span></h4>
-						<p>Returns true if value is undefined, else false.</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-				<a name="mapvalues" class="tsd-anchor"></a>
-				<h3>map<wbr>Values</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;TResult&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">StringIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T, TResult&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ObjectIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol"> }</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, iteratee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span>, iteratee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T, TKey&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, iteratee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, iteratee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span>, iteratee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-					<li class="tsd-signature tsd-kind-icon">map<wbr>Values&lt;T&gt;<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1518</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Creates an object with the same keys as object and values generated by running each own
-									enumerable property of object through iteratee. The iteratee function is
-								invoked with three arguments: (value, key, object).</p>
-							</div>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TResult</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li>
-								<h5>callback: <span class="tsd-signature-type">StringIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>Returns the new mapped object.</p>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1522</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-							<li>
-								<h4>TResult</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5>callback: <span class="tsd-signature-type">ObjectIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span><span class="tsd-signature-symbol"> }</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1526</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>iteratee: <span class="tsd-signature-type">object</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1530</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5>iteratee: <span class="tsd-signature-type">object</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1534</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-							<li>
-								<h4>TKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>iteratee: <span class="tsd-signature-type">TKey</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">TKey</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1538</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>iteratee: <span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1542</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5>iteratee: <span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1546</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1550</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NumericDictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Dictionary</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1554</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">T</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:1558</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.mapValues</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>obj: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-				<a name="set" class="tsd-anchor"></a>
-				<h3>set</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-module tsd-has-type-parameter tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">set&lt;T&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-					<li class="tsd-signature tsd-kind-icon">set&lt;TResult&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TResult</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:2139</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Sets the value at path of object. If a portion of path doesn’t exist it’s created. Arrays are created for
-									missing index properties while objects are created for all other missing properties. Use _.setWith to
-								customize path creation.</p>
-							</div>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">T</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The object to modify.</p>
-								</div>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The path of the property to set.</p>
-								</div>
-							</li>
-							<li>
-								<h5>value: <span class="tsd-signature-type">any</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>The value to set.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-						<p>Returns object.</p>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@types/lodash/common/object.d.ts:2143</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<dl class="tsd-comment-tags">
-								<dt>see</dt>
-								<dd><p>_.set</p>
-								</dd>
-							</dl>
-						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>TResult</h4>
-							</li>
-						</ul>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>object: <span class="tsd-signature-type">object</span></h5>
-							</li>
-							<li>
-								<h5>path: <span class="tsd-signature-type">Many</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>value: <span class="tsd-signature-type">any</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TResult</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -3940,6 +2810,7 @@ img {
 					</ul>
 					<ul class="tsd-legend">
 						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+						<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 					</ul>
 				</div>
 			</div>
@@ -4052,7 +2923,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initSearch\": () => /* binding */ initSearch\n/* harmony export */ });\n/* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/debounce */ \"./default/assets/js/src/typedoc/utils/debounce.ts\");\n/* harmony import */ var lunr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lunr */ \"../node_modules/lunr/lunr.js\");\n/* harmony import */ var lunr__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lunr__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction initSearch() {\n    var searchEl = document.getElementById(\"tsd-search\");\n    if (!searchEl)\n        return;\n    var searchScript = document.getElementById(\"search-script\");\n    if (searchScript) {\n        searchScript.addEventListener(\"error\", function () {\n            searchEl.classList.remove(\"loading\");\n            searchEl.classList.add(\"failure\");\n        });\n        searchScript.addEventListener(\"load\", function () {\n            searchEl.classList.remove(\"loading\");\n            searchEl.classList.add(\"ready\");\n        });\n    }\n    searchEl.classList.add(\"loading\");\n    var field = document.querySelector(\"#tsd-search-field\");\n    var results = document.querySelector(\".results\");\n    if (!field || !results) {\n        throw new Error(\"The input field or the result list wrapper was not found\");\n    }\n    field.addEventListener(\"focus\", function () { return searchEl.classList.add(\"has-focus\"); });\n    field.addEventListener(\"blur\", function () {\n        // Delay a bit so that mouse clicks don't get swallowed\n        setTimeout(function () { return searchEl.classList.remove(\"has-focus\"); }, 100);\n    });\n    var state = {\n        base: searchEl.dataset.base + \"/\",\n    };\n    bindEvents(searchEl, results, field, state);\n}\nfunction bindEvents(searchEl, results, field, state) {\n    field.addEventListener(\"input\", (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(function () {\n        updateResults(searchEl, results, field, state);\n    }, 200));\n    var preventPress = false;\n    field.addEventListener(\"keydown\", function (e) {\n        preventPress = true;\n        if (e.key == \"Enter\") {\n            gotoCurrentResult(results, field);\n        }\n        else if (e.key == \"Escape\") {\n            field.blur();\n        }\n        else if (e.key == \"ArrowUp\") {\n            setCurrentResult(results, -1);\n        }\n        else if (e.key === \"ArrowDown\") {\n            setCurrentResult(results, 1);\n        }\n        else {\n            preventPress = false;\n        }\n    });\n    field.addEventListener(\"keypress\", function (e) {\n        if (preventPress)\n            e.preventDefault();\n    });\n    /**\n     * Start searching by pressing slash.\n     */\n    document.body.addEventListener(\"keydown\", function (e) {\n        if (e.altKey || e.ctrlKey || e.metaKey)\n            return;\n        if (!field.matches(\":focus\") && e.key === \"/\") {\n            field.focus();\n            e.preventDefault();\n        }\n    });\n}\nfunction checkIndex(state, searchEl) {\n    if (state.index)\n        return;\n    if (window.searchData) {\n        searchEl.classList.remove(\"loading\");\n        searchEl.classList.add(\"ready\");\n        state.data = window.searchData;\n        state.index = lunr__WEBPACK_IMPORTED_MODULE_1__.Index.load(window.searchData.index);\n    }\n}\nfunction updateResults(searchEl, results, query, state) {\n    checkIndex(state, searchEl);\n    // Don't clear results if loading state is not ready,\n    // because loading or error message can be removed.\n    if (!state.index || !state.data)\n        return;\n    results.textContent = \"\";\n    var searchText = query.value.trim();\n    // Perform a wildcard search\n    var res = state.index.search(\"*\" + searchText + \"*\");\n    for (var i = 0, c = Math.min(10, res.length); i < c; i++) {\n        var row = state.data.rows[Number(res[i].ref)];\n        // Bold the matched part of the query in the search results\n        var name_1 = boldMatches(row.name, searchText);\n        if (row.parent) {\n            name_1 = \"<span class=\\\"parent\\\">\" + boldMatches(row.parent, searchText) + \".</span>\" + name_1;\n        }\n        var item = document.createElement(\"li\");\n        item.classList.value = row.classes;\n        var anchor = document.createElement(\"a\");\n        anchor.href = state.base + row.url;\n        anchor.classList.add(\"tsd-kind-icon\");\n        anchor.innerHTML = name_1;\n        item.append(anchor);\n        results.appendChild(item);\n    }\n}\n/**\n * Move the highlight within the result set.\n */\nfunction setCurrentResult(results, dir) {\n    var current = results.querySelector(\".current\");\n    if (!current) {\n        current = results.querySelector(dir == 1 ? \"li:first-child\" : \"li:last-child\");\n        if (current) {\n            current.classList.add(\"current\");\n        }\n    }\n    else {\n        var rel = dir == 1\n            ? current.nextElementSibling\n            : current.previousElementSibling;\n        if (rel) {\n            current.classList.remove(\"current\");\n            rel.classList.add(\"current\");\n        }\n    }\n}\n/**\n * Navigate to the highlighted result.\n */\nfunction gotoCurrentResult(results, field) {\n    var current = results.querySelector(\".current\");\n    if (!current) {\n        current = results.querySelector(\"li:first-child\");\n    }\n    if (current) {\n        var link = current.querySelector(\"a\");\n        if (link) {\n            window.location.href = link.href;\n        }\n        field.blur();\n    }\n}\nfunction boldMatches(text, search) {\n    if (search === \"\") {\n        return text;\n    }\n    var lowerText = text.toLocaleLowerCase();\n    var lowerSearch = search.toLocaleLowerCase();\n    var parts = [];\n    var lastIndex = 0;\n    var index = lowerText.indexOf(lowerSearch);\n    while (index != -1) {\n        parts.push(escapeHtml(text.substring(lastIndex, index)), \"<b>\" + escapeHtml(text.substring(index, index + lowerSearch.length)) + \"</b>\");\n        lastIndex = index + lowerSearch.length;\n        index = lowerText.indexOf(lowerSearch, lastIndex);\n    }\n    parts.push(escapeHtml(text.substring(lastIndex)));\n    return parts.join(\"\");\n}\nvar SPECIAL_HTML = {\n    \"&\": \"&amp;\",\n    \"<\": \"&lt;\",\n    \">\": \"&gt;\",\n    \"'\": \"&#039;\",\n    '\"': \"&quot;\",\n};\nfunction escapeHtml(text) {\n    return text.replace(/[&<>\"'\"]/g, function (match) { return SPECIAL_HTML[match]; });\n}\n\n\n//# sourceURL=webpack:///./default/assets/js/src/typedoc/components/Search.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initSearch\": () => /* binding */ initSearch\n/* harmony export */ });\n/* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/debounce */ \"./default/assets/js/src/typedoc/utils/debounce.ts\");\n/* harmony import */ var lunr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lunr */ \"../node_modules/lunr/lunr.js\");\n/* harmony import */ var lunr__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lunr__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction initSearch() {\n    var searchEl = document.getElementById(\"tsd-search\");\n    if (!searchEl)\n        return;\n    var searchScript = document.getElementById(\"search-script\");\n    searchEl.classList.add(\"loading\");\n    if (searchScript) {\n        searchScript.addEventListener(\"error\", function () {\n            searchEl.classList.remove(\"loading\");\n            searchEl.classList.add(\"failure\");\n        });\n        searchScript.addEventListener(\"load\", function () {\n            searchEl.classList.remove(\"loading\");\n            searchEl.classList.add(\"ready\");\n        });\n        if (window.searchData) {\n            searchEl.classList.remove(\"loading\");\n        }\n    }\n    var field = document.querySelector(\"#tsd-search-field\");\n    var results = document.querySelector(\".results\");\n    if (!field || !results) {\n        throw new Error(\"The input field or the result list wrapper was not found\");\n    }\n    var resultClicked = false;\n    results.addEventListener(\"mousedown\", function () { return (resultClicked = true); });\n    results.addEventListener(\"mouseup\", function () {\n        resultClicked = false;\n        searchEl.classList.remove(\"has-focus\");\n    });\n    field.addEventListener(\"focus\", function () { return searchEl.classList.add(\"has-focus\"); });\n    field.addEventListener(\"blur\", function () {\n        if (!resultClicked) {\n            resultClicked = false;\n            searchEl.classList.remove(\"has-focus\");\n        }\n    });\n    var state = {\n        base: searchEl.dataset.base + \"/\",\n    };\n    bindEvents(searchEl, results, field, state);\n}\nfunction bindEvents(searchEl, results, field, state) {\n    field.addEventListener(\"input\", (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(function () {\n        updateResults(searchEl, results, field, state);\n    }, 200));\n    var preventPress = false;\n    field.addEventListener(\"keydown\", function (e) {\n        preventPress = true;\n        if (e.key == \"Enter\") {\n            gotoCurrentResult(results, field);\n        }\n        else if (e.key == \"Escape\") {\n            field.blur();\n        }\n        else if (e.key == \"ArrowUp\") {\n            setCurrentResult(results, -1);\n        }\n        else if (e.key === \"ArrowDown\") {\n            setCurrentResult(results, 1);\n        }\n        else {\n            preventPress = false;\n        }\n    });\n    field.addEventListener(\"keypress\", function (e) {\n        if (preventPress)\n            e.preventDefault();\n    });\n    /**\n     * Start searching by pressing slash.\n     */\n    document.body.addEventListener(\"keydown\", function (e) {\n        if (e.altKey || e.ctrlKey || e.metaKey)\n            return;\n        if (!field.matches(\":focus\") && e.key === \"/\") {\n            field.focus();\n            e.preventDefault();\n        }\n    });\n}\nfunction checkIndex(state, searchEl) {\n    if (state.index)\n        return;\n    if (window.searchData) {\n        searchEl.classList.remove(\"loading\");\n        searchEl.classList.add(\"ready\");\n        state.data = window.searchData;\n        state.index = lunr__WEBPACK_IMPORTED_MODULE_1__.Index.load(window.searchData.index);\n    }\n}\nfunction updateResults(searchEl, results, query, state) {\n    checkIndex(state, searchEl);\n    // Don't clear results if loading state is not ready,\n    // because loading or error message can be removed.\n    if (!state.index || !state.data)\n        return;\n    results.textContent = \"\";\n    var searchText = query.value.trim();\n    // Perform a wildcard search\n    var res = state.index.search(\"*\" + searchText + \"*\");\n    for (var i = 0, c = Math.min(10, res.length); i < c; i++) {\n        var row = state.data.rows[Number(res[i].ref)];\n        // Bold the matched part of the query in the search results\n        var name_1 = boldMatches(row.name, searchText);\n        if (row.parent) {\n            name_1 = \"<span class=\\\"parent\\\">\" + boldMatches(row.parent, searchText) + \".</span>\" + name_1;\n        }\n        var item = document.createElement(\"li\");\n        item.classList.value = row.classes;\n        var anchor = document.createElement(\"a\");\n        anchor.href = state.base + row.url;\n        anchor.classList.add(\"tsd-kind-icon\");\n        anchor.innerHTML = name_1;\n        item.append(anchor);\n        results.appendChild(item);\n    }\n}\n/**\n * Move the highlight within the result set.\n */\nfunction setCurrentResult(results, dir) {\n    var current = results.querySelector(\".current\");\n    if (!current) {\n        current = results.querySelector(dir == 1 ? \"li:first-child\" : \"li:last-child\");\n        if (current) {\n            current.classList.add(\"current\");\n        }\n    }\n    else {\n        var rel = dir == 1\n            ? current.nextElementSibling\n            : current.previousElementSibling;\n        if (rel) {\n            current.classList.remove(\"current\");\n            rel.classList.add(\"current\");\n        }\n    }\n}\n/**\n * Navigate to the highlighted result.\n */\nfunction gotoCurrentResult(results, field) {\n    var current = results.querySelector(\".current\");\n    if (!current) {\n        current = results.querySelector(\"li:first-child\");\n    }\n    if (current) {\n        var link = current.querySelector(\"a\");\n        if (link) {\n            window.location.href = link.href;\n        }\n        field.blur();\n    }\n}\nfunction boldMatches(text, search) {\n    if (search === \"\") {\n        return text;\n    }\n    var lowerText = text.toLocaleLowerCase();\n    var lowerSearch = search.toLocaleLowerCase();\n    var parts = [];\n    var lastIndex = 0;\n    var index = lowerText.indexOf(lowerSearch);\n    while (index != -1) {\n        parts.push(escapeHtml(text.substring(lastIndex, index)), \"<b>\" + escapeHtml(text.substring(index, index + lowerSearch.length)) + \"</b>\");\n        lastIndex = index + lowerSearch.length;\n        index = lowerText.indexOf(lowerSearch, lastIndex);\n    }\n    parts.push(escapeHtml(text.substring(lastIndex)));\n    return parts.join(\"\");\n}\nvar SPECIAL_HTML = {\n    \"&\": \"&amp;\",\n    \"<\": \"&lt;\",\n    \">\": \"&gt;\",\n    \"'\": \"&#039;\",\n    '\"': \"&quot;\",\n};\nfunction escapeHtml(text) {\n    return text.replace(/[&<>\"'\"]/g, function (match) { return SPECIAL_HTML[match]; });\n}\n\n\n//# sourceURL=webpack:///./default/assets/js/src/typedoc/components/Search.ts?");
 
 /***/ }),
 

@@ -11,7 +11,7 @@ export const injectMeta = (
 ): void => {
   const meta = prv.getOwnMetadata(scope, target) || {}
   const prev = get(meta, path)
-  const next = Array.isArray(prev) ? prev.concat(value) : value
+  const next = Array.isArray(prev) ? [...prev, value] : value
 
   prv.defineMetadata(scope, set(meta, path, next), target)
 }

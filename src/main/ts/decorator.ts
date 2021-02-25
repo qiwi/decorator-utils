@@ -126,7 +126,7 @@ export const assertTargetType = (
 ): void => {
   if (allowedTypes?.length) {
     // @ts-ignore
-    const allowed: string[] = [].concat(allowedTypes)
+    const allowed: string[] = [].concat(allowedTypes) // eslint-disable-line
 
     if (!allowed.includes(targetType)) {
       throw new Error(

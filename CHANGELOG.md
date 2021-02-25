@@ -1,3 +1,10 @@
+## [3.2.4](https://github.com/qiwi/decorator-utils/compare/v3.2.3...v3.2.4) (2021-02-25)
+
+
+### Bug Fixes
+
+* **package:** up deps, fix vuls ([7cef59a](https://github.com/qiwi/decorator-utils/commit/7cef59a0a25e3855fee0c2ea12827170b59c63ea))
+
 ## [3.2.3](https://github.com/qiwi/decorator-utils/compare/v3.2.2...v3.2.3) (2021-01-11)
 
 

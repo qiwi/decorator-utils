@@ -20,7 +20,7 @@
     "test:unit": "jest --config=jest.config.json --runInBand",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npx depcheck --ignores tslib,@swissquote/crafty-preset-jest,@types/jest,@babel/*",
-    "test:depaudit": "yarn audit --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
+    "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
     "test:depauditfix": "npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test && yarn push:report",
     "build": "yarn clean && npm-run-all -p -l build:es5 build:es6 build:ts build:libdef build:bundle docs",

@@ -131,7 +131,7 @@ export const assertTargetType = (
     if (!allowed.includes(targetType)) {
       throw new Error(
         `Decorator is compatible with ${allowed
-          .map((v) => `'${v}'`)
+          .map((v: ITargetType) => `'${v}'`) // eslint-disable-line sonarjs/no-nested-template-literals
           .join(', ')} only, but was applied to '${targetType}'`,
       )
     }

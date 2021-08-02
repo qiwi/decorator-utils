@@ -4,7 +4,7 @@ import {
   FIELD,
   getTargetType,
   METHOD,
-} from '../../../target/bundle/decorator-utils'
+} from '../../../target/bundle/decorator-utils.js'
 
 const noop = () => { /* noop */ }
 

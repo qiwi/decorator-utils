@@ -1,3 +1,10 @@
+## [3.2.7](https://github.com/qiwi/decorator-utils/compare/v3.2.6...v3.2.7) (2021-08-03)
+
+
+### Bug Fixes
+
+* **lockfile:** override **/glob-parent ^6.0.1 ([5f37984](https://github.com/qiwi/decorator-utils/commit/5f379847199bb2c779d8575f4cf3f023a13634d0))
+
 ## [3.2.6](https://github.com/qiwi/decorator-utils/compare/v3.2.5...v3.2.6) (2021-08-02)
 
 

@@ -88,7 +88,7 @@
     "terser": "^5.10.0",
     "ts-jest": "^28.0.0",
     "typedoc": "^0.23.0",
-    "typescript": "4.6.4"
+    "typescript": "4.7.4"
   },
   "dependencies": {
     "@qiwi/substrate": "^1.20.11",

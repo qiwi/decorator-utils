@@ -7,7 +7,7 @@
     "<rootDir>/src/**/*.ts"
   ],
   "transform": {
-    "^.+\\.ts$": "ts-jest",
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": "tsconfig.test.json" }],
     "^.+\\.js$": "babel-jest"
   },
   "testMatch": [
@@ -25,10 +25,5 @@
     "jsx",
     "json",
     "node"
-  ],
-  "globals": {
-    "ts-jest": {
-      "tsconfig": "tsconfig.test.json"
-    }
-  }
+  ]
 }

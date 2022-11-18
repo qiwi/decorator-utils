@@ -7,18 +7,18 @@ describe('injectMeta', () => {
   const scope = '__scope__'
   const metadata = new WeakMap()
   const prv: IMetadataProvider = {
-    defineMetadata(metadataKey: any, metadataValue: any, target: any): void {
+    defineMetadata(metadataKey: symbol | string, metadataValue: any, target: object): void {
       const entry = metadata.get(target) || {}
       const next = set(entry, metadataKey, metadataValue)
       metadata.set(target, next)
     },
-    hasMetadata(metadataKey: any, target: any): boolean {
+    hasMetadata(metadataKey: symbol | string, target: object): boolean {
       return !!this.getMetadata(metadataKey, target)
     },
-    getMetadata(metadataKey: any, target: any): any {
+    getMetadata(metadataKey: symbol | string, target: object): any {
       return get(metadata.get(target), metadataKey)
     },
-    getOwnMetadata(metadataKey: any, target: any): any {
+    getOwnMetadata(metadataKey: symbol | string, target: object): any {
       return this.getMetadata(metadataKey, target)
     },
   }

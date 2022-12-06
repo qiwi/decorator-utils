@@ -65,12 +65,12 @@ type IDecoratorApplier = (
 const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
 
 const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
-  if (!descriptor) {
-    handler(context)
-  } else {
+  if (descriptor) {
     // prettier-ignore
     // @ts-ignore
     descriptor.initializer = handler({ ...context, target: descriptor.initializer })
+  } else {
+    handler(context)
   }
 }
 
@@ -103,20 +103,24 @@ const decorate: IDecoratorApplier = (handler, context, descriptor) => {
   const { targetType } = context
 
   switch (targetType) {
-    case PARAM:
+    case PARAM: {
       decorateParam(handler, context)
       break
+    }
 
-    case FIELD:
+    case FIELD: {
       decorateField(handler, context, descriptor)
       break
+    }
 
-    case METHOD:
+    case METHOD: {
       decorateMethod(handler, context, descriptor)
       break
+    }
 
-    case CLASS:
+    case CLASS: {
       return decorateClass(handler, context)
+    }
   }
 }
 

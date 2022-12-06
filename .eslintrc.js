@@ -11,8 +11,18 @@ module.exports = {
         {
             files: ['./src/test/**/*.{ts,js}'],
             rules: {
-                '@typescript-eslint/no-unused-vars': 'off'
-            }
+                '@typescript-eslint/no-unused-vars': 'off',
+                '@typescript-eslint/ban-ts-comment': 'off',
+                '@typescript-eslint/no-explicit-any': 'off',
+                'sonarjs/cognitive-complexity': 'off',
+            },
+        },
+        {
+            files: ['./src/main/**/*.{ts,js}'],
+            rules: {
+                '@typescript-eslint/ban-ts-comment': 'off',
+                '@typescript-eslint/no-explicit-any': 'off',
+            },
         }
     ]
 };

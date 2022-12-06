@@ -1,15 +1,16 @@
 /** @module @qiwi/decorator-utils */
 
-import get from 'lodash.get'
 import isFunction from 'lodash.isfunction'
-import isUndefined from 'lodash.isundefined'
-import mapValues from 'lodash.mapvalues'
+
 import reduce from 'lodash.reduce'
-import set from 'lodash.set'
 
 import { IDescriptor, IInstance, IProto, IReducible } from './interface'
 
-export { get, set, mapValues, isUndefined, isFunction }
+export {default as get} from 'lodash.get'
+export {default as isUndefined} from 'lodash.isundefined'
+export {default as mapValues} from 'lodash.mapvalues'
+export {default as set} from 'lodash.set'
+export {default as isFunction} from 'lodash.isfunction'
 
 /**
  * Extracts prototype methods of instance.

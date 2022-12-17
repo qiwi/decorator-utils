@@ -17,13 +17,19 @@ lib-cov
 coverage/
 .nyc_output
 
-# Bundle
-bundle
-build
-dist
-target
-typings
-flow-typed
+# Codeclimate
+codeclimate.*
+cc-reporter
+cc-reporter.*
+
+# Bundles
+bundle/
+build/
+dist/
+target/
+typings/
+flow-typed/
+buildstamp.json
 
 #Docs
 docs/
@@ -41,6 +47,7 @@ jspm_packages/
 .eslintcache
 .node_repl_history
 .env
+.npmrc
 
 # Typescript
 *.tsbuildinfo
@@ -50,3 +57,9 @@ buildcache
 .rts2_cache_cjs
 .rts2_cache_es
 .rts2_cache_umd
+
+# Creds
+*.asc
+*.key
+*.pem
+*.cert

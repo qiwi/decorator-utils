@@ -1,9 +1,9 @@
 {
   "name": "@qiwi/decorator-utils",
-  "alias": "@qiwi/protopipe",
+  "alias": "@qiwi/decorator-utils",
   "version": "3.2.8",
   "private": false,
-  "description": "Tiny helper for TS/JS decorator building",
+  "description": "Universal decorator factories made from scratch",
   "main": "target/bundle/decorator-utils.js",
   "module": "target/bundle/decorator-utils.mjs",
   "exports": {

@@ -10,10 +10,11 @@ Universal decorator factories made from scratch
 yarn add @qiwi/decorator-utils
 ```
 
-## Limitations
-There's no right way to support both decorator types: with `@parentheses()` and `@plain`.
-Holy War thread: [https://github.com/wycats/javascript-decorators/issues/23](https://github.com/wycats/javascript-decorators/issues/23)
-
+## Notes
+* There's no right way to support both decorator types: with `@parentheses()` and `@plain`.
+Holy War thread: [wycats/javascript-decorators/issues/23](https://github.com/wycats/javascript-decorators/issues/23)
+* TypeScript 5 decorators: [announcing-typescript-5-0](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0-beta/#decorators), [TS/issues/52435](https://github.com/microsoft/TypeScript/issues/52435), [nestjs/issues/10959](https://github.com/nestjs/nest/issues/10959)
+* TC39 stage-3 [proposal decorators](https://github.com/tc39/proposal-decorators)
 
 ## Usage
 #### Method

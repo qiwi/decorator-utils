@@ -102,7 +102,7 @@
     "terser": "^5.16.1",
     "ts-jest": "^29.0.3",
     "typedoc": "^0.23.22",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "dependencies": {
     "@qiwi/substrate": "^1.20.16",

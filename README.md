@@ -63,11 +63,11 @@ import {createDecorator, FIELD, PARAM} from '@qiwi/decorator-utils'
 
 const meta: any = {}
 const decorator = constructDecorator(({
-    propName,
-    paramIndex,
-    targetType,
-    target,
-    args: [param]
+  propName,
+  paramIndex,
+  targetType,
+  target,
+  args: [param]
 }: IDecoratorHandlerContext) => {
   if (targetType === PARAM) {
     if (propName && typeof paramIndex === 'number') {
@@ -107,18 +107,18 @@ You may also apply the decorator to the class, but decorate its methods:
 
 ```typescript
 const decorator = constructDecorator((targetType, target) => {
-      if (targetType === METHOD) {
-        return () => {
-          return target().toUpperCase()
-        }
-      }
-    })
-
-    @decorator()
-    class Foo {
-      foo () { return 'bar' }
-      baz () { return 'baz' }
+  if (targetType === METHOD) {
+    return () => {
+      return target().toUpperCase()
     }
+  }
+})
+
+@decorator()
+class Foo {
+  foo () { return 'bar' }
+  baz () { return 'baz' }
+}
 ```
 
 #### IDecoratorHandlerContext
@@ -138,6 +138,7 @@ export type IDecoratorHandlerContext = {
 ```
 
 ### Refs
+* [JS decorators by Axel Rauschmayer](https://2ality.com/2022/10/javascript-decorators.html)
 * ["aspect" syntax for JS](https://github.com/tc39/proposal-decorators)
 * [Exploring es7 decorators by Addy Osmany](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)
 * [core-decorators](https://www.npmjs.com/package/core-decorators)

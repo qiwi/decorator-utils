@@ -5,8 +5,10 @@ import {
   IDescriptor,
   IParamIndex,
   IPropName,
+  IRuntimeContext,
   ITarget,
   ITargetType,
+
 } from './interface'
 import { isFunction } from './utils'
 
@@ -14,21 +16,42 @@ export const METHOD = 'method'
 export const CLASS = 'class'
 export const FIELD = 'field'
 export const PARAM = 'param'
-export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM }
+export const ACCESSOR = 'accessor'
+export const GETTER = 'getter'
+export const SETTER = 'setter'
+export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM, ACCESSOR, GETTER, SETTER }
+
+// class DecoratorContext {}
 
 type IResolver = {
   (
     target: ITarget,
-    propName: IPropName,
+    propName: IRuntimeContext,
     descriptor: IDescriptor | IParamIndex | void,
   ): IDecoratorContext | null
 }
 
 export const getDecoratorContext: IResolver = (...args) =>
+  getModernDecoratorsContext(...args) ||
   getParamDecoratorContext(...args) ||
   getMethodDecoratorContext(...args) ||
   getFieldDecoratorContext(...args) ||
   getClassDecoratorContext(...args)
+
+// https://github.com/tc39/proposal-decorators
+export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRuntimeContext) => {
+  if (typeof ctx !== 'object') {
+    return null
+  }
+  const ctor = (this as any)?.constructor
+
+  return {
+    targetType: ctx.kind,
+    ctor,
+    proto: ctor?.prototype,
+    target
+  }
+}
 
 export const getClassDecoratorContext: IResolver = (target) =>
   isFunction(target)
@@ -45,7 +68,7 @@ export const getMethodDecoratorContext: IResolver = (
   propName,
   descriptor,
 ) =>
-  propName && typeof descriptor === 'object' && isFunction(descriptor.value)
+  typeof propName === 'string' && typeof descriptor === 'object' && isFunction(descriptor.value)
     ? {
         targetType: METHOD,
         target: descriptor.value,
@@ -61,7 +84,7 @@ export const getParamDecoratorContext: IResolver = (
   propName,
   descriptor,
 ) =>
-  typeof descriptor === 'number'
+  typeof propName === 'string' && typeof descriptor === 'number'
     ? {
         targetType: PARAM,
         target: target[propName],
@@ -77,7 +100,7 @@ export const getFieldDecoratorContext: IResolver = (
   propName,
   descriptor,
 ) =>
-  propName
+  typeof propName === 'string'
     ? {
         targetType: FIELD,
         ctor: target.constructor,

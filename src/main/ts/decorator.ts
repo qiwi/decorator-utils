@@ -13,7 +13,7 @@ import {
   ITargetType,
   ITargetTypes,
 } from './interface'
-import { CLASS, FIELD, getDecoratorContext, METHOD, PARAM } from './resolver'
+import { getDecoratorContext, CLASS, FIELD, METHOD, PARAM } from './resolver'
 import {
   getPrototypeMethods,
   isFunction,
@@ -75,9 +75,13 @@ const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
 }
 
 const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
+  const _handler = handler(context)
   if (typeof descriptor === 'object') {
-    descriptor.value = handler(context)
+    descriptor.value = _handler
+    return
   }
+
+  return _handler
 }
 
 const decorateClass: IDecoratorApplier = (handler, context) => {
@@ -104,18 +108,15 @@ const decorate: IDecoratorApplier = (handler, context, descriptor) => {
 
   switch (targetType) {
     case PARAM: {
-      decorateParam(handler, context)
-      break
+      return decorateParam(handler, context)
     }
 
     case FIELD: {
-      decorateField(handler, context, descriptor)
-      break
+      return decorateField(handler, context, descriptor)
     }
 
     case METHOD: {
-      decorateMethod(handler, context, descriptor)
-      break
+      return decorateMethod(handler, context, descriptor)
     }
 
     case CLASS: {

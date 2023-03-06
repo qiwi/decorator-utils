@@ -63,3 +63,9 @@ buildcache
 *.key
 *.pem
 *.cert
+
+# Temp
+src/test/ts4/*.mjs
+src/test/ts4/*.js
+src/test/ts5/*.mjs
+src/test/ts5/*.js

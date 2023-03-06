@@ -1,10 +1,11 @@
 {
   "preset": "ts-jest",
   "collectCoverage": true,
+  "coverageDirectory": "target/coverage",
   "testEnvironment": "node",
   "coveragePathIgnorePatterns": [],
   "collectCoverageFrom": [
-    "<rootDir>/src/**/*.ts"
+    "<rootDir>/src/main/**/*.ts"
   ],
   "transform": {
     "^.+\\.ts$": ["ts-jest", { "tsconfig": "tsconfig.test.json" }],
@@ -12,7 +13,7 @@
   },
   "testMatch": [
     "<rootDir>/src/test/ts/**/*.ts",
-    "<rootDir>/src/test/js/**/*.js"
+    "<rootDir>/src/test/babel/**/*.js"
   ],
   "testPathIgnorePatterns": [
     "/node_modules/",

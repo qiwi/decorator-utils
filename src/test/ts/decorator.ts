@@ -1,9 +1,9 @@
 import {
-  CLASS,
   constructDecorator,
   createDecorator,
-  FIELD,
   getTargetType,
+  CLASS,
+  FIELD,
   METHOD,
   PARAM,
 } from '../../main/ts'
@@ -327,7 +327,8 @@ describe('decoratorUtils tsc', () => {
     it('empty allowedType array should be ignored', () => {
       const decorator = constructDecorator(
         ({ targetType, target, args: [param] }) => {
-          return (value: unknown) => param || 'qux'
+          if (targetType === 'class') return class Bar {}
+          if (targetType === 'method') return (value: unknown) => param || 'qux'
         },
         [],
       )
@@ -404,7 +405,7 @@ describe('decoratorUtils tsc', () => {
           args: ['method'],
           descriptor: {
             configurable: true,
-            enumerable: true,
+            enumerable: false,
             writable: true,
             value: expect.any(Function),
           },

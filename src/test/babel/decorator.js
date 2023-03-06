@@ -1,10 +1,10 @@
 import {
-  CLASS,
   constructDecorator,
-  FIELD,
   getTargetType,
+  CLASS,
+  FIELD,
   METHOD,
-} from '../../../target/bundle/decorator-utils.js'
+} from '../../../target/cjs/index.js'
 
 const noop = () => { /* noop */ }
 

@@ -1,5 +1,7 @@
 /** @module @qiwi/decorator-utils */
 
+import { DecoratorContext } from '@qiwi/decorator-utils/dc'
+
 import { ICallable } from '@qiwi/substrate'
 
 export { ICallable } from '@qiwi/substrate'
@@ -19,6 +21,8 @@ export interface IReducible {
   hasOwnProperty(name: string): boolean
   [key: string]: IAnyType
 }
+
+export type IRuntimeContext = IPropName | DecoratorContext
 
 export type IDescriptor = PropertyDescriptor
 

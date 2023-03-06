@@ -1,4 +1,4 @@
-import { IMetadataProvider } from '@qiwi/substrate'
+import type { IMetadataProvider } from '@qiwi/substrate'
 
 import { get, set } from './utils'
 

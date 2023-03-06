@@ -1,0 +1,22 @@
+{
+  "include": ["*.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "./",
+    "lib": [
+      "esnext",
+      "decorators"
+    ],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "importHelpers": false,
+    "noEmitHelpers": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "declaration": false
+  },
+}

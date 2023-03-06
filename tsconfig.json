@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@qiwi/decorator-utils/dc": ["../../../target/dts/dc.d.ts"]
+    },
     "rootDir": "./src/main/ts/",
     "baseUrl": "./src/main/ts/",
-    "moduleResolution": "node",
-    "target": "es5",
     "lib": [
-      "es6",
       "esnext"
     ],
-    "module": "ES2015",
-    "outDir": "./target/es5",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./target/cjs",
     "strict": true,
     "importHelpers": false,
     "noEmitHelpers": false,
@@ -24,5 +26,8 @@
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/test"
+  ]
 }

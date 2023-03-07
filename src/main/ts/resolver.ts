@@ -43,10 +43,11 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   if (typeof ctx !== 'object') {
     return null
   }
-  const ctor = (this as any)?.constructor
+  const { kind } = ctx
+  const ctor = kind === CLASS ? target : null
 
   return {
-    targetType: ctx.kind,
+    targetType: kind,
     ctor,
     proto: ctor?.prototype,
     target

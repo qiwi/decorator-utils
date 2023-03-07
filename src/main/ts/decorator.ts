@@ -85,7 +85,7 @@ const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
 }
 
 const decorateClass: IDecoratorApplier = (handler, context) => {
-  const { target, proto = target.prototype } = context
+  const { target, proto } = context
 
   Object.defineProperties(
     proto,

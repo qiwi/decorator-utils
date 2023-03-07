@@ -1,3 +1,11 @@
+## [4.1.0](https://github.com/qiwi/decorator-utils/compare/v4.0.0...v4.1.0) (2023-03-07)
+
+### Features
+* feat: introduce `kind` alias for `targetType` (#170) ([40d38aa](https://github.com/qiwi/decorator-utils/commit/40d38aada7e11cc211210f0016c4c6459d3ca893))
+
+### Fixes & improvements
+* fix: add proto fallback for stage-3 class decorators ([a2d770d](https://github.com/qiwi/decorator-utils/commit/a2d770d9dbaf2206f83021f3b69d16b1ed55b903))
+
 ## [4.0.0](https://github.com/qiwi/decorator-utils/compare/v3.3.0...v4.0.0) (2023-03-07)
 
 ### Features

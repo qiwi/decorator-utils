@@ -44,8 +44,9 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   const ctor = kind === CLASS ? target : null
 
   return {
-    target,
+    kind,
     targetType: kind,
+    target,
     ctor,
     proto: ctor?.prototype
   }
@@ -54,6 +55,7 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
 export const getClassDecoratorContext: IResolver = (target) =>
   isFunction(target)
     ? {
+        kind: CLASS,
         targetType: CLASS,
         target,
         ctor: target,
@@ -68,6 +70,7 @@ export const getMethodDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string' && typeof descriptor === 'object' && isFunction(descriptor.value)
     ? {
+        kind: METHOD,
         targetType: METHOD,
         target: descriptor.value,
         ctor: target.constructor,
@@ -84,6 +87,7 @@ export const getParamDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string' && typeof descriptor === 'number'
     ? {
+        kind: PARAM,
         targetType: PARAM,
         target: target[propName],
         ctor: target.constructor,
@@ -100,6 +104,7 @@ export const getFieldDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string'
     ? {
+        kind: FIELD,
         targetType: FIELD,
         ctor: target.constructor,
         proto: target,

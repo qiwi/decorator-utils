@@ -126,6 +126,7 @@ class Foo {
 This data describes the specifics of the decorated target, decorator arguments and so on.
 ```typescript
 export type IDecoratorHandlerContext = {
+  kind: ITargetType | null // targetType alias
   targetType: ITargetType | null
   target: ITarget
   proto: IProto

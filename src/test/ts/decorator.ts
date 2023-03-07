@@ -390,6 +390,7 @@ describe('decoratorUtils tsc', () => {
 
       expect(meta).toEqual({
         class: {
+          kind: CLASS,
           targetType: CLASS,
           target: Foo,
           ctor: Foo,
@@ -397,6 +398,7 @@ describe('decoratorUtils tsc', () => {
           args: ['class'],
         },
         method: {
+          kind: METHOD,
           targetType: METHOD,
           target: Foo.prototype.foo,
           propName: 'foo',
@@ -411,6 +413,7 @@ describe('decoratorUtils tsc', () => {
           },
         },
         p0: {
+          kind: PARAM,
           targetType: PARAM,
           target: Foo.prototype.foo,
           propName: 'foo',
@@ -420,6 +423,7 @@ describe('decoratorUtils tsc', () => {
           args: ['p0'],
         },
         p2: {
+          kind: PARAM,
           targetType: PARAM,
           target: Foo.prototype.foo,
           propName: 'foo',

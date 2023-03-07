@@ -213,6 +213,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          persist-credentials: false
           ref: master
 
       - name: Restore artifact from cache (if exists)
@@ -266,14 +267,13 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Release
+
+      - name: Semantic Release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GH_USER: 'qiwibot'
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GIT_AUTHOR_EMAIL: 'opensource@qiwi.com'
-          GIT_COMMITTER_EMAIL: 'opensource@qiwi.com'
-          GIT_AUTHOR_NAME: '@qiwibot'
-          GIT_COMMITTER_NAME: '@qiwibot'
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false
-        run: npx -p @qiwi/semrel-toolkit semrel -e @qiwi/semrel-config
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIT_AUTHOR_NAME: ${{ secrets.GIT_AUTHOR_NAME }}
+          GIT_AUTHOR_EMAIL: ${{ secrets.GIT_AUTHOR_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
+          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
+        run: npm_config_yes=true npx zx-semrel

@@ -1,10 +1,9 @@
 /** @module @qiwi/decorator-utils */
 
-import { DecoratorContext } from '@qiwi/decorator-utils/dc'
 
-import { ICallable } from '@qiwi/substrate'
+import type { ICallable } from '@qiwi/substrate'
 
-export { ICallable } from '@qiwi/substrate'
+export type { ICallable } from '@qiwi/substrate'
 
 export interface IDecorator {
   (...args: Array<any>): any

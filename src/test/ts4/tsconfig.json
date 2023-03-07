@@ -1,10 +1,13 @@
 {
-  "include": ["*.ts"],
+  "include": ["index.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "rootDir": "./",
-    "baseUrl": "./",
-    "outDir": "./",
+    "paths": {
+      "@qiwi/decorator-utils": ["../../../target/dts/index.legacy.d.ts"]
+    },
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": ".",
     "lib": [
       "esnext",
     ],
@@ -16,6 +19,6 @@
     "noEmitHelpers": false,
     "declaration": false,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
   }
 }

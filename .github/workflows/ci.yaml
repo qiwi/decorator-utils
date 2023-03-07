@@ -31,7 +31,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Download artifact
         uses: qiwi-forks/action-download-artifact@v2
@@ -93,7 +93,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - uses: actions/cache@v3
         id: yarn-cache
@@ -131,6 +131,8 @@ jobs:
       - name: Unpack artifact
         run: tar -xvf artifact.tar
 
+      - run: yarn build
+
       - name: Test
 #        env:
 #          NODE_OPTIONS: "--max_old_space_size=4096"
@@ -152,7 +154,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-22.04 ]
-        node-version: [ 16 ]
+        node-version: [ 18 ]
     name: Test (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
@@ -197,8 +199,10 @@ jobs:
       - name: Install deps
         run: yarn
 
+      - run: yarn build
+
       - name: Full test
-        if: matrix.node-version == '16' && matrix.os == 'ubuntu-22.04'
+        if: matrix.node-version == '18' && matrix.os == 'ubuntu-22.04'
 #        env:
 #          NODE_OPTIONS: "--max_old_space_size=4096"
         run: yarn test
@@ -250,7 +254,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Codeclimate
         uses: paambaati/codeclimate-action@v3.2.0

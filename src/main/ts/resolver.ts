@@ -8,7 +8,6 @@ import {
   IRuntimeContext,
   ITarget,
   ITargetType,
-
 } from './interface'
 import { isFunction } from './utils'
 
@@ -20,8 +19,6 @@ export const ACCESSOR = 'accessor'
 export const GETTER = 'getter'
 export const SETTER = 'setter'
 export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM, ACCESSOR, GETTER, SETTER }
-
-// class DecoratorContext {}
 
 type IResolver = {
   (
@@ -47,16 +44,18 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   const ctor = kind === CLASS ? target : null
 
   return {
+    kind,
     targetType: kind,
+    target,
     ctor,
-    proto: ctor?.prototype,
-    target
+    proto: ctor?.prototype
   }
 }
 
 export const getClassDecoratorContext: IResolver = (target) =>
   isFunction(target)
     ? {
+        kind: CLASS,
         targetType: CLASS,
         target,
         ctor: target,
@@ -71,6 +70,7 @@ export const getMethodDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string' && typeof descriptor === 'object' && isFunction(descriptor.value)
     ? {
+        kind: METHOD,
         targetType: METHOD,
         target: descriptor.value,
         ctor: target.constructor,
@@ -87,6 +87,7 @@ export const getParamDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string' && typeof descriptor === 'number'
     ? {
+        kind: PARAM,
         targetType: PARAM,
         target: target[propName],
         ctor: target.constructor,
@@ -103,6 +104,7 @@ export const getFieldDecoratorContext: IResolver = (
 ) =>
   typeof propName === 'string'
     ? {
+        kind: FIELD,
         targetType: FIELD,
         ctor: target.constructor,
         proto: target,

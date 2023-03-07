@@ -37,6 +37,7 @@ export type IInstance = {
 export type IDecoratorArgs = any[]
 
 export type IDecoratorContext = {
+  kind: ITargetType
   targetType: ITargetType
   target: ITarget
   proto: IProto

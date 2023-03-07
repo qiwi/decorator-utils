@@ -257,7 +257,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageLocations: |
-            ${{github.workspace}}/coverage/*.lcov:lcov
+            ${{github.workspace}}/target/coverage/lcov.info:lcov
 
       - uses: actions/cache@v3
         id: yarn-cache

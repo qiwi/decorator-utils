@@ -22,7 +22,7 @@ import {
 } from './utils'
 
 /**
- * Constructs decorator by given function.
+ * Constructs decorator by a given function.
  * Holywar goes here: https://github.com/wycats/javascript-decorators/issues/23
  * @param {IHandler} handler
  * @param {ITargetTypes} [allowedTypes]
@@ -85,7 +85,7 @@ const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
 }
 
 const decorateClass: IDecoratorApplier = (handler, context) => {
-  const { proto, target } = context
+  const { target, proto = target.prototype } = context
 
   Object.defineProperties(
     proto,

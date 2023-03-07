@@ -1,3 +1,14 @@
+## [4.0.0](https://github.com/qiwi/decorator-utils/compare/v3.3.0...v4.0.0) (2023-03-07)
+
+### Features
+* feat: provide support for stage-3 decorator proposal ([a241b2d](https://github.com/qiwi/decorator-utils/commit/a241b2d8103ff88bb0499a2f2b71d2da9c71b6a7))
+
+### BREAKING CHANGES
+* decorator context has precedence over legacy propname signature ([a241b2d](https://github.com/qiwi/decorator-utils/commit/a241b2d8103ff88bb0499a2f2b71d2da9c71b6a7))
+
+### Fixes & improvements
+* docs: mention TypeScript v5 decorators ([0d1767d](https://github.com/qiwi/decorator-utils/commit/0d1767d034527efc5aafbb0af788ef4d4e9175da))
+
 ## [3.2.8](https://github.com/qiwi/decorator-utils/compare/v3.2.7...v3.2.8) (2022-02-12)
 
 

@@ -87,6 +87,8 @@ const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
 const decorateClass: IDecoratorApplier = (handler, context) => {
   const { target, proto } = context
 
+  console.log('dbg ctx', context)
+
   Object.defineProperties(
     proto,
     mapValues(getPrototypeMethods(target), (desc: IDescriptor) => {

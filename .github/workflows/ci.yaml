@@ -131,6 +131,8 @@ jobs:
       - name: Unpack artifact
         run: tar -xvf artifact.tar
 
+      - run: yarn build
+
       - name: Test
 #        env:
 #          NODE_OPTIONS: "--max_old_space_size=4096"

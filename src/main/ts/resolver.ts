@@ -8,7 +8,6 @@ import {
   IRuntimeContext,
   ITarget,
   ITargetType,
-
 } from './interface'
 import { isFunction } from './utils'
 
@@ -20,8 +19,6 @@ export const ACCESSOR = 'accessor'
 export const GETTER = 'getter'
 export const SETTER = 'setter'
 export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM, ACCESSOR, GETTER, SETTER }
-
-// class DecoratorContext {}
 
 type IResolver = {
   (
@@ -47,10 +44,10 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   const ctor = kind === CLASS ? target : null
 
   return {
+    target,
     targetType: kind,
     ctor,
-    proto: ctor?.prototype,
-    target
+    proto: ctor?.prototype
   }
 }
 

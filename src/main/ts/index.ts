@@ -3,5 +3,6 @@
 export { injectMeta } from './meta'
 export * from './resolver'
 export * from './decorator'
+export * from './interface'
 
-export {constructDecorator as default} from './decorator'
+export { constructDecorator as default } from './decorator'

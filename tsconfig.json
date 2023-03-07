@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@qiwi/decorator-utils/dc": ["../../../target/dts/dc.d.ts"]
-    },
     "rootDir": "./src/main/ts/",
     "baseUrl": "./src/main/ts/",
     "lib": [
@@ -10,7 +7,7 @@
     ],
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "outDir": "./target/cjs",
     "strict": true,
     "importHelpers": false,
@@ -25,7 +22,7 @@
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/main/ts/*.ts"],
   "exclude": [
     "node_modules",
     "src/test"

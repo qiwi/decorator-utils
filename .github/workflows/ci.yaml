@@ -95,6 +95,18 @@ jobs:
         with:
           node-version: 16
 
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ needs.init.outputs.yarn-cache-dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install deps
+        run: yarn
+
+      - run: npm link
+
       - name: Restore artifact from cache (if exists)
         uses: actions/cache@v3
         with:
@@ -118,16 +130,6 @@ jobs:
 
       - name: Unpack artifact
         run: tar -xvf artifact.tar
-
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ needs.init.outputs.yarn-cache-dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install deps
-        run: yarn
 
       - name: Test
 #        env:

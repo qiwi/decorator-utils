@@ -14,7 +14,8 @@ pids
 # Coverage
 flow-coverage
 lib-cov
-coverage/
+coverage
+coverage.*
 .nyc_output
 
 # Codeclimate
@@ -66,6 +67,7 @@ buildcache
 *.cert
 
 # Temp
+artifact.tar
 src/test/ts4/*.mjs
 src/test/ts4/*.js
 src/test/ts5/*.mjs

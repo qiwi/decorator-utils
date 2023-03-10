@@ -4,10 +4,10 @@ import {
   IDecorator,
   IDecoratorArgs,
   IDecoratorContext,
+  IDecoratorOptions,
   IUniversalDecorator,
   IDescriptor,
   IHandler,
-  IParamIndex,
   ITargetType,
   ITargetTypes,
 } from './interface'
@@ -15,7 +15,6 @@ import { getDecoratorContext, CLASS, FIELD, METHOD, PARAM } from './resolver'
 import {
   getPrototypeMethods,
   isFunction,
-  isUndefined,
   mapValues,
 } from './utils'
 
@@ -23,12 +22,12 @@ import {
  * Constructs decorator by a given function.
  * Holywar goes here: https://github.com/wycats/javascript-decorators/issues/23
  * @param {IHandler} handler
- * @param {ITargetTypes} [allowedTypes]
+ * @param {IDecoratorOptions | ITargetTypes} [options]
  * @returns {function(...[any])}
  */
-export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs>(
-  handler: IHandler<A>,
-  allowedTypes?: ITargetTypes,
+export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs, H extends IHandler<A> = IHandler<A>>(
+  handler: H,
+  options?: IDecoratorOptions | ITargetTypes,
 ): IDecorator<A> => {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
@@ -45,23 +44,32 @@ export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs>(
     }
 
     const { targetType } = decoratorContext
+    const { allowedTypes } = normalizeOptions(options)
+
     assertTargetType(targetType, allowedTypes)
 
-    const _handler = getSafeHandler(handler as IHandler)
-
-    return decorate(_handler, decoratorContext, descriptor)
+    return decorate<H>(handler, decoratorContext)
   }
 }
 
-type IDecoratorApplier = (
-  handler: IHandler,
-  context: IDecoratorContext,
-  descriptor?: IDescriptor | IParamIndex,
-) => any
+const normalizeOptions = (options?: IDecoratorOptions | ITargetTypes): IDecoratorOptions => {
+  if (options === undefined) {
+    return {}
+  }
 
-const decorateParam: IDecoratorApplier = (handler, context) => handler(context)
+  if (typeof options === 'string' || Array.isArray(options)) {
+    return {
+      allowedTypes: options
+    }
+  }
 
-const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
+  return options
+}
+
+
+const decorateParam = <H extends IHandler>(handler: H, context: IDecoratorContext) => handler(context)
+
+const decorateField = <H extends IHandler>(handler: H, context: IDecoratorContext, descriptor: IDescriptor) => {
   if (descriptor) {
     // prettier-ignore
     // @ts-ignore
@@ -71,23 +79,28 @@ const decorateField: IDecoratorApplier = (handler, context, descriptor) => {
   }
 }
 
-const decorateMethod: IDecoratorApplier = (handler, context, descriptor) => {
-  const _handler = handler(context)
+const decorateMethod = <H extends IHandler>(handler: H, context: IDecoratorContext, descriptor?: IDescriptor) => {
+  const method = handler(context)
+
+  if (!isFunction(method)) {
+    return context.target
+  }
+
   if (typeof descriptor === 'object') {
-    descriptor.value = _handler
+    descriptor.value = method
     return
   }
 
-  return _handler
+  return method
 }
 
-const decorateClass: IDecoratorApplier = (handler, context) => {
+const decorateClass = <H extends IHandler>(handler: H, context: IDecoratorContext) => {
   const { target, proto } = context
 
   Object.defineProperties(
     proto,
-    mapValues(getPrototypeMethods(target), (desc: IDescriptor) => {
-      desc.value = handler({
+    mapValues(getPrototypeMethods(target), (desc: PropertyDescriptor) => {
+      desc.value = decorateMethod(handler,{
         ...context,
         descriptor: desc,
         targetType: METHOD,
@@ -97,27 +110,33 @@ const decorateClass: IDecoratorApplier = (handler, context) => {
     }),
   )
 
-  return handler(context)
+  const cl = handler(context)
+
+  if (!isFunction(cl)) {
+    return target
+  }
+
+  return cl
 }
 
-const decorate: IDecoratorApplier = (handler, context, descriptor) => {
-  const { targetType } = context
+const decorate = <H extends IHandler<any>>(handler: H, context: IDecoratorContext) => {
+  const { targetType, descriptor } = context
 
   switch (targetType) {
     case PARAM: {
-      return decorateParam(handler, context)
+      return decorateParam<H>(handler, context)
     }
 
     case FIELD: {
-      return decorateField(handler, context, descriptor)
+      return decorateField<H>(handler, context, descriptor as IDescriptor)
     }
 
     case METHOD: {
-      return decorateMethod(handler, context, descriptor)
+      return decorateMethod<H>(handler, context, descriptor as IDescriptor)
     }
 
     case CLASS: {
-      return decorateClass(handler, context)
+      return decorateClass<H>(handler, context)
     }
   }
 }
@@ -140,19 +159,19 @@ export const assertTargetType = (
   }
 }
 
-const getSafeHandler = (handler: IHandler): IHandler => (context) => {
-  const { targetType, target } = context
-  const _target = handler(context)
-
-  if (isUndefined(_target)) {
-    return target
-  }
-
-  if ((targetType === CLASS || targetType === METHOD) && !isFunction(_target)) {
-    return target
-  }
-
-  return _target
-}
+// const getSafeHandler = (handler: IHandler): IHandler => (context) => {
+//   const { targetType, target } = context
+//   const _target = handler(context)
+//
+//   if (isUndefined(_target)) {
+//     return target
+//   }
+//
+//   if ((targetType === CLASS || targetType === METHOD) && !isFunction(_target)) {
+//     return target
+//   }
+//
+//   return _target
+// }
 
 export const createDecorator = constructDecorator

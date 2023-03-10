@@ -26,7 +26,7 @@ type IResolver = {
     args: A,
     target: ITarget,
     propName: IRuntimeContext,
-    descriptor?: IDescriptor | IParamIndex | void,
+    descriptor?: IDescriptor | IParamIndex,
   ): IDecoratorContext<A> | null
 }
 
@@ -34,12 +34,12 @@ export const getDecoratorContext: IResolver = <A extends IDecoratorArgs = IDecor
   args: A,
   target: ITarget,
   propName: IRuntimeContext,
-  descriptor?: IDescriptor | IParamIndex | void,
+  descriptor?: IDescriptor | IParamIndex,
 ): IDecoratorContext<A> | null =>
   getModernDecoratorsContext<A>(args, target, propName) ||
-  getParamDecoratorContext<A>(args, target, propName, descriptor) ||
-  getMethodDecoratorContext<A>(args, target, propName, descriptor) ||
-  getFieldDecoratorContext<A>(args, target, propName, descriptor) ||
+  getParamDecoratorContext<A>(args, target, propName, descriptor as IParamIndex) ||
+  getMethodDecoratorContext<A>(args, target, propName, descriptor as IDescriptor) ||
+  getFieldDecoratorContext<A>(args, target, propName, descriptor as IDescriptor) ||
   getClassDecoratorContext<A>(args, target)
 
 // https://github.com/tc39/proposal-decorators
@@ -76,7 +76,7 @@ export const getMethodDecoratorContext = <A>(
   args: A,
   target: ITarget,
   propName: IRuntimeContext,
-  descriptor?: IDescriptor | IParamIndex | void,
+  descriptor?: IDescriptor,
 ) =>
   typeof propName === 'string' && typeof descriptor === 'object' && isFunction(descriptor.value)
     ? {
@@ -84,18 +84,18 @@ export const getMethodDecoratorContext = <A>(
       kind: METHOD,
       targetType: METHOD,
       target: descriptor.value,
-        ctor: target.constructor,
-        proto: target,
-        propName,
-        descriptor,
-      }
+      ctor: target.constructor,
+      proto: target,
+      propName,
+      descriptor,
+    }
     : null
 
 export const getParamDecoratorContext = <A extends IDecoratorArgs>(
   args: A,
   target: ITarget,
   propName: IRuntimeContext,
-  descriptor?: IDescriptor | IParamIndex | void,
+  descriptor?: IParamIndex,
 ) =>
   typeof propName === 'string' && typeof descriptor === 'number'
     ? {
@@ -114,7 +114,7 @@ export const getFieldDecoratorContext = <A extends IDecoratorArgs>(
   args: A,
   target: ITarget,
   propName: IRuntimeContext,
-  descriptor?: IDescriptor | IParamIndex | void,
+  descriptor?: IDescriptor,
 ) =>
   typeof propName === 'string'
     ? {
@@ -124,10 +124,8 @@ export const getFieldDecoratorContext = <A extends IDecoratorArgs>(
       ctor: target.constructor,
       proto: target,
       propName,
-      target: descriptor
-        ? // @ts-ignore
-          descriptor.initializer
-        : target,
+      descriptor,
+      target: descriptor?.initializer || target
     }
     : null
 
@@ -141,6 +139,6 @@ export const getFieldDecoratorContext = <A extends IDecoratorArgs>(
 export const getTargetType = (
   target: ITarget,
   propName: IPropName,
-  descriptor: IDescriptor | IParamIndex | void,
+  descriptor: IDescriptor | IParamIndex,
 ): ITargetType | null =>
   getDecoratorContext([], target, propName, descriptor)?.targetType || null

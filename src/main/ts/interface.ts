@@ -1,6 +1,5 @@
 /** @module @qiwi/decorator-utils */
 
-
 import type { ICallable } from '@qiwi/substrate'
 
 export type { ICallable } from '@qiwi/substrate'
@@ -9,6 +8,11 @@ export type IDecoratorArgs = any[]
 
 export interface IDecorator<A extends IDecoratorArgs = IDecoratorArgs> {
   (...args: A): ICallable
+}
+
+export interface IDecoratorOptions<A extends IDecoratorArgs = IDecoratorArgs> {
+  handler?: IHandler<A>
+  allowedTypes?: ITargetTypes
 }
 
 export interface IUniversalDecorator {
@@ -33,7 +37,9 @@ export interface IReducible {
 
 export type IRuntimeContext = IPropName | DecoratorContext
 
-export type IDescriptor = PropertyDescriptor
+export type IDescriptor = PropertyDescriptor & {
+  initializer?: any
+}
 
 export interface IProto {
   [key: string]: IAnyType

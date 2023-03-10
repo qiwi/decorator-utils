@@ -1,15 +1,13 @@
 /** @module @qiwi/decorator-utils */
 
 import {
-  ICallable,
   IDecorator,
   IDecoratorArgs,
-  IDecoratorHandlerContext,
+  IDecoratorContext,
+  IUniversalDecorator,
   IDescriptor,
   IHandler,
   IParamIndex,
-  IPropName,
-  ITarget,
   ITargetType,
   ITargetTypes,
 } from './interface'
@@ -28,20 +26,20 @@ import {
  * @param {ITargetTypes} [allowedTypes]
  * @returns {function(...[any])}
  */
-export const constructDecorator = (
-  handler: IHandler,
+export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs>(
+  handler: IHandler<A>,
   allowedTypes?: ITargetTypes,
-): IDecorator => {
+): IDecorator<A> => {
   if (!isFunction(handler)) {
     throw new Error('Decorator handler must be a function')
   }
 
-  return (...args: IDecoratorArgs): ICallable => (
-    target: ITarget,
-    propName: IPropName,
-    descriptor: IDescriptor | IParamIndex,
+  return (...args: A): IUniversalDecorator => (
+    target,
+    propName,
+    descriptor,
   ): any => {
-    const decoratorContext = getDecoratorContext(target, propName, descriptor)
+    const decoratorContext = getDecoratorContext<A>(args, target, propName, descriptor)
     if (!decoratorContext) {
       return
     }
@@ -49,16 +47,15 @@ export const constructDecorator = (
     const { targetType } = decoratorContext
     assertTargetType(targetType, allowedTypes)
 
-    const handlerContext = { ...decoratorContext, args }
-    const _handler = getSafeHandler(handler)
+    const _handler = getSafeHandler(handler as IHandler)
 
-    return decorate(_handler, handlerContext, descriptor)
+    return decorate(_handler, decoratorContext, descriptor)
   }
 }
 
 type IDecoratorApplier = (
   handler: IHandler,
-  context: IDecoratorHandlerContext,
+  context: IDecoratorContext,
   descriptor?: IDescriptor | IParamIndex,
 ) => any
 
@@ -131,7 +128,7 @@ export const assertTargetType = (
 ): void => {
   if (allowedTypes?.length) {
     // @ts-ignore
-    const allowed: string[] = [].concat(allowedTypes) // eslint-disable-line
+    const allowed: ITargetType[] = [].concat(allowedTypes) // eslint-disable-line
 
     if (!allowed.includes(targetType)) {
       throw new Error(

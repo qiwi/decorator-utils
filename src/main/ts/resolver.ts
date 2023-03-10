@@ -1,6 +1,7 @@
 /** @module @qiwi/decorator-utils */
 
 import {
+  IDecoratorArgs,
   IDecoratorContext,
   IDescriptor,
   IParamIndex,
@@ -21,22 +22,28 @@ export const SETTER = 'setter'
 export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM, ACCESSOR, GETTER, SETTER }
 
 type IResolver = {
-  (
+  <A extends IDecoratorArgs = IDecoratorArgs>(
+    args: A,
     target: ITarget,
     propName: IRuntimeContext,
-    descriptor: IDescriptor | IParamIndex | void,
-  ): IDecoratorContext | null
+    descriptor?: IDescriptor | IParamIndex | void,
+  ): IDecoratorContext<A> | null
 }
 
-export const getDecoratorContext: IResolver = (...args) =>
-  getModernDecoratorsContext(...args) ||
-  getParamDecoratorContext(...args) ||
-  getMethodDecoratorContext(...args) ||
-  getFieldDecoratorContext(...args) ||
-  getClassDecoratorContext(...args)
+export const getDecoratorContext: IResolver = <A extends IDecoratorArgs = IDecoratorArgs>(
+  args: A,
+  target: ITarget,
+  propName: IRuntimeContext,
+  descriptor?: IDescriptor | IParamIndex | void,
+): IDecoratorContext<A> | null =>
+  getModernDecoratorsContext<A>(args, target, propName) ||
+  getParamDecoratorContext<A>(args, target, propName, descriptor) ||
+  getMethodDecoratorContext<A>(args, target, propName, descriptor) ||
+  getFieldDecoratorContext<A>(args, target, propName, descriptor) ||
+  getClassDecoratorContext<A>(args, target)
 
 // https://github.com/tc39/proposal-decorators
-export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRuntimeContext) => {
+export const getModernDecoratorsContext = <A extends IDecoratorArgs>(args: A, target: ITarget, ctx: IRuntimeContext) => {
   if (typeof ctx !== 'object') {
     return null
   }
@@ -44,6 +51,7 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   const ctor = kind === CLASS ? target : null
 
   return {
+    args,
     kind,
     targetType: kind,
     target,
@@ -52,27 +60,30 @@ export const getModernDecoratorsContext: IResolver = (target: ITarget, ctx: IRun
   }
 }
 
-export const getClassDecoratorContext: IResolver = (target) =>
+export const getClassDecoratorContext = <A extends IDecoratorArgs>(args: A, target: ITarget) =>
   isFunction(target)
     ? {
-        kind: CLASS,
-        targetType: CLASS,
-        target,
-        ctor: target,
-        proto: target.prototype,
-      }
+      args,
+      kind: CLASS,
+      targetType: CLASS,
+      target,
+      ctor: target,
+      proto: target.prototype,
+    }
     : null
 
-export const getMethodDecoratorContext: IResolver = (
-  target,
-  propName,
-  descriptor,
+export const getMethodDecoratorContext = <A>(
+  args: A,
+  target: ITarget,
+  propName: IRuntimeContext,
+  descriptor?: IDescriptor | IParamIndex | void,
 ) =>
   typeof propName === 'string' && typeof descriptor === 'object' && isFunction(descriptor.value)
     ? {
-        kind: METHOD,
-        targetType: METHOD,
-        target: descriptor.value,
+      args,
+      kind: METHOD,
+      targetType: METHOD,
+      target: descriptor.value,
         ctor: target.constructor,
         proto: target,
         propName,
@@ -80,40 +91,44 @@ export const getMethodDecoratorContext: IResolver = (
       }
     : null
 
-export const getParamDecoratorContext: IResolver = (
-  target,
-  propName,
-  descriptor,
+export const getParamDecoratorContext = <A extends IDecoratorArgs>(
+  args: A,
+  target: ITarget,
+  propName: IRuntimeContext,
+  descriptor?: IDescriptor | IParamIndex | void,
 ) =>
   typeof propName === 'string' && typeof descriptor === 'number'
     ? {
-        kind: PARAM,
-        targetType: PARAM,
-        target: target[propName],
-        ctor: target.constructor,
-        proto: target,
-        propName,
-        paramIndex: descriptor,
-      }
+      args,
+      kind: PARAM,
+      targetType: PARAM,
+      target: target[propName],
+      ctor: target.constructor,
+      proto: target,
+      propName,
+      paramIndex: descriptor,
+    }
     : null
 
-export const getFieldDecoratorContext: IResolver = (
-  target,
-  propName,
-  descriptor,
+export const getFieldDecoratorContext = <A extends IDecoratorArgs>(
+  args: A,
+  target: ITarget,
+  propName: IRuntimeContext,
+  descriptor?: IDescriptor | IParamIndex | void,
 ) =>
   typeof propName === 'string'
     ? {
-        kind: FIELD,
-        targetType: FIELD,
-        ctor: target.constructor,
-        proto: target,
-        propName,
-        target: descriptor
-          ? // @ts-ignore
-            descriptor.initializer
-          : target,
-      }
+      args,
+      kind: FIELD,
+      targetType: FIELD,
+      ctor: target.constructor,
+      proto: target,
+      propName,
+      target: descriptor
+        ? // @ts-ignore
+          descriptor.initializer
+        : target,
+    }
     : null
 
 /**
@@ -128,4 +143,4 @@ export const getTargetType = (
   propName: IPropName,
   descriptor: IDescriptor | IParamIndex | void,
 ): ITargetType | null =>
-  getDecoratorContext(target, propName, descriptor)?.targetType || null
+  getDecoratorContext([], target, propName, descriptor)?.targetType || null

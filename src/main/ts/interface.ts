@@ -5,15 +5,25 @@ import type { ICallable } from '@qiwi/substrate'
 
 export type { ICallable } from '@qiwi/substrate'
 
-export interface IDecorator {
-  (...args: Array<any>): any
+export type IDecoratorArgs = any[]
+
+export interface IDecorator<A extends IDecoratorArgs = IDecoratorArgs> {
+  (...args: A): ICallable
+}
+
+export interface IUniversalDecorator {
+  (
+    target: ITarget,
+    propName: IRuntimeContext,
+    descriptor?: IDescriptor | IParamIndex,
+  ): any
 }
 
 export type IParamIndex = number
 export type IPropName = string
 export type IPropValue = any
 export type ITarget = any
-export type ITargetType = string
+export type ITargetType = 'method' | 'class' | 'field' | 'param' | 'accessor' | 'getter' | 'setter' | string
 export type ITargetTypes = ITargetType | Array<ITargetType>
 export type IAnyType = any
 export interface IReducible {
@@ -34,9 +44,8 @@ export type IInstance = {
   prototype?: IProto
 }
 
-export type IDecoratorArgs = any[]
-
-export type IDecoratorContext = {
+export type IDecoratorContext<A extends IDecoratorArgs = IDecoratorArgs> = {
+  args: A
   kind: ITargetType
   targetType: ITargetType
   target: ITarget
@@ -47,11 +56,7 @@ export type IDecoratorContext = {
   descriptor?: IDescriptor
 }
 
-export type IDecoratorHandlerContext = IDecoratorContext & {
-  args: IDecoratorArgs
-}
-
-export type IHandler = (context: IDecoratorHandlerContext) => ITarget
+export type IHandler<A extends IDecoratorArgs = IDecoratorArgs> = (context: IDecoratorContext<A>) => ITarget
 
 export type IMapIterator = {
   (value: IAnyType, key: any, obj: IAnyType): IAnyType

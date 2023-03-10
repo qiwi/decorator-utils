@@ -146,8 +146,7 @@ export const assertTargetType = (
   allowedTypes?: ITargetTypes,
 ): void => {
   if (allowedTypes?.length) {
-    // @ts-ignore
-    const allowed: ITargetType[] = [].concat(allowedTypes) // eslint-disable-line
+    const allowed: ITargetType[] = Array.isArray(allowedTypes) ? allowedTypes : [allowedTypes]
 
     if (!allowed.includes(targetType)) {
       throw new Error(
@@ -158,20 +157,5 @@ export const assertTargetType = (
     }
   }
 }
-
-// const getSafeHandler = (handler: IHandler): IHandler => (context) => {
-//   const { targetType, target } = context
-//   const _target = handler(context)
-//
-//   if (isUndefined(_target)) {
-//     return target
-//   }
-//
-//   if ((targetType === CLASS || targetType === METHOD) && !isFunction(_target)) {
-//     return target
-//   }
-//
-//   return _target
-// }
 
 export const createDecorator = constructDecorator

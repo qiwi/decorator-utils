@@ -1,3 +1,8 @@
+## [4.2.0](https://github.com/qiwi/decorator-utils/compare/v4.1.0...v4.2.0) (2023-03-10)
+
+### Features
+* feat: pass decorator args type to handler signature ([ed1b371](https://github.com/qiwi/decorator-utils/commit/ed1b371061e5ca475214f2e1c639da487b05e1b1))
+
 ## [4.1.0](https://github.com/qiwi/decorator-utils/compare/v4.0.0...v4.1.0) (2023-03-07)
 
 ### Features

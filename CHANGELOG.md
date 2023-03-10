@@ -1,3 +1,8 @@
+## [4.3.0](https://github.com/qiwi/decorator-utils/compare/v4.2.0...v4.3.0) (2023-03-10)
+
+### Features
+* feat: introduce decoratorOptions ([95c3eaa](https://github.com/qiwi/decorator-utils/commit/95c3eaa1a5dc60e2aea9b8399e92eb7cc404c92e))
+
 ## [4.2.0](https://github.com/qiwi/decorator-utils/compare/v4.1.0...v4.2.0) (2023-03-10)
 
 ### Features

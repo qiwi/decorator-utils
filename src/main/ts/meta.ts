@@ -1,7 +1,7 @@
 import type {ICallable, IMetadataProvider} from '@qiwi/substrate'
 
 import {get, set} from './utils'
-import {CLASS} from "./resolver";
+import {CLASS} from './resolver'
 
 export const injectMeta = (
   prv: IMetadataProvider,
@@ -38,7 +38,7 @@ export const setRef = (kind: 'method' | 'class', {
   classRefs,
   methodRefs
 }: TRefStore, ctor: ICallable, name = ''): void => {
-  if (kind === 'class') {
+  if (kind === CLASS) {
     classRefs.add(ctor)
     return
   }

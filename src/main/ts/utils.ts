@@ -1,16 +1,15 @@
 /** @module @qiwi/decorator-utils */
 
-import isFunction from 'lodash.isfunction'
-
 import reduce from 'lodash.reduce'
 
 import { IDescriptor, IInstance, IProto, IReducible } from './interface'
 
 export {default as get} from 'lodash.get'
-export {default as isUndefined} from 'lodash.isundefined'
-export {default as mapValues} from 'lodash.mapvalues'
 export {default as set} from 'lodash.set'
-export {default as isFunction} from 'lodash.isfunction'
+export {default as mapValues} from 'lodash.mapvalues'
+
+export const isFunction = (fn: any): boolean =>
+  typeof fn === 'function'
 
 /**
  * Extracts prototype methods of instance.

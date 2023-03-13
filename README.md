@@ -121,11 +121,11 @@ class Foo {
 }
 ```
 
-#### IDecoratorHandlerContext
+#### Context
 `constructDecorator` factory provides the handler access to the decorator context.
 This data describes the specifics of the decorated target, decorator arguments and so on.
 ```typescript
-export type IDecoratorHandlerContext = {
+type IDecoratorHandlerContext = {
   kind: ITargetType | null // targetType alias
   targetType: ITargetType | null
   target: ITarget
@@ -135,6 +135,29 @@ export type IDecoratorHandlerContext = {
   paramIndex?: IParamIndex
   descriptor?: IDescriptor
   args: IDecoratorArgs
+}
+```
+
+#### Options
+You may set additional options to apply some decorator asserts: allowed target types, repeatable or not.
+
+```ts
+const plus = constructDecorator(
+  ({ targetType, target, args: [param] }) => {
+    return (value: number) => target(value) + param
+  },
+  {
+    allowedTypes: METHOD,
+    repeatable: true,
+  },
+)
+
+class Foo {
+  @plus(2)
+  @plus(1)
+  bar(v: number) {
+    return v
+  }
 }
 ```
 

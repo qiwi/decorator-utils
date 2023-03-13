@@ -47,3 +47,8 @@ export function getPrototypeMethods(
     memo,
   )
 }
+
+export function getClassChain(ctor: any): any[] {
+  const proto = Object.getPrototypeOf(ctor)
+  return [ctor, ...(proto ? getClassChain(proto) : [])]
+}

@@ -2,10 +2,15 @@ import assert from 'node:assert'
 import {createDecorator, METHOD, CLASS} from '@qiwi/decorator-utils'
 
 const plus = createDecorator(
-  ({ targetType, target, args: [param] }) => {
-    return (value: number) => target(value) + param
+  function ({ targetType, target, args: [param] }) {
+    return (value: number) => {
+      return target(value) + param
+    }
   },
-  METHOD,
+  {
+    allowedTypes: METHOD,
+    repeatable: true,
+  },
 )
 
 const withPing = createDecorator(({targetType, target}) => {

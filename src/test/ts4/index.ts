@@ -5,7 +5,10 @@ const plus = createDecorator(
   ({ targetType, target, args: [param] }) => {
     return (value: number) => target(value) + param
   },
-  METHOD,
+  {
+    allowedTypes: METHOD,
+    repeatable: true,
+  },
 )
 
 class Foo {

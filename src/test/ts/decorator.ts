@@ -370,13 +370,10 @@ describe('decoratorUtils tsc', () => {
 
   describe('context', () => {
     it('allows to operate with meta', () => {
-      const meta: any = {}
+      const meta: any = []
       const decorator = constructDecorator(
         (context: IDecoratorContext) => {
-          const {
-            args: [arg],
-          } = context
-          meta[arg] = context
+          meta.push(context)
         },
       )
 
@@ -388,16 +385,28 @@ describe('decoratorUtils tsc', () => {
         }
       }
 
-      expect(meta).toEqual({
-        class: {
-          kind: CLASS,
-          targetType: CLASS,
-          target: Foo,
+      expect(meta).toEqual([
+        {
+          kind: PARAM,
+          targetType: PARAM,
+          target: Foo.prototype.foo,
+          propName: 'foo',
+          paramIndex: 2,
           ctor: Foo,
           proto: Foo.prototype,
-          args: ['class'],
+          args: ['p2'],
         },
-        method: {
+        {
+          kind: PARAM,
+          targetType: PARAM,
+          target: Foo.prototype.foo,
+          propName: 'foo',
+          paramIndex: 0,
+          ctor: Foo,
+          proto: Foo.prototype,
+          args: ['p0'],
+        },
+        {
           kind: METHOD,
           targetType: METHOD,
           target: Foo.prototype.foo,
@@ -412,27 +421,29 @@ describe('decoratorUtils tsc', () => {
             value: expect.any(Function),
           },
         },
-        p0: {
-          kind: PARAM,
-          targetType: PARAM,
+        {
+          args: [ 'class' ],
+          kind: 'class',
+          targetType: 'method',
           target: Foo.prototype.foo,
-          propName: 'foo',
-          paramIndex: 0,
           ctor: Foo,
           proto: Foo.prototype,
-          args: ['p0'],
+          descriptor: {
+            value: Foo.prototype.foo,
+            writable: true,
+            enumerable: false,
+            configurable: true
+          }
         },
-        p2: {
-          kind: PARAM,
-          targetType: PARAM,
-          target: Foo.prototype.foo,
-          propName: 'foo',
-          paramIndex: 2,
+        {
+          kind: CLASS,
+          targetType: CLASS,
+          target: Foo,
           ctor: Foo,
           proto: Foo.prototype,
-          args: ['p2'],
+          args: ['class']
         },
-      })
+      ])
     })
   })
 })

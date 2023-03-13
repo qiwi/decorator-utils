@@ -21,42 +21,46 @@ export const GETTER = 'getter'
 export const SETTER = 'setter'
 export const TARGET_TYPES = { METHOD, CLASS, FIELD, PARAM, ACCESSOR, GETTER, SETTER }
 
-type IResolver = {
-  <A extends IDecoratorArgs = IDecoratorArgs>(
-    args: A,
-    target: ITarget,
-    propName: IRuntimeContext,
-    descriptor?: IDescriptor | IParamIndex,
-  ): IDecoratorContext<A> | null
+export const getDecoratorContext = <A extends IDecoratorArgs = IDecoratorArgs>(
+  args: A,
+  target: ITarget,
+  propName: IRuntimeContext,
+  descriptor?: IDescriptor | IParamIndex,
+  self?: any,
+): IDecoratorContext<A> | null => {
+  return getModernDecoratorsContext<A>(args, target, propName, self) ||
+    getLegacyDecoratorContext<A>(args, target, propName, descriptor)
 }
 
-export const getDecoratorContext: IResolver = <A extends IDecoratorArgs = IDecoratorArgs>(
+export const getLegacyDecoratorContext = <A extends IDecoratorArgs = IDecoratorArgs>(
   args: A,
   target: ITarget,
   propName: IRuntimeContext,
   descriptor?: IDescriptor | IParamIndex,
 ): IDecoratorContext<A> | null =>
-  getModernDecoratorsContext<A>(args, target, propName) ||
   getParamDecoratorContext<A>(args, target, propName, descriptor as IParamIndex) ||
   getMethodDecoratorContext<A>(args, target, propName, descriptor as IDescriptor) ||
   getFieldDecoratorContext<A>(args, target, propName, descriptor as IDescriptor) ||
   getClassDecoratorContext<A>(args, target)
 
-// https://github.com/tc39/proposal-decorators
-export const getModernDecoratorsContext = <A extends IDecoratorArgs>(args: A, target: ITarget, ctx: IRuntimeContext) => {
+export const getModernDecoratorsContext = <A extends IDecoratorArgs>(args: A, target: ITarget, ctx: IRuntimeContext, self: any) => {
   if (typeof ctx !== 'object') {
     return null
   }
-  const { kind } = ctx
-  const ctor = kind === CLASS ? target : null
+
+  const { kind, name } = ctx
+  const ctor = kind === CLASS ? target : self?.constructor
+  const proto = ctor.prototype || {}
+  const _target = kind === CLASS ? target : proto[name] || target
 
   return {
     args,
     kind,
     targetType: kind,
-    target,
+    target: _target,
+    propName: name as string,
     ctor,
-    proto: ctor?.prototype
+    proto
   }
 }
 

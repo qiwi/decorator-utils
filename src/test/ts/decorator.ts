@@ -9,6 +9,7 @@ import {
 } from '../../main/ts'
 import { IDecoratorContext } from '../../main/ts/interface'
 
+const echo = <V = any>(v: V): V => v
 const noop = () => {
   /* noop */
 }
@@ -351,7 +352,10 @@ describe('decoratorUtils tsc', () => {
         ({ targetType, target, args: [param] }) => {
           return (value: number) => target(value) + param
         },
-        METHOD,
+        {
+          allowedTypes: METHOD,
+          repeatable: true,
+        },
       )
 
       class Foo {
@@ -365,6 +369,47 @@ describe('decoratorUtils tsc', () => {
       const foo = new Foo()
 
       expect(foo.bar(1)).toBe(4)
+    })
+  })
+
+  describe('handles `repeatable` option', () => {
+    const Repeatable = constructDecorator(({target}) => target, { repeatable: true })
+    const NonRepeatable = constructDecorator(({target}) => target, { repeatable: false })
+
+    it('for classes', () => {
+      try {
+        @NonRepeatable()
+        @NonRepeatable()
+        class Foo {}
+
+        throw new Error('foo')
+      } catch (e: any){
+        expect(e.message).toBe('Decorator is not repeatable for \'class\'')
+      }
+
+      @Repeatable()
+      @Repeatable()
+      class Bar {}
+    })
+
+    it('for methods', () => {
+      try {
+        class Foo {
+          @NonRepeatable()
+          @NonRepeatable()
+          f() { return 'f' }
+        }
+
+        throw new Error('foo')
+      } catch (e: any){
+        expect(e.message).toBe('Decorator is not repeatable for \'method\'')
+      }
+
+      class Bar {
+        @Repeatable()
+        @Repeatable()
+        b() { return 'b' }
+      }
     })
   })
 

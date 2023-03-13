@@ -13,6 +13,7 @@ export interface IDecorator<A extends IDecoratorArgs = IDecoratorArgs> {
 export interface IDecoratorOptions<A extends IDecoratorArgs = IDecoratorArgs> {
   handler?: IHandler<A>
   allowedTypes?: ITargetTypes
+  repeatable?: boolean
 }
 
 export interface IUniversalDecorator {

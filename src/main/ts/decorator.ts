@@ -11,12 +11,15 @@ import {
   ITargetType,
   ITargetTypes,
 } from './interface'
-import { getDecoratorContext, CLASS, FIELD, METHOD, PARAM } from './resolver'
+import {getDecoratorContext, CLASS, FIELD, METHOD, PARAM} from './resolver'
 import {
+  getClassChain,
   getPrototypeMethods,
   isFunction,
   mapValues,
 } from './utils'
+import {getRefStore, getRef, setRef, TRefStore} from './meta'
+import {ICallable} from '@qiwi/substrate'
 
 /**
  * Constructs decorator by a given function.
@@ -33,30 +36,34 @@ export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs, H 
     throw new Error('Decorator handler must be a function')
   }
 
-  return (...args: A): IUniversalDecorator => (
+  const udf = (...args: A): IUniversalDecorator => (
     target,
     propName,
     descriptor,
   ): any => {
-    const decoratorContext = getDecoratorContext<A>(args, target, propName, descriptor)
-    if (!decoratorContext) {
-      return
+
+    const cb = (self?: any) => {
+      const decoratorContext = getDecoratorContext<A>(args, target, propName, descriptor, self)
+      if (!decoratorContext) {
+        return
+      }
+
+      const store = getRefStore(udf)
+      checkConditions(decoratorContext, store, options)
+      return decorate<H>(decoratorContext, store, handler)
     }
 
-    const { targetType } = decoratorContext
-    const { allowedTypes } = normalizeOptions(options)
-
-    assertTargetType(targetType, allowedTypes)
-
-    return decorate<H>(handler, decoratorContext)
+    return typeof propName === 'object' && propName.kind === METHOD
+      ? propName.addInitializer(function() {
+        (this as any).constructor.prototype[propName.name] = cb(this)
+      })
+      : cb()
   }
+
+  return udf
 }
 
-const normalizeOptions = (options?: IDecoratorOptions | ITargetTypes): IDecoratorOptions => {
-  if (options === undefined) {
-    return {}
-  }
-
+const normalizeOptions = (options: IDecoratorOptions | ITargetTypes = {}): IDecoratorOptions => {
   if (typeof options === 'string' || Array.isArray(options)) {
     return {
       allowedTypes: options
@@ -66,6 +73,67 @@ const normalizeOptions = (options?: IDecoratorOptions | ITargetTypes): IDecorato
   return options
 }
 
+const checkConditions = (decoratorContext: IDecoratorContext, store: TRefStore, options?: IDecoratorOptions | ITargetTypes): void => {
+  const {targetType, ctor, propName} = decoratorContext
+  const {allowedTypes, repeatable} = normalizeOptions(options)
+
+  assertRepeatable(targetType, ctor, store, propName, repeatable)
+  assertTargetType(targetType, allowedTypes)
+}
+
+const assertRepeatable = (targetType: ITargetType, ctor: ICallable, store: TRefStore, propName = '', repeatable?: boolean): void => {
+  if (repeatable) {
+    return
+  }
+
+  const chain = getClassChain(ctor)
+  const refs = getRef(targetType, store, propName)
+
+  if (chain.some((v: ICallable) => refs.has(v))) {
+    throw new Error(`Decorator is not repeatable for '${targetType}'`)
+  }
+}
+
+export const assertTargetType = (
+  targetType: ITargetType,
+  allowedTypes?: ITargetTypes,
+): void => {
+  if (allowedTypes?.length) {
+    const allowed: ITargetType[] = Array.isArray(allowedTypes) ? allowedTypes : [allowedTypes]
+
+    if (!allowed.includes(targetType)) {
+      throw new Error(
+        `Decorator is compatible with ${allowed
+          .map((v: ITargetType) => `'${v}'`) // eslint-disable-line sonarjs/no-nested-template-literals
+          .join(', ')} only, but was applied to '${targetType}'`,
+      )
+    }
+  }
+}
+
+const decorate = <H extends IHandler<any>>(context: IDecoratorContext, store: TRefStore, handler: H) => {
+  const {targetType, descriptor, ctor, propName} = context
+
+  switch (targetType) {
+    case PARAM: {
+      return decorateParam<H>(handler, context)
+    }
+
+    case FIELD: {
+      return decorateField<H>(handler, context, descriptor as IDescriptor)
+    }
+
+    case METHOD: {
+      setRef(METHOD, store, ctor, propName)
+      return decorateMethod<H>(handler, context, descriptor as IDescriptor)
+    }
+
+    case CLASS: {
+      setRef(CLASS, store, ctor)
+      return decorateClass<H>(handler, context)
+    }
+  }
+}
 
 const decorateParam = <H extends IHandler>(handler: H, context: IDecoratorContext) => handler(context)
 
@@ -73,7 +141,7 @@ const decorateField = <H extends IHandler>(handler: H, context: IDecoratorContex
   if (descriptor) {
     // prettier-ignore
     // @ts-ignore
-    descriptor.initializer = handler({ ...context, target: descriptor.initializer })
+    descriptor.initializer = handler({...context, target: descriptor.initializer})
   } else {
     handler(context)
   }
@@ -95,12 +163,12 @@ const decorateMethod = <H extends IHandler>(handler: H, context: IDecoratorConte
 }
 
 const decorateClass = <H extends IHandler>(handler: H, context: IDecoratorContext) => {
-  const { target, proto } = context
+  const {target, proto} = context
 
   Object.defineProperties(
     proto,
     mapValues(getPrototypeMethods(target), (desc: PropertyDescriptor) => {
-      desc.value = decorateMethod(handler,{
+      desc.value = decorateMethod(handler, {
         ...context,
         descriptor: desc,
         targetType: METHOD,
@@ -117,45 +185,6 @@ const decorateClass = <H extends IHandler>(handler: H, context: IDecoratorContex
   }
 
   return cl
-}
-
-const decorate = <H extends IHandler<any>>(handler: H, context: IDecoratorContext) => {
-  const { targetType, descriptor } = context
-
-  switch (targetType) {
-    case PARAM: {
-      return decorateParam<H>(handler, context)
-    }
-
-    case FIELD: {
-      return decorateField<H>(handler, context, descriptor as IDescriptor)
-    }
-
-    case METHOD: {
-      return decorateMethod<H>(handler, context, descriptor as IDescriptor)
-    }
-
-    case CLASS: {
-      return decorateClass<H>(handler, context)
-    }
-  }
-}
-
-export const assertTargetType = (
-  targetType: ITargetType,
-  allowedTypes?: ITargetTypes,
-): void => {
-  if (allowedTypes?.length) {
-    const allowed: ITargetType[] = Array.isArray(allowedTypes) ? allowedTypes : [allowedTypes]
-
-    if (!allowed.includes(targetType)) {
-      throw new Error(
-        `Decorator is compatible with ${allowed
-          .map((v: ITargetType) => `'${v}'`) // eslint-disable-line sonarjs/no-nested-template-literals
-          .join(', ')} only, but was applied to '${targetType}'`,
-      )
-    }
-  }
 }
 
 export const createDecorator = constructDecorator

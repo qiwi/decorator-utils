@@ -1,4 +1,4 @@
-import { getPrototypeMethods } from '../../main/ts/utils'
+import {getClassChain, getPrototypeMethods} from '../../main/ts/utils'
 
 describe('utils.js', () => {
   describe('#getPrototypeMethods', () => {
@@ -19,5 +19,15 @@ describe('utils.js', () => {
     it('resolves from instance', () => {
       expect(Object.keys(getPrototypeMethods(foo))).toEqual(['bar', 'baz'])
     })
+  })
+})
+
+describe('getClassChain', () => {
+  it('returns all prototypes', () => {
+    class Foo {}
+    class Bar extends Foo {}
+    class Baz extends Bar {}
+
+    expect(getClassChain(Baz)).toEqual([Baz, Bar, Foo, Function.prototype, Object.prototype])
   })
 })

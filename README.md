@@ -147,7 +147,7 @@ const plus = constructDecorator(
     return (value: number) => target(value) + param
   },
   {
-    allowedTypes: METHOD,
+    allowedTypes: METHOD, // string | string[]
     repeatable: true,
   },
 )

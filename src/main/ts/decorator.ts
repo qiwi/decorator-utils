@@ -55,8 +55,8 @@ export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs, H 
     }
 
     return typeof propName === 'object' && propName.kind === METHOD
-      ? propName.addInitializer(once(function() {
-        (this as any).constructor.prototype[propName.name] = cb(this)
+      ? propName.addInitializer(once(function(this: any) {
+        this.constructor.prototype[propName.name] = cb(this)
       }))
       : cb()
   }

@@ -1,3 +1,11 @@
+## [4.4.0](https://github.com/qiwi/decorator-utils/compare/v4.3.0...v4.4.0) (2023-03-14)
+
+### Fixes & improvements
+* fix: avoid multiple initializer invocation ([43d4a06](https://github.com/qiwi/decorator-utils/commit/43d4a066b39046785673cf2ac5d0daa6c89c8838))
+
+### Features
+* feat: introduce `repeatable` option ([a207868](https://github.com/qiwi/decorator-utils/commit/a207868f621f637db8263817e3f3eb3b13a381b6))
+
 ## [4.3.0](https://github.com/qiwi/decorator-utils/compare/v4.2.0...v4.3.0) (2023-03-10)
 
 ### Features

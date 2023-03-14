@@ -3,7 +3,9 @@ import {createDecorator, METHOD} from '@qiwi/decorator-utils'
 
 const plus = createDecorator(
   ({ targetType, target, args: [param] }) => {
-    return (value: number) => target(value) + param
+    return function (this: any, value: number) {
+      return target.call(this, value) + param
+    }
   },
   {
     allowedTypes: METHOD,
@@ -15,10 +17,19 @@ class Foo {
   @plus(2)
   @plus(1)
   bar(v: number) {
-    return v
+    return this.one() + v
+  }
+  one() {
+    return 1
   }
 }
 
-const f = new Foo()
+class Bar extends Foo {}
 
-assert.equal(f.bar(1), 4)
+const f = new Foo()
+const b = new Bar()
+
+assert.equal(f.bar(1), 5)
+assert.equal(f.bar(1), 5)
+assert.equal(b.bar(2), 6)
+assert.equal(b.bar(2), 6)

@@ -17,6 +17,7 @@ import {
   getPrototypeMethods,
   isFunction,
   mapValues,
+  once,
 } from './utils'
 import {getRefStore, getRef, setRef, TRefStore} from './meta'
 import {ICallable} from '@qiwi/substrate'
@@ -54,9 +55,9 @@ export const constructDecorator = <A extends IDecoratorArgs = IDecoratorArgs, H 
     }
 
     return typeof propName === 'object' && propName.kind === METHOD
-      ? propName.addInitializer(function() {
+      ? propName.addInitializer(once(function() {
         (this as any).constructor.prototype[propName.name] = cb(this)
-      })
+      }))
       : cb()
   }
 

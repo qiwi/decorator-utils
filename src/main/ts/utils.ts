@@ -7,6 +7,7 @@ import { IDescriptor, IInstance, IProto, IReducible } from './interface'
 export {default as get} from 'lodash.get'
 export {default as set} from 'lodash.set'
 export {default as mapValues} from 'lodash.mapvalues'
+export {default as once} from 'lodash.once'
 
 export const isFunction = (fn: any): boolean =>
   typeof fn === 'function'

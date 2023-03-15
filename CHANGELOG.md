@@ -1,3 +1,8 @@
+## [4.5.0](https://github.com/qiwi/decorator-utils/compare/v4.4.0...v4.5.0) (2023-03-15)
+
+### Features
+* feat: introduce decoratorCtx `name` as `propName` alias ([24fc5ac](https://github.com/qiwi/decorator-utils/commit/24fc5ac01692ff89eaa652189f33e287514220f4))
+
 ## [4.4.0](https://github.com/qiwi/decorator-utils/compare/v4.3.0...v4.4.0) (2023-03-14)
 
 ### Fixes & improvements

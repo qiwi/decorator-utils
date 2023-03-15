@@ -124,17 +124,19 @@ class Foo {
 #### Context
 `constructDecorator` factory provides the handler access to the decorator context.
 This data describes the specifics of the decorated target, decorator arguments and so on.
+
 ```typescript
 type IDecoratorHandlerContext = {
-  kind: ITargetType | null // targetType alias
+  args: IDecoratorArgs
+  kind: ITargetType | null        // targetType alias
   targetType: ITargetType | null
   target: ITarget
   proto: IProto
   ctor: Function
+  name?: IPropName                // targetType alias
   propName?: IPropName
   paramIndex?: IParamIndex
   descriptor?: IDescriptor
-  args: IDecoratorArgs
 }
 ```
 

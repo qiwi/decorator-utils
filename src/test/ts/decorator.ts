@@ -6,8 +6,8 @@ import {
   FIELD,
   METHOD,
   PARAM,
+  IDecoratorContext
 } from '../../main/ts'
-import { IDecoratorContext } from '../../main/ts/interface'
 
 const echo = <V = any>(v: V): V => v
 const noop = () => {
@@ -435,6 +435,7 @@ describe('decoratorUtils tsc', () => {
           kind: PARAM,
           targetType: PARAM,
           target: Foo.prototype.foo,
+          name: 'foo',
           propName: 'foo',
           paramIndex: 2,
           ctor: Foo,
@@ -445,6 +446,7 @@ describe('decoratorUtils tsc', () => {
           kind: PARAM,
           targetType: PARAM,
           target: Foo.prototype.foo,
+          name: 'foo',
           propName: 'foo',
           paramIndex: 0,
           ctor: Foo,
@@ -455,6 +457,7 @@ describe('decoratorUtils tsc', () => {
           kind: METHOD,
           targetType: METHOD,
           target: Foo.prototype.foo,
+          name: 'foo',
           propName: 'foo',
           ctor: Foo,
           proto: Foo.prototype,
@@ -468,7 +471,9 @@ describe('decoratorUtils tsc', () => {
         },
         {
           args: [ 'class' ],
-          kind: 'class',
+          name: 'foo',
+          propName: 'foo',
+          kind: 'method',
           targetType: 'method',
           target: Foo.prototype.foo,
           ctor: Foo,

@@ -1,5 +1,4 @@
-import type {ICallable, IMetadataProvider} from '@qiwi/substrate'
-
+import type {IPropName, ITargetType, ICallable, IMetadataProvider} from './interface'
 import {get, set} from './utils'
 import {CLASS} from './resolver'
 
@@ -18,7 +17,7 @@ export const injectMeta = (
 }
 
 export type TRefStore = {
-  methodRefs: Map<string, WeakSet<ICallable>>
+  methodRefs: Map<IPropName, WeakSet<ICallable>>
   classRefs: WeakSet<ICallable>
 }
 
@@ -34,10 +33,10 @@ export const getRefStore = (ctx: any): TRefStore => {
   return stores.get(ctx) as TRefStore
 }
 
-export const setRef = (kind: 'method' | 'class', {
+export const setRef = (kind: ITargetType, {
   classRefs,
   methodRefs
-}: TRefStore, ctor: ICallable, name = ''): void => {
+}: TRefStore, ctor: ICallable, name: IPropName = ''): void => {
   if (kind === CLASS) {
     classRefs.add(ctor)
     return
@@ -49,10 +48,10 @@ export const setRef = (kind: 'method' | 'class', {
   methodRefs.get(name)?.add(ctor)
 }
 
-export const getRef = (kind: string, {
+export const getRef = (kind: ITargetType, {
   classRefs,
   methodRefs
-}: TRefStore, name = ''): WeakSet<ICallable> => {
+}: TRefStore, name: IPropName = ''): WeakSet<ICallable> => {
   if (kind === CLASS) {
     return classRefs
   }

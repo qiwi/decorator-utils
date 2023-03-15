@@ -2,7 +2,7 @@
 
 import type { ICallable } from '@qiwi/substrate'
 
-export type { ICallable } from '@qiwi/substrate'
+export type { ICallable, IMetadataProvider } from '@qiwi/substrate'
 
 export type IDecoratorArgs = any[]
 
@@ -25,7 +25,7 @@ export interface IUniversalDecorator {
 }
 
 export type IParamIndex = number
-export type IPropName = string
+export type IPropName = string | symbol
 export type IPropValue = any
 export type ITarget = any
 export type ITargetType = 'method' | 'class' | 'field' | 'param' | 'accessor' | 'getter' | 'setter' | string
@@ -59,15 +59,9 @@ export type IDecoratorContext<A extends IDecoratorArgs = IDecoratorArgs> = {
   proto: IProto
   ctor: ICallable
   propName?: IPropName
+  name?: IPropName
   paramIndex?: IParamIndex
   descriptor?: IDescriptor
 }
 
 export type IHandler<A extends IDecoratorArgs = IDecoratorArgs> = (context: IDecoratorContext<A>) => ITarget
-
-export type IMapIterator = {
-  (value: IAnyType, key: any, obj: IAnyType): IAnyType
-}
-export type IReduceIterator = {
-  (result: IAnyType, value: IAnyType, key: string, obj: IAnyType): IAnyType
-}

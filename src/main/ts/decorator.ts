@@ -1,6 +1,7 @@
 /** @module @qiwi/decorator-utils */
 
 import {
+  ICallable,
   IDecorator,
   IDecoratorArgs,
   IDecoratorContext,
@@ -10,6 +11,7 @@ import {
   IHandler,
   ITargetType,
   ITargetTypes,
+  IPropName,
 } from './interface'
 import {getDecoratorContext, CLASS, FIELD, METHOD, PARAM} from './resolver'
 import {
@@ -20,7 +22,6 @@ import {
   once,
 } from './utils'
 import {getRefStore, getRef, setRef, TRefStore} from './meta'
-import {ICallable} from '@qiwi/substrate'
 
 /**
  * Constructs decorator by a given function.
@@ -82,7 +83,7 @@ const checkConditions = (decoratorContext: IDecoratorContext, store: TRefStore, 
   assertTargetType(targetType, allowedTypes)
 }
 
-const assertRepeatable = (targetType: ITargetType, ctor: ICallable, store: TRefStore, propName = '', repeatable?: boolean): void => {
+const assertRepeatable = (targetType: ITargetType, ctor: ICallable, store: TRefStore, propName: IPropName = '', repeatable?: boolean): void => {
   if (repeatable) {
     return
   }
@@ -168,19 +169,22 @@ const decorateClass = <H extends IHandler>(handler: H, context: IDecoratorContex
 
   Object.defineProperties(
     proto,
-    mapValues(getPrototypeMethods(target), (desc: PropertyDescriptor) => {
+    Object.entries(getPrototypeMethods(target)).reduce<PropertyDescriptorMap>((acc, [name, desc]) => {
       desc.value = decorateMethod(handler, {
         ...context,
         descriptor: desc,
+        name,
+        propName: name,
+        kind: METHOD,
         targetType: METHOD,
         target: desc.value,
       })
-      return desc
-    }),
+      acc[name] = desc
+      return acc
+    }, {})
   )
 
   const cl = handler(context)
-
   if (!isFunction(cl)) {
     return target
   }

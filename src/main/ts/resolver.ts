@@ -1,6 +1,6 @@
 /** @module @qiwi/decorator-utils */
 
-import {
+import type {
   IDecoratorArgs,
   IDecoratorContext,
   IDescriptor,
@@ -56,6 +56,7 @@ export const getModernDecoratorsContext = <A extends IDecoratorArgs>(args: A, ta
   return {
     args,
     kind,
+    name,
     targetType: kind,
     target: _target,
     propName: name as string,
@@ -86,6 +87,7 @@ export const getMethodDecoratorContext = <A>(
     ? {
       args,
       kind: METHOD,
+      name: propName,
       targetType: METHOD,
       target: descriptor.value,
       ctor: target.constructor,
@@ -104,6 +106,7 @@ export const getParamDecoratorContext = <A extends IDecoratorArgs>(
   typeof propName === 'string' && typeof descriptor === 'number'
     ? {
       args,
+      name: propName,
       kind: PARAM,
       targetType: PARAM,
       target: target[propName],
@@ -123,6 +126,7 @@ export const getFieldDecoratorContext = <A extends IDecoratorArgs>(
   typeof propName === 'string'
     ? {
       args,
+      name: propName,
       kind: FIELD,
       targetType: FIELD,
       ctor: target.constructor,

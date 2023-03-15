@@ -133,7 +133,7 @@ type IDecoratorHandlerContext = {
   target: ITarget
   proto: IProto
   ctor: Function
-  name?: IPropName                // targetType alias
+  name?: IPropName                // propName alias
   propName?: IPropName
   paramIndex?: IParamIndex
   descriptor?: IDescriptor

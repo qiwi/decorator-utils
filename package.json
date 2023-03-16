@@ -90,7 +90,7 @@
     "prettier-config-qiwi": "^2.0.1",
     "rimraf": "^4.4.0",
     "ts-jest": "^29.0.5",
-    "ts4": "npm:typescript@4",
+    "ts4": "npm:typescript@5",
     "ts5": "npm:typescript@5",
     "typedoc": "^0.23.26",
     "typescript": "^5.0.1-rc"

@@ -8,7 +8,6 @@
   "description": "Universal decorator factories made from scratch",
   "main": "./target/cjs/index.js",
   "module": "./target/esm/index.mjs",
-  "types": "./target/dts/index.d.ts",
   "exports": {
     ".": {
       "types@<5.0": "./target/dts/index.legacy.d.ts",

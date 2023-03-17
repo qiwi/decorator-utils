@@ -1,3 +1,8 @@
+## [4.5.1](https://github.com/qiwi/decorator-utils/compare/v4.5.0...v4.5.1) (2023-03-17)
+
+### Fixes & improvements
+* fix: provide legacy libdefs for ts < 5.0 ([4d7ba0f](https://github.com/qiwi/decorator-utils/commit/4d7ba0fef3748ce82ab544965099aaa221effb4a))
+
 ## [4.5.0](https://github.com/qiwi/decorator-utils/compare/v4.4.0...v4.5.0) (2023-03-15)
 
 ### Features

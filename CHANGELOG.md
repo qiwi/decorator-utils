@@ -1,3 +1,8 @@
+## [4.5.2](https://github.com/qiwi/decorator-utils/compare/v4.5.1...v4.5.2) (2023-03-17)
+
+### Fixes & improvements
+* fix: fix dts build path ([b3dcc91](https://github.com/qiwi/decorator-utils/commit/b3dcc91915108153c69dfa279f41814255ba9af4))
+
 ## [4.5.1](https://github.com/qiwi/decorator-utils/compare/v4.5.0...v4.5.1) (2023-03-17)
 
 ### Fixes & improvements

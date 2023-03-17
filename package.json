@@ -38,7 +38,7 @@
     "build": "concurrently 'npm:build:*'",
     "build:esm": "node ./src/scripts/build.cjs && mv target/esm/index.js target/esm/index.mjs",
     "build:cjs": "node ./src/scripts/build.cjs --cjs",
-    "build:dts": "node node_modules/ts5/bin/tsc -p tsconfig.json --emitDeclarationOnly --outDir target/dts && cp -R src/main/dts/ target/dts/",
+    "build:dts": "node node_modules/ts5/bin/tsc -p tsconfig.json --emitDeclarationOnly --outDir target/dts && cp src/main/dts/index.legacy.d.ts target/dts/index.legacy.d.ts",
     "build:docs": "typedoc --options src/main/typedoc",
     "yaf": "npx yarn-audit-fix --audit-level=moderate",
     "postupdate": "yarn && yarn yaf && yarn build && yarn test"

@@ -18,7 +18,6 @@ import {
   getClassChain,
   getPrototypeMethods,
   isFunction,
-  mapValues,
   once,
 } from './utils'
 import {getRefStore, getRef, setRef, TRefStore} from './meta'

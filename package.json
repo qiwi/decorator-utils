@@ -86,7 +86,7 @@
     "@types/lodash.set": "^4.3.7",
     "babel-jest": "^29.5.0",
     "babel-register-esm": "^1.2.4",
-    "concurrently": "^7.6.0",
+    "concurrently": "^8.0.0",
     "esbuild": "^0.17.12",
     "esbuild-node-externals": "^1.6.0",
     "eslint": "^8.36.0",

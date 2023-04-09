@@ -99,7 +99,7 @@
     "ts-jest": "^29.0.5",
     "ts4": "npm:typescript@4",
     "ts5": "npm:typescript@^5.0.2",
-    "typedoc": "^0.23.27",
+    "typedoc": "^0.24.0",
     "typescript": "npm:typescript@^5.0.2"
   },
   "dependencies": {

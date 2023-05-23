@@ -6,7 +6,7 @@
   "externalPattern": ["**/node_modules/**"],
   "excludePrivate": false,
   "hideGenerator": true,
-  "readme": "README.md",
-  "theme": "default",
-  "tsconfig": "../../../tsconfig.json"
+  "readme": "../../../README.md",
+  "tsconfig": "../../../tsconfig.json",
+  "theme": "default"
 }

@@ -4,7 +4,7 @@ import {
   CLASS,
   FIELD,
   METHOD,
-} from '../../../target/cjs/index.js'
+} from '../../../target/cjs/index.cjs'
 
 const noop = () => { /* noop */ }
 

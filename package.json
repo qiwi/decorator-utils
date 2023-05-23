@@ -1,7 +1,7 @@
 {
   "name": "@qiwi/decorator-utils",
   "alias": "@qiwi/decorator-utils",
-  "version": "4.5.2",
+  "version": "4.5.3",
   "publishConfig": {
     "access": "public"
   },

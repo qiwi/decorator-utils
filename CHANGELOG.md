@@ -1,3 +1,8 @@
+## [4.5.3](https://github.com/qiwi/decorator-utils/compare/v4.5.2...v4.5.3) (2023-05-23)
+
+### Fixes & improvements
+* perf: deps revision ([0cdc341](https://github.com/qiwi/decorator-utils/commit/0cdc34151dc395148aa51b412a4d673b0e9af019))
+
 ## [4.5.2](https://github.com/qiwi/decorator-utils/compare/v4.5.1...v4.5.2) (2023-03-17)
 
 ### Fixes & improvements

@@ -22,7 +22,7 @@
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
-  "include": ["src/main/ts/*.ts"],
+  "include": ["src/main/ts/"],
   "exclude": [
     "node_modules",
     "src/test"

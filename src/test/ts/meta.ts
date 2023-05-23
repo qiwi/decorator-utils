@@ -1,4 +1,4 @@
-import { IMetadataProvider } from '@qiwi/substrate'
+import type { IMetadataProvider } from '@qiwi/substrate'
 
 import { injectMeta } from '../../main/ts'
 import { get, set } from '../../main/ts/utils'

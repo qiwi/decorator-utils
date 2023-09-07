@@ -8,6 +8,7 @@ import {
   PARAM,
   IDecoratorContext
 } from '../../main/ts'
+import 'reflect-metadata'
 
 const echo = <V = any>(v: V): V => v
 const noop = () => {
@@ -48,6 +49,39 @@ describe('decoratorUtils tsc', () => {
         // @ts-ignore
         constructDecorator({})
       }).toThrow('Decorator handler must be a function')
+    })
+
+    it('keeps descriptor.value metadata', () => {
+      const DecoratorWithMeta = constructDecorator(({ descriptor, target }, ) => {
+        Reflect.defineMetadata('foo', 42, descriptor?.value)
+        return target
+      })
+
+      const Decorator = constructDecorator(() => {
+        return function () {
+          return '42'
+        }
+      })
+
+      class TestController {
+        @DecoratorWithMeta()
+        @Decorator()
+        foo() {
+          return 42
+        }
+
+        @Decorator()
+        @DecoratorWithMeta()
+        bar() {
+          return 2007
+        }
+      }
+
+      const fooDescriptor = Object.getOwnPropertyDescriptor(TestController.prototype, 'foo')!
+      expect(Reflect.getMetadata('foo', fooDescriptor.value)).toEqual(42)
+
+      const barDescriptor = Object.getOwnPropertyDescriptor(TestController.prototype, 'bar')!
+      expect(Reflect.getMetadata('foo', barDescriptor.value)).toEqual(42)
     })
   })
 

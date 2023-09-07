@@ -103,7 +103,7 @@
     "ts-jest": "^29.1.0",
     "ts4": "npm:typescript@4",
     "ts5": "npm:typescript@^5.0.4",
-    "typedoc": "^0.24.7",
+    "typedoc": "^0.25.0",
     "typescript": "npm:typescript@^5.0.4"
   },
   "prettier": "prettier-config-qiwi"

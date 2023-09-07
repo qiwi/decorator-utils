@@ -1,3 +1,8 @@
+## [4.5.4](https://github.com/qiwi/decorator-utils/compare/v4.5.3...v4.5.4) (2023-09-07)
+
+### Fixes & improvements
+* fix: keep old target method metadata (#189) ([dbac0ff](https://github.com/qiwi/decorator-utils/commit/dbac0ff3b717e837407f92add230128c67071e59))
+
 ## [4.5.3](https://github.com/qiwi/decorator-utils/compare/v4.5.2...v4.5.3) (2023-05-23)
 
 ### Fixes & improvements

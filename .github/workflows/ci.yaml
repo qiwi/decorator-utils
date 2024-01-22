@@ -68,7 +68,7 @@ jobs:
 
       - name: Save artifact
         if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ needs.init.outputs.checksum }}
           retention-days: 30

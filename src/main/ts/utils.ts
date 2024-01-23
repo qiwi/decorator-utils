@@ -53,15 +53,15 @@ export function getClassChain(ctor: any): any[] {
   return [ctor, ...(proto ? getClassChain(proto) : [])]
 }
 
-export const Refl = (() => {
-  try {
-    require('reflect-metadata')
-    return Reflect
-  } catch {
-    return {
-      getMetadataKeys() { return [] },
-      defineMetadata() { /* noop */ },
-      getMetadata() {/* noop */ }
+// Proxy is slow, so we use this wrapper
+export const Refl: Pick<typeof Reflect, 'getMetadataKeys' | 'defineMetadata' | 'getMetadata'> = ({
+    getMetadataKeys(target: any) {
+      return Reflect.getMetadataKeys?.(target) || []
+    },
+    defineMetadata(metadataKey: any, metadataValue: any, target: any) {
+      return Reflect.defineMetadata?.(metadataKey, metadataValue, target)
+    },
+    getMetadata(metadataKey: any, target: any) {
+      return Reflect.getMetadata?.(metadataKey, target)
     }
-  }
-})() as typeof Reflect
+  })

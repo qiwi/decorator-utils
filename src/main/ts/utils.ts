@@ -56,12 +56,12 @@ export function getClassChain(ctor: any): any[] {
 // Proxy is slow, so we use this wrapper
 export const Refl: Pick<typeof Reflect, 'getMetadataKeys' | 'defineMetadata' | 'getMetadata'> = ({
     getMetadataKeys(target: any) {
-      return Reflect.getMetadataKeys?.(target) || []
+      return Reflect?.getMetadataKeys?.(target) || []
     },
     defineMetadata(metadataKey: any, metadataValue: any, target: any) {
-      return Reflect.defineMetadata?.(metadataKey, metadataValue, target)
+      return Reflect?.defineMetadata?.(metadataKey, metadataValue, target)
     },
     getMetadata(metadataKey: any, target: any) {
-      return Reflect.getMetadata?.(metadataKey, target)
+      return Reflect?.getMetadata?.(metadataKey, target)
     }
   })

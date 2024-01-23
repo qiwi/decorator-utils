@@ -1,6 +1,7 @@
 /** @module @qiwi/decorator-utils */
 
 import reduce from 'lodash.reduce'
+import type {} from 'reflect-metadata'
 
 import { IDescriptor, IInstance, IProto, IReducible } from './interface'
 
@@ -51,3 +52,16 @@ export function getClassChain(ctor: any): any[] {
   const proto = Object.getPrototypeOf(ctor)
   return [ctor, ...(proto ? getClassChain(proto) : [])]
 }
+
+export const Refl = (() => {
+  try {
+    require('reflect-metadata')
+    return Reflect
+  } catch {
+    return {
+      getMetadataKeys() { return [] },
+      defineMetadata() { /* noop */ },
+      getMetadata() {/* noop */ }
+    }
+  }
+})() as typeof Reflect

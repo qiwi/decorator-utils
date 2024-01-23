@@ -14,7 +14,7 @@
     ],
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "strict": true,
     "importHelpers": false,
     "noEmitHelpers": false,

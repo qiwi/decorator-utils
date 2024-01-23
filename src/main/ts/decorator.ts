@@ -19,9 +19,9 @@ import {
   getPrototypeMethods,
   isFunction,
   once,
+  Refl,
 } from './utils'
 import {getRefStore, getRef, setRef, TRefStore} from './meta'
-import 'reflect-metadata'
 
 /**
  * Constructs decorator by a given function.
@@ -157,10 +157,10 @@ const decorateMethod = <H extends IHandler>(handler: H, context: IDecoratorConte
   }
 
   if (typeof descriptor === 'object') {
-    Reflect
+    Refl
       .getMetadataKeys(descriptor.value)
       .forEach((key) => {
-        Reflect.defineMetadata(key, Reflect.getMetadata(key, descriptor.value), method)
+        Refl.defineMetadata(key, Refl.getMetadata(key, descriptor.value), method)
       })
     descriptor.value = method
     return

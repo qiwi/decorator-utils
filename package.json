@@ -61,13 +61,15 @@
   ],
   "author": "Anton Golub <a.golub@qiwi.com>",
   "license": "MIT",
+  "optionalDependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
   "dependencies": {
     "@qiwi/substrate": "^2.0.4",
     "lodash.get": "^4.4.2",
     "lodash.once": "^4.1.1",
     "lodash.reduce": "^4.6.0",
-    "lodash.set": "^4.3.2",
-    "reflect-metadata": "^0.1.13"
+    "lodash.set": "^4.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",

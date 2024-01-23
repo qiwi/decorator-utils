@@ -163,6 +163,15 @@ class Foo {
 }
 ```
 
+#### reflect-metadata
+If the global `Reflect` provides `getMetadataKeys`, `getMetadata` and `defineMetadata` methods, they will be used to attach corresponding data to the decorated targets.
+To enable, just add `reflect-metadata` to your dependencies and load it.
+```ts
+import 'reflect-metadata'
+import {constructDecorator} from '@qiwi/decorator-utils'
+// ...
+```
+
 ### Refs
 * [JS decorators by Axel Rauschmayer](https://2ality.com/2022/10/javascript-decorators.html)
 * ["aspect" syntax for JS](https://github.com/tc39/proposal-decorators)

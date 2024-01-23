@@ -2,261 +2,40 @@
 # If the tests pass and this is a push to the master branch it also runs Semantic Release.
 name: CI
 on: [push, pull_request]
-
 jobs:
-  init:
-    name: init
-    runs-on: ubuntu-22.04
-    outputs:
-      yarn-cache-dir: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      checksum: ${{ steps.checksum.outputs.checksum }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Get yarn cache dir
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - name: Get src checksum
-        id: checksum
-        run: echo "::set-output name=checksum::${{ hashFiles('yarn.lock') }}-${{ hashFiles('src/**/*') }}-${{ hashFiles('*.json') }}"
-
-  build:
-    name: build
-    needs: init
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Download artifact
-        uses: qiwi-forks/action-download-artifact@v2
-        with:
-          name: artifact-${{ needs.init.outputs.checksum }}
-          workflow: 'ci.yaml'
-          workflow_conclusion: false
-          nothrow: true
-          search_artifacts: true
-          search_depth: 10
-
-      - name: Check artifact
-        if: always()
-        id: check-artifact
-        run: echo "::set-output name=exists::$([ -e "artifact.tar" ] && echo true || echo false)"
-
-      - uses: actions/cache@v3
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        id: yarn-cache
-        with:
-          path: ${{ needs.init.outputs.yarn-cache-dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install deps
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        run: yarn
-
-      - name: Build
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        run: |
-          yarn build
-          tar -cvf artifact.tar target package.json
-
-      - name: Save artifact
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-${{ needs.init.outputs.checksum }}
-          retention-days: 30
-          path: artifact.tar
-
-      # https://github.com/actions/upload-artifact/issues/53
-      - name: Cache artifact
-        uses: actions/cache@v3
-        id: artifact
-        with:
-          path: artifact.tar
-          key: artifact-${{ needs.init.outputs.checksum }}
-
-
-  test_push:
-    needs: [build, init]
+  push:
+    name: Push ${{ github.ref }}
     if: github.event_name == 'push'
     runs-on: ubuntu-22.04
+    permissions:
+      checks: read
+      statuses: write
+      contents: write
+      packages: write
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+        uses: actions/checkout@v3
         with:
-          node-version: 18
+          fetch-depth: ${{ github.ref == 'refs/heads/master' && '0' || '1' }}
 
-      - uses: actions/cache@v3
-        id: yarn-cache
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          path: ${{ needs.init.outputs.yarn-cache-dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install deps
-        run: yarn
+          node-version: 20
+          # cache: 'yarn'
 
-      - run: npm link
+      - name: Fetch deps
+        run: yarn --mutex network --frozen-lockfile --network-concurrency 25 --silent --disable-self-update-check
 
-      - name: Restore artifact from cache (if exists)
-        uses: actions/cache@v3
-        with:
-          path: artifact.tar
-          key: artifact-${{ needs.init.outputs.checksum }}
+      - name: Build
+        run: yarn build
 
-      - name: Check artifact
-        if: always()
-        id: check-artifact
-        run: echo "::set-output name=exists::$([ -e "artifact.tar" ] && echo true || echo false)"
-
-      - name: Download artifact
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        uses: qiwi-forks/action-download-artifact@v2
-        with:
-          name: artifact-${{ needs.init.outputs.checksum }}
-          workflow: 'ci.yaml'
-          workflow_conclusion: false
-          search_artifacts: true
-          search_depth: 10
-
-      - name: Unpack artifact
-        run: tar -xvf artifact.tar
-
-      - run: yarn build
-
-      - name: Test
-#        env:
-#          NODE_OPTIONS: "--max_old_space_size=4096"
+      - name: Run tests
         run: yarn test
-
-      - name: Cache coverage
-        if: github.ref == 'refs/heads/master'
-        id: cache-coverage
-        uses: actions/cache@v3
-        with:
-          path: |
-            target/coverage
-            package.json
-          key: coverage-${{ needs.init.outputs.checksum }}
-
-  test_pr:
-    if: github.event_name == 'pull_request'
-    needs: [build, init]
-    strategy:
-      matrix:
-        os: [ ubuntu-22.04 ]
-        node-version: [ 18, 20 ]
-    name: Test (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ needs.init.outputs.yarn-cache-dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Restore artifact from cache (if exists)
-        uses: actions/cache@v3
-        with:
-          path: artifact.tar
-          key: artifact-${{ needs.init.outputs.checksum }}
-
-      - name: Check artifact
-        if: always()
-        id: check-artifact
-        run: echo "::set-output name=exists::$([ -e "artifact.tar" ] && echo true || echo false)"
-
-      - name: Download artifact
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        uses: qiwi-forks/action-download-artifact@v2
-        with:
-          name: artifact-${{ needs.init.outputs.checksum }}
-          workflow: 'ci.yaml'
-          workflow_conclusion: false
-          search_artifacts: true
-          search_depth: 10
-
-      - name: Unpack artifact
-        run: tar -xvf artifact.tar
-
-      - name: Install deps
-        run: yarn
-
-      - run: yarn build
-
-      - name: Full test
-        if: matrix.node-version == '18' && matrix.os == 'ubuntu-22.04'
-#        env:
-#          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: yarn test
-
-  release:
-    name: Release
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    needs: [test_push, init]
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-          ref: master
-
-      - name: Restore artifact from cache (if exists)
-        uses: actions/cache@v3
-        with:
-          path: artifact.tar
-          key: artifact-${{ needs.init.outputs.checksum }}
-
-      - name: Check artifact
-        if: always()
-        id: check-artifact
-        run: echo "::set-output name=exists::$([ -e "artifact.tar" ] && echo true || echo false)"
-
-      - name: Download artifact
-        if: ${{ steps.check-artifact.outputs.exists == 'false' }}
-        uses: qiwi-forks/action-download-artifact@v2
-        with:
-          name: artifact-${{ needs.init.outputs.checksum }}
-          workflow: 'ci.yaml'
-          workflow_conclusion: false
-          search_artifacts: true
-          search_depth: 10
-
-      - name: Restore coverage
-        uses: actions/cache@v3
-        with:
-          path: |
-            target/coverage
-            package.json
-          key: coverage-${{ needs.init.outputs.checksum }}
-
-      - name: Unpack artifact
-        run: tar -xvf artifact.tar
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
 
       - name: Codeclimate
+        if: github.ref == 'refs/heads/master'
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
@@ -264,20 +43,42 @@ jobs:
           coverageLocations: |
             ${{github.workspace}}/target/coverage/lcov.info:lcov
 
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ needs.init.outputs.yarn-cache-dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Semantic Release
+        if: github.ref == 'refs/heads/master'
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_PROVENANCE: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_AUTHOR_NAME: ${{ secrets.GIT_AUTHOR_NAME }}
           GIT_AUTHOR_EMAIL: ${{ secrets.GIT_AUTHOR_EMAIL }}
           GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
         run: npm_config_yes=true npx zx-semrel
+
+  pr:
+    if: github.event_name == 'pull_request'
+    name: PR (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04 ]
+        node-version: [ 20 ]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          # cache: 'yarn'
+
+      - name: Fetch deps
+        run: yarn --mutex network --frozen-lockfile --network-concurrency 25 --silent --disable-self-update-check
+
+      - name: Build
+        run: yarn build
+
+      - name: Run tests
+        run: yarn test

@@ -1,3 +1,8 @@
+## [4.5.9](https://github.com/qiwi/decorator-utils/compare/v4.5.8...v4.5.9) (2024-01-28)
+
+### Fixes & improvements
+* docs: formatting ([e37cd29](https://github.com/qiwi/decorator-utils/commit/e37cd292fae72e737440f6b73d682c8fd8846a61))
+
 ## [4.5.6](https://github.com/qiwi/decorator-utils/compare/v4.5.5...v4.5.6) (2024-01-28)
 
 ### Fixes & improvements

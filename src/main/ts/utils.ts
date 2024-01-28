@@ -1,13 +1,13 @@
 /** @module @qiwi/decorator-utils */
 
-import reduce from 'lodash.reduce'
+import reduce from 'lodash/reduce.js'
 import type {} from 'reflect-metadata'
 
 import { IDescriptor, IInstance, IProto, IReducible } from './interface'
 
-export {default as get} from 'lodash.get'
-export {default as set} from 'lodash.set'
-export {default as once} from 'lodash.once'
+export {default as get} from 'lodash/get.js'
+export {default as set} from 'lodash/set.js'
+export {default as once} from 'lodash/once.js'
 
 export const isFunction = (fn: any): boolean =>
   typeof fn === 'function'

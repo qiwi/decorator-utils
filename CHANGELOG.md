@@ -1,3 +1,9 @@
+## [4.5.7](https://github.com/qiwi/decorator-utils/compare/v4.5.6...v4.5.7) (2024-01-28)
+
+### Fixes & improvements
+* fix: use lodash to v4.17.21 CVE-2020-8203 ([9f2efa2](https://github.com/qiwi/decorator-utils/commit/9f2efa2d6920f2de9df4af0ffb366fedf0dc1093))
+* perf: up deps ([88da81c](https://github.com/qiwi/decorator-utils/commit/88da81cee9a0e39bfaafdc99844c6ca583f8c5ce))
+
 ## [4.5.6](https://github.com/qiwi/decorator-utils/compare/v4.5.5...v4.5.6) (2024-01-28)
 
 ### Fixes & improvements

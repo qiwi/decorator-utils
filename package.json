@@ -68,7 +68,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@qiwi/substrate": "^2.0.4",
+    "@qiwi/substrate-types": "^2.0.4",
     "@babel/cli": "^7.23.9",
     "@babel/core": "^7.23.9",
     "@babel/helper-define-map": "^7.18.6",
@@ -97,7 +97,7 @@
     "prettier-config-qiwi": "^2.1.2",
     "ts-jest": "^29.1.2",
     "ts4": "npm:typescript@4",
-    "ts5": "npm:typescript@^5.3.3",
+    "ts5": "npm:typescript@5",
     "typedoc": "^0.25.7",
     "typescript": "npm:typescript@^5.3.3"
   },

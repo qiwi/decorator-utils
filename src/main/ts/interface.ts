@@ -1,8 +1,6 @@
 /** @module @qiwi/decorator-utils */
 
-import type { ICallable } from '@qiwi/substrate'
-
-export type { ICallable, IMetadataProvider } from '@qiwi/substrate'
+export type ICallable<A extends any[] = any[], R = any> = (...args: A) => R
 
 export type IDecoratorArgs = any[]
 

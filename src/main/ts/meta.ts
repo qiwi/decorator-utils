@@ -1,4 +1,5 @@
-import type {IPropName, ITargetType, ICallable, IMetadataProvider} from './interface'
+import type {IMetadataProvider} from '@qiwi/substrate-types'
+import type {IPropName, ITargetType, ICallable } from './interface'
 import {get, set} from './utils'
 import {CLASS} from './resolver'
 

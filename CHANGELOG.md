@@ -1,3 +1,9 @@
+## [4.5.10](https://github.com/qiwi/decorator-utils/compare/v4.5.9...v4.5.10) (2024-01-28)
+
+### Fixes & improvements
+* perf: type improvements ([025a89b](https://github.com/qiwi/decorator-utils/commit/025a89bc1013ce9a0278919f0f0e6fd3db85bc36))
+* perf: type improvements ([429cdc3](https://github.com/qiwi/decorator-utils/commit/429cdc3ffb7dba6a15973456c1b1840c9bb28aca))
+
 ## [4.5.6](https://github.com/qiwi/decorator-utils/compare/v4.5.5...v4.5.6) (2024-01-28)
 
 ### Fixes & improvements

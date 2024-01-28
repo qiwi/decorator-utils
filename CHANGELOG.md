@@ -1,3 +1,10 @@
+## [4.5.5](https://github.com/qiwi/decorator-utils/compare/v4.5.4...v4.5.5) (2024-01-28)
+
+### Fixes & improvements
+* docs: mention reflect-metadata behaviour ([347999a](https://github.com/qiwi/decorator-utils/commit/347999a6b96f09a8abbebf22290ddd88083e9914))
+* perf: tweak up Reflect void proxy ([b461bb2](https://github.com/qiwi/decorator-utils/commit/b461bb2d2956df8c4b45bdb70ee7f11ed2f5230a))
+* fix: move refect-metadata to optional deps ([fd863ff](https://github.com/qiwi/decorator-utils/commit/fd863ff56e75463ddf05551761eaeb3733da93b0))
+
 ## [4.5.4](https://github.com/qiwi/decorator-utils/compare/v4.5.3...v4.5.4) (2023-09-07)
 
 ### Fixes & improvements

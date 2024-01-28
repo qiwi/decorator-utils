@@ -1,9 +1,8 @@
 # decorator-utils
+> Universal decorator factories made from scratch
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/maintainability)](https://codeclimate.com/github/qiwi/decorator-utils/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4c341fd87383813f8e18/test_coverage)](https://codeclimate.com/github/qiwi/decorator-utils/test_coverage)
-
-Universal decorator factories made from scratch
 
 ## Install
 ```bash
@@ -18,7 +17,7 @@ Holy War thread: [wycats/javascript-decorators/issues/23](https://github.com/wyc
 
 ## Usage
 #### Method
-```typescript
+```ts
 import {constructDecorator} from '@qiwi/decorator-utils'
 
 const decorator = constructDecorator((targetType, target, param) => {
@@ -36,7 +35,7 @@ class Foo {
 ```
 
 #### Class
-```typescript
+```ts
 const decorator = constructDecorator((targetType, target) => {
   if (targetType === CLASS) {
     return class Bar extends target {
@@ -58,7 +57,7 @@ class Foo {
 ```
 
 #### Field & Param
-```typescript
+```ts
 import {createDecorator, FIELD, PARAM} from '@qiwi/decorator-utils'
 
 const meta: any = {}
@@ -105,7 +104,7 @@ class Foo {
 
 You may also apply the decorator to the class, but decorate its methods:
 
-```typescript
+```ts
 const decorator = constructDecorator((targetType, target) => {
   if (targetType === METHOD) {
     return () => {
@@ -125,7 +124,7 @@ class Foo {
 `constructDecorator` factory provides the handler access to the decorator context.
 This data describes the specifics of the decorated target, decorator arguments and so on.
 
-```typescript
+```ts
 type IDecoratorHandlerContext = {
   args: IDecoratorArgs
   kind: ITargetType | null        // targetType alias

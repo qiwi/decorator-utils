@@ -1,3 +1,8 @@
+## [4.5.6](https://github.com/qiwi/decorator-utils/compare/v4.5.5...v4.5.6) (2024-01-28)
+
+### Fixes & improvements
+* perf(deps): update dependency esbuild to ^0.20.0 (#197) ([f040e75](https://github.com/qiwi/decorator-utils/commit/f040e750a25b902ae363087c6fb08a8c33f169a7))
+
 ## [4.5.4](https://github.com/qiwi/decorator-utils/compare/v4.5.3...v4.5.4) (2023-09-07)
 
 ### Fixes & improvements

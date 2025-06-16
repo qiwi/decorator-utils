@@ -82,7 +82,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@babel/register": "^7.23.7",
     "@babel/runtime": "^7.23.9",
-    "@types/jest": "^29.5.11",
+    "@types/jest": "^30.0.0",
     "@types/lodash": "^4.14.202",
     "babel-jest": "^30.0.0",
     "babel-register-esm": "^1.2.5",
